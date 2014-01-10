@@ -1,0 +1,16 @@
+EN-ResultsChisquare.csv
+EN-ResultsCosine.csv
+EN-ResultsEuclidian.csv
+EN-ResultsHellinger.csv
+EN-ResultsJaccards.csv
+EN-ResultsJSDivergence.csv
+EN-ResultsKLDivergence.csv
+EN-ResultsL1norm.csv
+NL-ResultsChisquare.csv
+NL-ResultsCosine.csv
+NL-ResultsEuclidian.csv
+NL-ResultsHellinger.csv
+NL-ResultsJaccards.csv
+NL-ResultsJSDivergence.csv
+NL-ResultsKLDivergence.csv
+NL-ResultsL1norm.csv

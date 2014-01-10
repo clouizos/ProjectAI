@@ -1,0 +1,399 @@
+|||||||-Observation: ../Testdata/dataset/Dutch/CKTAUS_legal4.nl
+||||||||0.7493133355986893
+||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_electronics3.nl
+|||||||||0.7079501982590398
+|||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_software8.nl
+||||||||||||||||||||0.4239559586646407
+||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_software9.nl
+|||||||||||||||||||||0.32387058588595913
+||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_software10.nl
+|||||||||||||||||||0.45970724174170735
+|||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_software4.nl
+||||||||||||||||||||||0.29659784154558444
+|||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_software7.nl
+|||||||||||||||||||||0.32059408252601945
+|||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_software6.nl
+||||||||||||||||||||||0.26425474751174965
+||||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_software3.nl
+|||||||||||||||||||||||0.25777332192674435
+||||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_software5.nl
+||||||||||||||||||||0.3283698422824311
+||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_software2.nl
+|||||||||||||||||||||0.2982016486430674
+|||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_software1.nl
+||||||||||||||||||||||0.23036770762554173
+|||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/D_CSTAUS_software1.nl
+||||||||||||||||||0.5731849277895066
+||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_software11.nl
+|||||||||||||||||||0.34449534270079624
+|||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_software14.nl
+||||||||||||||||||||0.29224696848871373
+||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_software12.nl
+|||||||||||||||||||||0.2564877154658066
+||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_software13.nl
+|||||||||||||||||0.613841390561091
+|||||||||||||||||-Observation: ../Testdata/dataset/Dutch/D_CKTAUS_electronics1.nl
+||||||||||||||||||0.23663567441425584
+|||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CKTAUS_electronics1.nl
+||||||||||||||||0.6170208886071322
+|||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_hardware12.nl
+||||||||||||||||||0.5687548691700683
+||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_hardware6.nl
+|||||||||||||||||||||0.4546879172554583
+|||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_hardware10.nl
+||||||||||||||||||||||0.42489329822604416
+||||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_hardware15.nl
+|||||||||||||||||||||||0.42197606476001276
+|||||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_hardware9.nl
+||||||||||||||||||||||||0.38306757587397094
+|||||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_hardware7.nl
+||||||||||||||||||||0.4695186827270247
+||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_hardware8.nl
+|||||||||||||||||||||0.4511734432061699
+|||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_hardware11.nl
+||||||||||||||||||||||0.44597184833894593
+||||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_hardware14.nl
+|||||||||||||||||||||||0.4131784059450809
+||||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_hardware13.nl
+|||||||||||||||||||0.4743609682641362
+|||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_hardware3.nl
+||||||||||||||||||||0.45745534246027064
+||||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_hardware16.nl
+|||||||||||||||||||||||0.4415004866249971
+||||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_hardware17.nl
+||||||||||||||||||||||0.44717326953525116
+||||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_hardware19.nl
+|||||||||||||||||||||||0.440677906736184
+|||||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_hardware5.nl
+||||||||||||||||||||||||0.4308895103626313
+||||||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_hardware18.nl
+|||||||||||||||||||||||||0.4304654718017154
+||||||||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_hardware2.nl
+|||||||||||||||||||||||||||0.37235067243168096
+||||||||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_hardware4.nl
+||||||||||||||||||||||||||0.40735986157310006
+||||||||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_hardware1.nl
+|||||||||||||||||||||||||||0.23605634259898228
+||||||||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/D_CSTAUS_hardware1.nl
+|||||||||||||||||||||0.4473268051587
+|||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_hardware21.nl
+||||||||||||||||||||||0.43858538786428997
+|||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_hardware20.nl
+|||||||||||||||||0.5819540594416486
+|||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CKTAUS_hardware1.nl
+||||||||||||||||||0.22174642790762272
+|||||||||||||||||-Observation: ../Testdata/dataset/Dutch/D_CKTAUS_hardware1.nl
+|||||||||||||||0.6465276423735086
+|||||||||||||||-Observation: ../Testdata/dataset/Dutch/CKTAUS_industrial5.nl
+||||||||||||||||0.27416234372424686
+||||||||||||||||-Observation: ../Testdata/dataset/Dutch/D_CKTAUS_industrial1.nl
+|||||||||||||||||0.22828427673436297
+|||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CKTAUS_industrial4.nl
+||||||||||||||||||0.18730120986796386
+||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CKTAUS_industrial3.nl
+|||||||||||||||||||0.1829988382776516
+|||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CKTAUS_industrial1.nl
+||||||||||||||||||||0.1733164650517936
+|||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CKTAUS_industrial2.nl
+||||||||||||||0.6500761070874813
+|||||||||||||||-Observation: ../Testdata/dataset/Dutch/CKTAUS_pharma11.nl
+||||||||||||||||0.47187501989818886
+||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CKTAUS_pharma19.nl
+|||||||||||||||||0.4482770124025072
+|||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CKTAUS_pharma5.nl
+||||||||||||||||||0.4350974579512679
+||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CKTAUS_pharma16.nl
+|||||||||||||||||||0.4322922030146916
+||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CKTAUS_pharma9.nl
+|||||||||||||||||||||0.41431591234851484
+|||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CKTAUS_pharma12.nl
+||||||||||||||||||||||0.4140923868579361
+||||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CKTAUS_pharma18.nl
+|||||||||||||||||||||||0.4101636899648143
+|||||||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CKTAUS_pharma2.nl
+||||||||||||||||||||||||||0.40218325232730584
+||||||||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CKTAUS_pharma10.nl
+|||||||||||||||||||||||||||0.39285782361472144
+|||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CKTAUS_pharma13.nl
+||||||||||||||||||||||||||||||0.37974515722632946
+|||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CKTAUS_pharma15.nl
+||||||||||||||||||||||||||||||||0.3347373986398032
+|||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CKTAUS_pharma14.nl
+|||||||||||||||||||||||||||||||0.36023366113147975
+|||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CKTAUS_software13.nl
+||||||||||||||||||||||||||||||||0.28033597573144586
+||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CKTAUS_software14.nl
+|||||||||||||||||||||||||||||||||0.27919153612830216
+|||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CKTAUS_software11.nl
+||||||||||||||||||||||||||||||||||0.27880613058466325
+||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CKTAUS_software9.nl
+|||||||||||||||||||||||||||||||||||0.2777091865283333
+|||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CKTAUS_software4.nl
+||||||||||||||||||||||||||||||||||||0.27619074710134545
+||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CKTAUS_software5.nl
+|||||||||||||||||||||||||||||||||||||0.27509494441402743
+|||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CKTAUS_software7.nl
+||||||||||||||||||||||||||||||||||||||0.2745422541502489
+||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CKTAUS_software2.nl
+|||||||||||||||||||||||||||||||||||||||0.27416170962940944
+|||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CKTAUS_software6.nl
+||||||||||||||||||||||||||||||||||||||||0.27273458659665145
+||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CKTAUS_software3.nl
+|||||||||||||||||||||||||||||||||||||||||0.27121410607195884
+|||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CKTAUS_software10.nl
+||||||||||||||||||||||||||||||||||||||||||0.27063045101260297
+||||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CKTAUS_software8.nl
+|||||||||||||||||||||||||||||||||||||||||||0.2692566169568069
+||||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CKTAUS_software12.nl
+|||||||||||||||||||||||||||||0.387554448848788
+|||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CKTAUS_pharma8.nl
+||||||||||||||||||||||||||||||0.3787379031955121
+|||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CKTAUS_pharma7.nl
+||||||||||||||||||||||||||||0.389337032128282
+||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CKTAUS_pharma20.nl
+|||||||||||||||||||||||||||||0.2743930474074011
+||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CKTAUS_pharma21.nl
+|||||||||||||||||||||||||0.403470910116548
+|||||||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CKTAUS_pharma1.nl
+||||||||||||||||||||||||||0.24431137551036364
+|||||||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/D_CKTAUS_pharma1.nl
+||||||||||||||||||||||||0.4091962942689803
+||||||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CKTAUS_pharma4.nl
+|||||||||||||||||||||||||0.36814669697372887
+||||||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CKTAUS_pharma3.nl
+||||||||||||||||||||0.41739842806371596
+||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CKTAUS_pharma17.nl
+|||||||||||||||||||||0.39667172051429217
+||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CKTAUS_pharma6.nl
+|||||||||||||||0.4806710355467515
+|||||||||||||||-Observation: ../Testdata/dataset/Dutch/CKTAUS_software1.nl
+||||||||||||||||0.23985322032835038
+|||||||||||||||-Observation: ../Testdata/dataset/Dutch/D_CKTAUS_software1.nl
+|||||||||||||0.6806828906338226
+|||||||||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_undef12.nl
+||||||||||||||||0.579541811154209
+||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_undef6.nl
+|||||||||||||||||0.521897738594032
+|||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_undef2.nl
+||||||||||||||||||0.5069973320174659
+||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_undef3.nl
+|||||||||||||||||||0.48748464572166417
+||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_undef8.nl
+|||||||||||||||||||||0.4227085226225846
+|||||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_undef9.nl
+||||||||||||||||||||||||0.3792733601232058
+|||||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_undef10.nl
+|||||||||||||||||||||||0.39374946212653567
+|||||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_undef11.nl
+||||||||||||||||||||||||0.36337917691552557
+|||||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CKTAUS_undef6.nl
+||||||||||||||||||||||0.42055634740815023
+||||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CKTAUS_undef5.nl
+|||||||||||||||||||||||0.3897031687760654
+||||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_undef7.nl
+||||||||||||||||||||0.480205334679962
+||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_undef4.nl
+|||||||||||||||||||||0.37232636235396227
+||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_undef5.nl
+|||||||||||||||0.6044109048918745
+|||||||||||||||-Observation: ../Testdata/dataset/Dutch/CKTAUS_legal3.nl
+||||||||||||||||0.5152976766218988
+||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CKTAUS_legal5.nl
+|||||||||||||||||0.5030833081554371
+||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CKTAUS_legal14.nl
+|||||||||||||||||||0.4159546512665475
+|||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CKTAUS_legal13.nl
+||||||||||||||||||||0.39396836343199615
+||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CKTAUS_legal21.nl
+|||||||||||||||||||||0.370210271012383
+|||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CKTAUS_legal9.nl
+||||||||||||||||||||||0.3683670589017357
+|||||||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CKTAUS_legal6.nl
+||||||||||||||||||||||||||0.3320857872978341
+|||||||||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CKTAUS_legal20.nl
+||||||||||||||||||||||||||||0.32073882420097466
+||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CKTAUS_legal7.nl
+|||||||||||||||||||||||||||||0.315424808033659
+||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CKTAUS_legal19.nl
+|||||||||||||||||||||||||||0.33074890095988885
+|||||||||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CKTAUS_legal18.nl
+||||||||||||||||||||||||||||0.2810940376486987
+||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CKTAUS_legal8.nl
+|||||||||||||||||||||||||||||0.2521834693920273
+|||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CKTAUS_legal12.nl
+||||||||||||||||||||||||||||||0.22882624023513382
+|||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CKTAUS_legal11.nl
+|||||||||||||||||||||||||0.334207226998041
+|||||||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CKTAUS_legal10.nl
+||||||||||||||||||||||||||0.3282787770699366
+|||||||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CKTAUS_legal2.nl
+||||||||||||||||||||||||0.34977883795640535
+||||||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CKTAUS_undef2.nl
+|||||||||||||||||||||||||0.2059054263248717
+|||||||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CKTAUS_undef3.nl
+||||||||||||||||||||||||||0.11560771193310854
+|||||||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CKTAUS_undef4.nl
+|||||||||||||||||||||||0.362886825619655
+||||||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CKTAUS_legal15.nl
+|||||||||||||||||||||||||0.3098223714088878
+|||||||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/D_CKTAUS_legal1.nl
+||||||||||||||||||||||||||0.21930798732321444
+|||||||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CKTAUS_legal1.nl
+||||||||||||||||||||||||0.3489676349445746
+||||||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CKTAUS_legal17.nl
+|||||||||||||||||||||||||0.2805132899180162
+||||||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CKTAUS_legal16.nl
+||||||||||||||||||0.44433337778382853
+||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/D_CKTAUS_finance1.nl
+|||||||||||||||||||0.24987656114359083
+|||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CKTAUS_finance4.nl
+||||||||||||||||||||0.2002201481478319
+||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CKTAUS_finance16.nl
+|||||||||||||||||||||0.1993729783401585
+|||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CKTAUS_finance11.nl
+||||||||||||||||||||||0.19654192857847622
+||||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CKTAUS_finance1.nl
+|||||||||||||||||||||||0.1965331982024211
+|||||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CKTAUS_finance2.nl
+||||||||||||||||||||||||0.19649272644991345
+||||||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CKTAUS_finance20.nl
+|||||||||||||||||||||||||0.19649103346142854
+|||||||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CKTAUS_finance7.nl
+||||||||||||||||||||||||||0.19604437880657338
+||||||||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CKTAUS_finance12.nl
+|||||||||||||||||||||||||||0.19601844011594666
+|||||||||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CKTAUS_finance19.nl
+||||||||||||||||||||||||||||0.19574549354665202
+||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CKTAUS_finance13.nl
+|||||||||||||||||||||||||||||0.1956786209378075
+|||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CKTAUS_finance5.nl
+||||||||||||||||||||||||||||||0.19560492789474795
+||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CKTAUS_finance3.nl
+|||||||||||||||||||||||||||||||0.1949624181796487
+|||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CKTAUS_finance10.nl
+||||||||||||||||||||||||||||||||0.19423742561397658
+||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CKTAUS_finance15.nl
+|||||||||||||||||||||||||||||||||0.19411603339068476
+|||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CKTAUS_finance17.nl
+||||||||||||||||||||||||||||||||||0.19383283654769848
+||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CKTAUS_finance6.nl
+|||||||||||||||||||||||||||||||||||0.1937608269273944
+|||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CKTAUS_finance18.nl
+||||||||||||||||||||||||||||||||||||0.19375452704296633
+||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CKTAUS_finance14.nl
+|||||||||||||||||||||||||||||||||||||0.19284365816424978
+|||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CKTAUS_finance21.nl
+||||||||||||||||||||||||||||||||||||||0.1909207227208429
+||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CKTAUS_finance9.nl
+|||||||||||||||||||||||||||||||||||||||0.19069792868348398
+||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CKTAUS_finance8.nl
+||||||||||||||0.6236288604434467
+||||||||||||||-Observation: ../Testdata/dataset/Dutch/D_CKTAUS_undef1.nl
+|||||||||||||||0.24062559161717484
+||||||||||||||-Observation: ../Testdata/dataset/Dutch/CKTAUS_undef1.nl
+||||||||||||0.683585513250071
+|||||||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_industrial3.nl
+||||||||||||||0.47551650344065655
+|||||||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_industrial2.nl
+|||||||||||||0.5092275769993633
+|||||||||||||-Observation: ../Testdata/dataset/Dutch/D_CSTAUS_industrial1.nl
+||||||||||||||0.24640511644968155
+|||||||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_industrial1.nl
+|||||||||||0.6887752725567373
+|||||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_electronics2.nl
+||||||||||||0.27358706944342054
+||||||||||||-Observation: ../Testdata/dataset/Dutch/D_CSTAUS_electronics1.nl
+|||||||||||||0.22895541595916213
+||||||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_electronics1.nl
+||||||||||0.6911559081014943
+||||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_business16.nl
+|||||||||||0.29046840428085513
+||||||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_business6.nl
+|||||||||||||0.2800289344629398
+|||||||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_business7.nl
+||||||||||||||0.2750365986873004
+||||||||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_business13.nl
+|||||||||||||||0.2716029709174744
+|||||||||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_business15.nl
+||||||||||||||||0.2708749468463634
+|||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_business17.nl
+||||||||||||||||||0.2692709706948413
+||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_business11.nl
+|||||||||||||||||||0.2679566804203628
+|||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_business10.nl
+||||||||||||||||||||0.25464230458920406
+||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_business8.nl
+|||||||||||||||||||||0.24901922157084597
+||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_business9.nl
+|||||||||||||||||0.2704607309416995
+|||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_business18.nl
+||||||||||||||||||0.2680120956395268
+||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_business12.nl
+|||||||||||||||||||0.26533691460258135
+||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_business19.nl
+|||||||||||||||||||||0.2550654186458391
+||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_business14.nl
+||||||||||||||||||||0.2563055188331928
+||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_business20.nl
+|||||||||||||||||||||0.24591664883449052
+||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_business21.nl
+||||||||||||0.28254129100002573
+||||||||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_business5.nl
+|||||||||||||||0.2626448086749372
+||||||||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_business4.nl
+||||||||||||||0.2773530946869432
+||||||||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_business3.nl
+|||||||||||||||0.25958747475539434
+||||||||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_business2.nl
+|||||||||||||0.2793957464420565
+|||||||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_business1.nl
+||||||||||||||0.2316404519739127
+|||||||||||||-Observation: ../Testdata/dataset/Dutch/D_CSTAUS_business1.nl
+|||||||0.7547277225643927
+|||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_undef1.nl
+||||||||0.26877438310163926
+|||||||-Observation: ../Testdata/dataset/Dutch/D_CSTAUS_undef1.nl
+||||||0.8817682175286954
+||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_leisure19.nl
+|||||||0.36588922724382594
+|||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_leisure5.nl
+||||||||0.36462777316336853
+||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_leisure16.nl
+|||||||||0.363396017801122
+|||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_leisure15.nl
+||||||||||0.36285880362794587
+||||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_leisure12.nl
+|||||||||||0.36237862807886134
+|||||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_leisure9.nl
+||||||||||||0.36213251902279636
+||||||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_leisure14.nl
+|||||||||||||0.36179112744277875
+||||||||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_leisure11.nl
+|||||||||||||||0.3607393468161784
+|||||||||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_leisure6.nl
+||||||||||||||||0.36024198474379787
+||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_leisure2.nl
+|||||||||||||||||0.3599985624167629
+||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_leisure21.nl
+|||||||||||||||||||0.35757083526626904
+|||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_leisure7.nl
+||||||||||||||||||||||0.35616131994981437
+||||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_leisure13.nl
+|||||||||||||||||||||||0.3555385637730336
+||||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_leisure20.nl
+|||||||||||||||||||||0.3572696819252774
+|||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_leisure8.nl
+||||||||||||||||||||||0.3543527433061587
+|||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_leisure18.nl
+||||||||||||||||||||0.35738087703769017
+||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_leisure1.nl
+|||||||||||||||||||||0.25193860489923725
+||||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/D_CSTAUS_leisure1.nl
+||||||||||||||||||0.358780729268239
+||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_leisure10.nl
+|||||||||||||||||||0.3562796732748071
+||||||||||||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_leisure17.nl
+||||||||||||||0.3611446198353844
+||||||||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_leisure4.nl
+|||||||||||||||0.3603715715086615
+||||||||||||||-Observation: ../Testdata/dataset/Dutch/CSTAUS_leisure3.nl
