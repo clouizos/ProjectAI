@@ -1,0 +1,399 @@
+||||||-Observation: CSTAUS_electronics3.tok.true.clean
+|||||||0.08523212266759743
+|||||||-Observation: CKTAUS_legal4.tok.true.clean
+||||||||0.09331343898403299
+|||||||||-Observation: CSTAUS_electronics2.tok.true.clean
+||||||||||0.20331738637427813
+||||||||||-Observation: D_CSTAUS_electronics1.tok.true.clean
+|||||||||||0.6225488975716688
+||||||||||-Observation: CSTAUS_electronics1.tok.true.clean
+|||||||||0.09342161255728443
+|||||||||||-Observation: CKTAUS_software1.tok.true.clean
+||||||||||||0.6750412976945809
+|||||||||||-Observation: D_CKTAUS_software1.tok.true.clean
+|||||||||||0.17389771730631792
+||||||||||||-Observation: CKTAUS_software2.tok.true.clean
+|||||||||||||0.2220275570923887
+|||||||||||||-Observation: CKTAUS_software12.tok.true.clean
+||||||||||||||0.22245147642177068
+||||||||||||||-Observation: CKTAUS_software13.tok.true.clean
+|||||||||||||||0.22328871978424947
+|||||||||||||||||-Observation: CKTAUS_software6.tok.true.clean
+||||||||||||||||||0.22797010833312392
+||||||||||||||||||-Observation: CKTAUS_software5.tok.true.clean
+|||||||||||||||||||0.2290737615265981
+||||||||||||||||||-Observation: CKTAUS_software14.tok.true.clean
+|||||||||||||||||0.2277867945514785
+|||||||||||||||||-Observation: CKTAUS_software4.tok.true.clean
+||||||||||||||||||0.22783552666053825
+||||||||||||||||||-Observation: CKTAUS_software7.tok.true.clean
+|||||||||||||||||||0.22919438347939963
+||||||||||||||||||-Observation: CKTAUS_software3.tok.true.clean
+||||||||||||||||0.22540366253843275
+||||||||||||||||-Observation: CKTAUS_software11.tok.true.clean
+|||||||||||||||||0.2256226794791306
+|||||||||||||||||-Observation: CKTAUS_software9.tok.true.clean
+||||||||||||||||||0.2271305183574534
+||||||||||||||||||-Observation: CKTAUS_software10.tok.true.clean
+|||||||||||||||||||0.22722099246048053
+||||||||||||||||||-Observation: CKTAUS_software8.tok.true.clean
+||||||||||||0.18686264686129822
+||||||||||||-Observation: CKTAUS_pharma5.tok.true.clean
+|||||||||||||0.1892540325135452
+|||||||||||||-Observation: CKTAUS_pharma16.tok.true.clean
+||||||||||||||0.19285079833515534
+||||||||||||||-Observation: CKTAUS_pharma11.tok.true.clean
+|||||||||||||||0.19391255491700135
+|||||||||||||||-Observation: CKTAUS_pharma19.tok.true.clean
+||||||||||||||||0.19555932264152817
+|||||||||||||||||-Observation: CKTAUS_pharma8.tok.true.clean
+||||||||||||||||||0.2159873450186123
+|||||||||||||||||-Observation: CKTAUS_pharma7.tok.true.clean
+|||||||||||||||||0.19822115202558813
+||||||||||||||||||-Observation: CKTAUS_pharma18.tok.true.clean
+|||||||||||||||||||0.22793786068160238
+|||||||||||||||||||-Observation: CKTAUS_pharma6.tok.true.clean
+||||||||||||||||||||0.24196822114182712
+|||||||||||||||||||-Observation: CKTAUS_pharma17.tok.true.clean
+||||||||||||||||||0.20605626096118648
+|||||||||||||||||||-Observation: CKTAUS_pharma4.tok.true.clean
+||||||||||||||||||||0.2680213945870711
+|||||||||||||||||||-Observation: CKTAUS_pharma3.tok.true.clean
+|||||||||||||||||||0.2063700858422869
+|||||||||||||||||||||-Observation: CKTAUS_pharma20.tok.true.clean
+||||||||||||||||||||||0.3082303230065381
+|||||||||||||||||||||-Observation: CKTAUS_pharma21.tok.true.clean
+|||||||||||||||||||||0.21525240070008286
+|||||||||||||||||||||-Observation: CKTAUS_pharma2.tok.true.clean
+||||||||||||||||||||||0.2257439073429508
+||||||||||||||||||||||-Observation: D_CKTAUS_pharma1.tok.true.clean
+|||||||||||||||||||||||0.6582517296862915
+||||||||||||||||||||||-Observation: CKTAUS_pharma1.tok.true.clean
+||||||||||||||||||||0.20860984606925168
+||||||||||||||||||||-Observation: CKTAUS_pharma12.tok.true.clean
+|||||||||||||||||||||0.20964600216520193
+||||||||||||||||||||||-Observation: CKTAUS_pharma10.tok.true.clean
+|||||||||||||||||||||||0.2319215032690565
+||||||||||||||||||||||-Observation: CKTAUS_pharma9.tok.true.clean
+||||||||||||||||||||||0.2110122908161432
+||||||||||||||||||||||-Observation: CKTAUS_pharma13.tok.true.clean
+|||||||||||||||||||||||0.22335146883069207
+|||||||||||||||||||||||-Observation: CKTAUS_pharma15.tok.true.clean
+||||||||||||||||||||||||0.2653805853572163
+|||||||||||||||||||||||-Observation: CKTAUS_pharma14.tok.true.clean
+||||||||||0.10272343827475194
+|||||||||||-Observation: CKTAUS_industrial5.tok.true.clean
+||||||||||||0.2619483146611739
+||||||||||||-Observation: CKTAUS_industrial3.tok.true.clean
+|||||||||||||0.3125314686349462
+|||||||||||||-Observation: CKTAUS_industrial2.tok.true.clean
+||||||||||||||0.32619736189650533
+||||||||||||||-Observation: CKTAUS_industrial4.tok.true.clean
+|||||||||||||||0.3499521110702557
+|||||||||||||||-Observation: D_CKTAUS_industrial1.tok.true.clean
+||||||||||||||||0.6220385147038104
+|||||||||||||||-Observation: CKTAUS_industrial1.tok.true.clean
+|||||||||||0.10920840972465114
+||||||||||||-Observation: CSTAUS_industrial3.tok.true.clean
+|||||||||||||0.16849228624324367
+|||||||||||||-Observation: CSTAUS_industrial2.tok.true.clean
+||||||||||||||0.17162459002112554
+||||||||||||||-Observation: D_CSTAUS_industrial1.tok.true.clean
+|||||||||||||||0.6581887074411576
+||||||||||||||-Observation: CSTAUS_industrial1.tok.true.clean
+||||||||||||0.1132174086851957
+||||||||||||||-Observation: CKTAUS_undef1.tok.true.clean
+|||||||||||||||0.6488290544699163
+||||||||||||||-Observation: D_CKTAUS_undef1.tok.true.clean
+||||||||||||||0.11964678590814433
+|||||||||||||||-Observation: D_CSTAUS_undef1.tok.true.clean
+||||||||||||||||0.6671552450926892
+|||||||||||||||-Observation: CSTAUS_undef1.tok.true.clean
+|||||||||||||||0.13395300197446924
+||||||||||||||||-Observation: CSTAUS_undef12.tok.true.clean
+|||||||||||||||||0.16442567419681736
+||||||||||||||||||-Observation: CSTAUS_undef6.tok.true.clean
+|||||||||||||||||||0.17899852451583717
+|||||||||||||||||||-Observation: CSTAUS_undef4.tok.true.clean
+||||||||||||||||||||0.197317047138264
+|||||||||||||||||||-Observation: CSTAUS_undef5.tok.true.clean
+||||||||||||||||||0.17291148096596518
+||||||||||||||||||-Observation: CSTAUS_undef2.tok.true.clean
+|||||||||||||||||||0.17426033541645977
+|||||||||||||||||||-Observation: CSTAUS_undef3.tok.true.clean
+||||||||||||||||||||0.17807566422401616
+||||||||||||||||||||-Observation: CSTAUS_undef7.tok.true.clean
+|||||||||||||||||||||0.18093235818597758
+|||||||||||||||||||||-Observation: CKTAUS_undef5.tok.true.clean
+||||||||||||||||||||||0.1952137752406939
+||||||||||||||||||||||-Observation: CSTAUS_undef8.tok.true.clean
+|||||||||||||||||||||||0.20099824191808632
+|||||||||||||||||||||||-Observation: CSTAUS_undef9.tok.true.clean
+||||||||||||||||||||||||0.21468803129898312
+||||||||||||||||||||||||-Observation: CKTAUS_undef6.tok.true.clean
+|||||||||||||||||||||||||0.2223395238150586
+|||||||||||||||||||||||||-Observation: CSTAUS_undef10.tok.true.clean
+||||||||||||||||||||||||||0.22647671673043038
+|||||||||||||||||||||||||-Observation: CSTAUS_undef11.tok.true.clean
+||||||||||||||||0.1368754995478508
+||||||||||||||||-Observation: CKTAUS_legal5.tok.true.clean
+|||||||||||||||||0.14793909301763905
+|||||||||||||||||-Observation: CKTAUS_legal3.tok.true.clean
+||||||||||||||||||0.15409597322855434
+||||||||||||||||||-Observation: CKTAUS_legal14.tok.true.clean
+|||||||||||||||||||0.16094131272095416
+||||||||||||||||||||-Observation: CKTAUS_undef2.tok.true.clean
+|||||||||||||||||||||0.22756012258512995
+|||||||||||||||||||||-Observation: CKTAUS_undef3.tok.true.clean
+||||||||||||||||||||||0.2779425314117969
+|||||||||||||||||||||-Observation: CKTAUS_undef4.tok.true.clean
+||||||||||||||||||||0.1657678653230925
+|||||||||||||||||||||-Observation: CKTAUS_finance11.tok.true.clean
+||||||||||||||||||||||0.2440441561000057
+||||||||||||||||||||||-Observation: CKTAUS_finance2.tok.true.clean
+|||||||||||||||||||||||0.24481933968036715
+|||||||||||||||||||||||-Observation: CKTAUS_finance8.tok.true.clean
+||||||||||||||||||||||||0.2450328031983387
+||||||||||||||||||||||||-Observation: CKTAUS_finance10.tok.true.clean
+|||||||||||||||||||||||||0.24653176475828145
+|||||||||||||||||||||||||-Observation: CKTAUS_finance16.tok.true.clean
+||||||||||||||||||||||||||0.24799908092468803
+||||||||||||||||||||||||||-Observation: CKTAUS_finance17.tok.true.clean
+|||||||||||||||||||||||||||0.24817372206936097
+|||||||||||||||||||||||||||-Observation: CKTAUS_finance18.tok.true.clean
+||||||||||||||||||||||||||||0.24863030068106684
+||||||||||||||||||||||||||||-Observation: CKTAUS_finance20.tok.true.clean
+|||||||||||||||||||||||||||||0.24922068834715003
+||||||||||||||||||||||||||||||-Observation: CKTAUS_finance1.tok.true.clean
+|||||||||||||||||||||||||||||||0.6658930538794885
+||||||||||||||||||||||||||||||-Observation: D_CKTAUS_finance1.tok.true.clean
+||||||||||||||||||||||||||||||0.24943109047562512
+||||||||||||||||||||||||||||||-Observation: CKTAUS_finance3.tok.true.clean
+|||||||||||||||||||||||||||||||0.24958883228418433
+||||||||||||||||||||||||||||||||-Observation: CKTAUS_finance15.tok.true.clean
+|||||||||||||||||||||||||||||||||0.2534882662999582
+||||||||||||||||||||||||||||||||-Observation: CKTAUS_finance12.tok.true.clean
+||||||||||||||||||||||||||||||||0.24970809400012775
+||||||||||||||||||||||||||||||||-Observation: CKTAUS_finance14.tok.true.clean
+|||||||||||||||||||||||||||||||||0.24977751888682417
+|||||||||||||||||||||||||||||||||-Observation: CKTAUS_finance4.tok.true.clean
+||||||||||||||||||||||||||||||||||0.2503036105263642
+||||||||||||||||||||||||||||||||||-Observation: CKTAUS_finance6.tok.true.clean
+|||||||||||||||||||||||||||||||||||0.2512006462002285
+|||||||||||||||||||||||||||||||||||-Observation: CKTAUS_finance7.tok.true.clean
+||||||||||||||||||||||||||||||||||||0.251728291441221
+||||||||||||||||||||||||||||||||||||-Observation: CKTAUS_finance9.tok.true.clean
+|||||||||||||||||||||||||||||||||||||0.25194348735198435
+|||||||||||||||||||||||||||||||||||||-Observation: CKTAUS_finance19.tok.true.clean
+||||||||||||||||||||||||||||||||||||||0.2520428190709361
+||||||||||||||||||||||||||||||||||||||-Observation: CKTAUS_finance5.tok.true.clean
+|||||||||||||||||||||||||||||||||||||||0.253511667125875
+|||||||||||||||||||||||||||||||||||||||-Observation: CKTAUS_finance21.tok.true.clean
+||||||||||||||||||||||||||||||||||||||||0.25372342140224147
+|||||||||||||||||||||||||||||||||||||||-Observation: CKTAUS_finance13.tok.true.clean
+|||||||||||||||||||||0.17271063120638108
+|||||||||||||||||||||-Observation: CKTAUS_legal13.tok.true.clean
+||||||||||||||||||||||0.17908562781123016
+||||||||||||||||||||||-Observation: CKTAUS_legal21.tok.true.clean
+|||||||||||||||||||||||0.1891043207774123
+|||||||||||||||||||||||-Observation: CKTAUS_legal9.tok.true.clean
+||||||||||||||||||||||||0.19073483253731177
+||||||||||||||||||||||||-Observation: CKTAUS_legal20.tok.true.clean
+|||||||||||||||||||||||||0.19129875022797238
+|||||||||||||||||||||||||-Observation: CKTAUS_legal2.tok.true.clean
+||||||||||||||||||||||||||0.1947498663349493
+|||||||||||||||||||||||||||-Observation: CKTAUS_legal17.tok.true.clean
+||||||||||||||||||||||||||||0.2183308935442394
+|||||||||||||||||||||||||||-Observation: CKTAUS_legal16.tok.true.clean
+|||||||||||||||||||||||||||0.19653563987773023
+|||||||||||||||||||||||||||-Observation: CKTAUS_legal7.tok.true.clean
+||||||||||||||||||||||||||||0.1974742408769237
+||||||||||||||||||||||||||||-Observation: CKTAUS_legal10.tok.true.clean
+|||||||||||||||||||||||||||||0.1980161216214691
+|||||||||||||||||||||||||||||-Observation: CKTAUS_legal6.tok.true.clean
+||||||||||||||||||||||||||||||0.19915434649703
+|||||||||||||||||||||||||||||||-Observation: CKTAUS_legal15.tok.true.clean
+||||||||||||||||||||||||||||||||0.2138878733363874
+||||||||||||||||||||||||||||||||-Observation: D_CKTAUS_legal1.tok.true.clean
+|||||||||||||||||||||||||||||||||0.6753438146634128
+||||||||||||||||||||||||||||||||-Observation: CKTAUS_legal1.tok.true.clean
+|||||||||||||||||||||||||||||||0.19963079332511374
+|||||||||||||||||||||||||||||||-Observation: CKTAUS_legal19.tok.true.clean
+||||||||||||||||||||||||||||||||0.20290789064518414
+||||||||||||||||||||||||||||||||-Observation: CKTAUS_legal18.tok.true.clean
+|||||||||||||||||||||||||||||||||0.23157145455486672
+|||||||||||||||||||||||||||||||||-Observation: CKTAUS_legal8.tok.true.clean
+||||||||||||||||||||||||||||||||||0.24613532318224757
+||||||||||||||||||||||||||||||||||-Observation: CKTAUS_legal11.tok.true.clean
+|||||||||||||||||||||||||||||||||||0.2500291900373675
+||||||||||||||||||||||||||||||||||-Observation: CKTAUS_legal12.tok.true.clean
+|||||||||||||0.11361546091500879
+|||||||||||||||-Observation: CSTAUS_business19.tok.true.clean
+||||||||||||||||0.19899035433678958
+||||||||||||||||-Observation: CSTAUS_business14.tok.true.clean
+|||||||||||||||||0.19977266735366003
+|||||||||||||||||-Observation: CSTAUS_business15.tok.true.clean
+||||||||||||||||||0.19984916796188948
+||||||||||||||||||-Observation: CSTAUS_business18.tok.true.clean
+|||||||||||||||||||0.20149083233715817
+||||||||||||||||||||-Observation: CSTAUS_business6.tok.true.clean
+|||||||||||||||||||||0.20908133656777478
+|||||||||||||||||||||-Observation: CSTAUS_business5.tok.true.clean
+||||||||||||||||||||||0.21400336330048114
+||||||||||||||||||||||-Observation: CSTAUS_business4.tok.true.clean
+|||||||||||||||||||||||0.2149286670368416
+|||||||||||||||||||||||-Observation: CSTAUS_business3.tok.true.clean
+||||||||||||||||||||||||0.2163480774242752
+||||||||||||||||||||||||-Observation: CSTAUS_business2.tok.true.clean
+|||||||||||||||||||||||||0.2188924644865717
+|||||||||||||||||||||||||-Observation: CSTAUS_business1.tok.true.clean
+||||||||||||||||||||||||||0.6520437683421078
+|||||||||||||||||||||||||-Observation: D_CSTAUS_business1.tok.true.clean
+||||||||||||||||||||0.20196650845719766
+|||||||||||||||||||||-Observation: CSTAUS_business21.tok.true.clean
+||||||||||||||||||||||0.21586052829619126
+|||||||||||||||||||||-Observation: CSTAUS_business20.tok.true.clean
+|||||||||||||||||||||0.20462630559481343
+|||||||||||||||||||||-Observation: CSTAUS_business16.tok.true.clean
+||||||||||||||||||||||0.20601521117229835
+|||||||||||||||||||||||-Observation: CSTAUS_business17.tok.true.clean
+||||||||||||||||||||||||0.20922029374338322
+|||||||||||||||||||||||-Observation: CSTAUS_business7.tok.true.clean
+|||||||||||||||||||||||0.20641739033335307
+|||||||||||||||||||||||-Observation: CSTAUS_business12.tok.true.clean
+||||||||||||||||||||||||0.20900202841953236
+||||||||||||||||||||||||-Observation: CSTAUS_business11.tok.true.clean
+|||||||||||||||||||||||||0.21065820185027395
+|||||||||||||||||||||||||-Observation: CSTAUS_business13.tok.true.clean
+||||||||||||||||||||||||||0.21120991730099467
+||||||||||||||||||||||||||-Observation: CSTAUS_business8.tok.true.clean
+|||||||||||||||||||||||||||0.21886668165266804
+|||||||||||||||||||||||||||-Observation: CSTAUS_business9.tok.true.clean
+||||||||||||||||||||||||||||0.22028092699582505
+|||||||||||||||||||||||||||-Observation: CSTAUS_business10.tok.true.clean
+|||||||||||||||0.1184998242956492
+|||||||||||||||-Observation: CSTAUS_hardware12.tok.true.clean
+||||||||||||||||0.12727575292463075
+|||||||||||||||||-Observation: D_CKTAUS_hardware1.tok.true.clean
+||||||||||||||||||0.6615267222938679
+|||||||||||||||||-Observation: CKTAUS_hardware1.tok.true.clean
+|||||||||||||||||0.12808545643603597
+||||||||||||||||||-Observation: CSTAUS_hardware20.tok.true.clean
+|||||||||||||||||||0.16292808092452338
+||||||||||||||||||-Observation: CSTAUS_hardware21.tok.true.clean
+||||||||||||||||||0.14892262880817547
+||||||||||||||||||-Observation: CSTAUS_hardware3.tok.true.clean
+|||||||||||||||||||0.15433724761693424
+||||||||||||||||||||-Observation: CSTAUS_hardware11.tok.true.clean
+|||||||||||||||||||||0.15966233345010933
+|||||||||||||||||||||-Observation: CSTAUS_hardware8.tok.true.clean
+||||||||||||||||||||||0.16230703019897244
+||||||||||||||||||||||-Observation: CSTAUS_hardware13.tok.true.clean
+|||||||||||||||||||||||0.16801603557716632
+|||||||||||||||||||||||-Observation: CSTAUS_hardware6.tok.true.clean
+||||||||||||||||||||||||0.17423090933373397
+||||||||||||||||||||||||-Observation: CSTAUS_hardware14.tok.true.clean
+|||||||||||||||||||||||||0.17909414641216329
+|||||||||||||||||||||||||-Observation: CSTAUS_hardware10.tok.true.clean
+||||||||||||||||||||||||||0.19654524069476645
+||||||||||||||||||||||||||-Observation: CSTAUS_hardware15.tok.true.clean
+|||||||||||||||||||||||||||0.19855422143285206
+|||||||||||||||||||||||||||-Observation: CSTAUS_hardware7.tok.true.clean
+||||||||||||||||||||||||||||0.22229101323667214
+|||||||||||||||||||||||||||-Observation: CSTAUS_hardware9.tok.true.clean
+||||||||||||||||||||0.15596731007778314
+||||||||||||||||||||-Observation: CSTAUS_hardware19.tok.true.clean
+|||||||||||||||||||||0.15658450315237105
+||||||||||||||||||||||-Observation: CSTAUS_hardware5.tok.true.clean
+|||||||||||||||||||||||0.164239829771189
+||||||||||||||||||||||||-Observation: D_CSTAUS_hardware1.tok.true.clean
+|||||||||||||||||||||||||0.6289301530054544
+||||||||||||||||||||||||-Observation: CSTAUS_hardware1.tok.true.clean
+||||||||||||||||||||||||0.1701912353343688
+||||||||||||||||||||||||-Observation: CSTAUS_hardware2.tok.true.clean
+|||||||||||||||||||||||||0.17589684611141945
+||||||||||||||||||||||||-Observation: CSTAUS_hardware4.tok.true.clean
+||||||||||||||||||||||0.1594828108645872
+||||||||||||||||||||||-Observation: CSTAUS_hardware17.tok.true.clean
+|||||||||||||||||||||||0.1617223158362639
+|||||||||||||||||||||||-Observation: CSTAUS_hardware18.tok.true.clean
+||||||||||||||||||||||||0.16522566770400715
+|||||||||||||||||||||||-Observation: CSTAUS_hardware16.tok.true.clean
+||||||||||||||0.11554774669231056
+|||||||||||||||-Observation: D_CKTAUS_electronics1.tok.true.clean
+||||||||||||||||0.6457872538857935
+|||||||||||||||-Observation: CKTAUS_electronics1.tok.true.clean
+|||||||||||||||0.11807399092920276
+||||||||||||||||-Observation: CSTAUS_software11.tok.true.clean
+|||||||||||||||||0.23751537561803276
+|||||||||||||||||-Observation: CSTAUS_software14.tok.true.clean
+||||||||||||||||||0.2420614715305449
+||||||||||||||||||-Observation: CSTAUS_software13.tok.true.clean
+|||||||||||||||||||0.2753069654020167
+||||||||||||||||||-Observation: CSTAUS_software12.tok.true.clean
+||||||||||||||||0.14173348481399559
+|||||||||||||||||-Observation: CSTAUS_software10.tok.true.clean
+||||||||||||||||||0.244589330139539
+|||||||||||||||||-Observation: CSTAUS_software9.tok.true.clean
+|||||||||||||||||0.15917208783875195
+|||||||||||||||||-Observation: CSTAUS_software8.tok.true.clean
+||||||||||||||||||0.20415078973237824
+||||||||||||||||||||-Observation: CSTAUS_software2.tok.true.clean
+|||||||||||||||||||||0.2605041218545815
+|||||||||||||||||||||-Observation: CSTAUS_software1.tok.true.clean
+||||||||||||||||||||||0.6358075927497645
+|||||||||||||||||||||-Observation: D_CSTAUS_software1.tok.true.clean
+||||||||||||||||||||0.2505896461056611
+||||||||||||||||||||-Observation: CSTAUS_software3.tok.true.clean
+|||||||||||||||||||||0.25436152147471397
+|||||||||||||||||||||-Observation: CSTAUS_software6.tok.true.clean
+||||||||||||||||||||||0.2628838690567323
+|||||||||||||||||||||-Observation: CSTAUS_software5.tok.true.clean
+|||||||||||||||||||0.22943155207121507
+|||||||||||||||||||-Observation: CSTAUS_software7.tok.true.clean
+||||||||||||||||||||0.23910307290681823
+|||||||||||||||||||-Observation: CSTAUS_software4.tok.true.clean
+||||||0.05640749176584907
+||||||-Observation: CSTAUS_leisure21.tok.true.clean
+|||||||0.08091556013447922
+|||||||-Observation: CSTAUS_leisure19.tok.true.clean
+||||||||0.08093042368457404
+||||||||-Observation: CSTAUS_leisure14.tok.true.clean
+|||||||||0.08149642722662213
+|||||||||-Observation: CSTAUS_leisure5.tok.true.clean
+||||||||||0.08197709081865949
+||||||||||-Observation: CSTAUS_leisure15.tok.true.clean
+|||||||||||0.08221366548278804
+||||||||||||-Observation: CSTAUS_leisure13.tok.true.clean
+|||||||||||||0.08291959719350983
+|||||||||||||-Observation: CSTAUS_leisure16.tok.true.clean
+||||||||||||||0.08357890386178513
+|||||||||||||||-Observation: CSTAUS_leisure12.tok.true.clean
+||||||||||||||||0.08649436122631646
+|||||||||||||||-Observation: CSTAUS_leisure7.tok.true.clean
+|||||||||||||||0.08414444808127927
+|||||||||||||||-Observation: CSTAUS_leisure20.tok.true.clean
+||||||||||||||||0.08489614815235715
+|||||||||||||||||-Observation: CSTAUS_leisure3.tok.true.clean
+||||||||||||||||||0.08642131193556722
+|||||||||||||||||-Observation: CSTAUS_leisure8.tok.true.clean
+|||||||||||||||||0.08553610371249025
+||||||||||||||||||-Observation: CSTAUS_leisure17.tok.true.clean
+|||||||||||||||||||0.08714566313438687
+||||||||||||||||||-Observation: CSTAUS_leisure18.tok.true.clean
+||||||||||||||||||0.08573528299690343
+||||||||||||||||||-Observation: CSTAUS_leisure11.tok.true.clean
+|||||||||||||||||||0.08661813051313351
+|||||||||||||||||||-Observation: CSTAUS_leisure4.tok.true.clean
+||||||||||||||||||||0.0872067031164355
+|||||||||||||||||||-Observation: CSTAUS_leisure10.tok.true.clean
+||||||||||||0.08222259616887716
+||||||||||||-Observation: CSTAUS_leisure2.tok.true.clean
+|||||||||||||0.08232251396757657
+|||||||||||||-Observation: CSTAUS_leisure9.tok.true.clean
+||||||||||||||0.08279353025480804
+||||||||||||||-Observation: CSTAUS_leisure6.tok.true.clean
+|||||||||||||||0.08500457479946738
+|||||||||||||||-Observation: D_CSTAUS_leisure1.tok.true.clean
+||||||||||||||||0.6279596399834787
+|||||||||||||||-Observation: CSTAUS_leisure1.tok.true.clean

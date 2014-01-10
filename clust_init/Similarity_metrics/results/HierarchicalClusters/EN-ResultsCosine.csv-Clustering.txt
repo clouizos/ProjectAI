@@ -1,0 +1,399 @@
+|||||-Observation: ../Testdata/dataset/English/D_CSTAUS_industrial1.en
+||||||0.2376810658552973
+||||||-Observation: ../Testdata/dataset/English/D_CSTAUS_undef1.en
+|||||||0.26675895818995177
+|||||||-Observation: ../Testdata/dataset/English/D_CKTAUS_pharma1.en
+||||||||0.2675236751031845
+||||||||-Observation: ../Testdata/dataset/English/D_CSTAUS_hardware1.en
+|||||||||0.2837588174406316
+|||||||||-Observation: ../Testdata/dataset/English/D_CKTAUS_hardware1.en
+||||||||||0.30055380936066145
+||||||||||-Observation: ../Testdata/dataset/English/D_CSTAUS_business1.en
+|||||||||||0.3110969904563341
+|||||||||||-Observation: ../Testdata/dataset/English/D_CKTAUS_software1.en
+||||||||||||0.3289858468806088
+||||||||||||-Observation: ../Testdata/dataset/English/D_CSTAUS_leisure1.en
+|||||||||||||0.32968309225440573
+|||||||||||||-Observation: ../Testdata/dataset/English/D_CKTAUS_undef1.en
+||||||||||||||0.33862348614668586
+||||||||||||||-Observation: ../Testdata/dataset/English/D_CKTAUS_finance1.en
+|||||||||||||||0.36938210599488236
+|||||||||||||||-Observation: ../Testdata/dataset/English/D_CSTAUS_software1.en
+||||||||||||||||0.3760612107337027
+||||||||||||||||-Observation: ../Testdata/dataset/English/D_CSTAUS_electronics1.en
+|||||||||||||||||0.3839977043987116
+|||||||||||||||||-Observation: ../Testdata/dataset/English/D_CKTAUS_electronics1.en
+||||||||||||||||||0.4262941492541255
+||||||||||||||||||-Observation: ../Testdata/dataset/English/D_CKTAUS_legal1.en
+|||||||||||||||||||0.45986876511709335
+|||||||||||||||||||-Observation: ../Testdata/dataset/English/D_CKTAUS_industrial1.en
+||||||||||||||||||||0.4678472975107802
+||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_undef1.en
+|||||||||||||||||||||0.5938588654000793
+|||||||||||||||||||||-Observation: ../Testdata/dataset/English/CKTAUS_legal4.en
+||||||||||||||||||||||0.6480750447932141
+|||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_leisure21.en
+||||||||||||||||||||||||0.9918706000648176
+|||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_leisure1.en
+||||||||||||||||||||||||||0.9923180846637603
+|||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_leisure15.en
+|||||||||||||||||||||||||0.9921030172428956
+|||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_leisure16.en
+||||||||||||||||||||||||||0.9921206459992808
+|||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_leisure3.en
+||||||||||||||||||||||||||||0.9928253319791972
+|||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_leisure10.en
+|||||||||||||||||||||||||||0.9921451046923871
+||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_leisure6.en
+|||||||||||||||||||||||||||||0.9923400979324994
+||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_leisure12.en
+|||||||||||||||||||||||||||||||0.993010485395418
+||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_leisure20.en
+||||||||||||||||||||||||||||||0.9923517211694773
+||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_leisure2.en
+|||||||||||||||||||||||||||||||0.9924351363126522
+||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_leisure5.en
+|||||||||||||||||||||||||||||||||0.992962991796942
+|||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_leisure13.en
+||||||||||||||||||||||||||||||||||0.9930732750013115
+|||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_leisure8.en
+||||||||||||||||||||||||||||||||0.9928684245582916
+||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_leisure17.en
+|||||||||||||||||||||||||||||||||0.9929087840013507
+|||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_leisure11.en
+||||||||||||||||||||||||||||||||||0.9931487780604805
+||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_leisure7.en
+|||||||||||||||||||||||||||||||||||0.9932167922702622
+|||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_leisure9.en
+||||||||||||||||||||||||||||||||||||0.9933477268116816
+||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_leisure19.en
+|||||||||||||||||||||||||||||||||||||0.9935383056247997
+||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_leisure18.en
+||||||||||||||||||||||||||||0.9922472842379814
+||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_leisure4.en
+|||||||||||||||||||||||||||||0.9922995409988641
+||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_leisure14.en
+|||||||||||||||||||||||0.7163866015849993
+||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_business4.en
+|||||||||||||||||||||||||0.959137701054178
+||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_business1.en
+|||||||||||||||||||||||||||0.9675295853744915
+|||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_business3.en
+||||||||||||||||||||||||||||0.9686976313709599
+|||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_business2.en
+||||||||||||||||||||||||||0.9591663658035208
+||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_business5.en
+|||||||||||||||||||||||||||0.9606825249075278
+|||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_business16.en
+||||||||||||||||||||||||||||0.9627475508442311
+||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_business6.en
+|||||||||||||||||||||||||||||0.9637134393169383
+|||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_business17.en
+||||||||||||||||||||||||||||||0.9668537633631854
+||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_business13.en
+|||||||||||||||||||||||||||||||0.9686400708861123
+|||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_business7.en
+||||||||||||||||||||||||||||||||0.9696031032714145
+||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_business8.en
+|||||||||||||||||||||||||||||||||0.9711931596847405
+|||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_business12.en
+||||||||||||||||||||||||||||||||||0.9712609136195722
+||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_business9.en
+|||||||||||||||||||||||||||||||||||||0.9768838422202473
+||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_business10.en
+||||||||||||||||||||||||||||||||||||0.9719011680216114
+||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_business15.en
+|||||||||||||||||||||||||||||||||||||0.9720165959485251
+|||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_business11.en
+||||||||||||||||||||||||||||||||||||||0.9722295154064681
+|||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_business18.en
+|||||||||||||||||||||||||||||||||||0.9712687784246645
+|||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_business19.en
+||||||||||||||||||||||||||||||||||||0.9715480755749185
+||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_business14.en
+|||||||||||||||||||||||||||||||||||||0.9742101868204647
+|||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_business20.en
+||||||||||||||||||||||||||||||||||||||0.9747010079236642
+|||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_business21.en
+||||||||||||||||||||||||0.8374945147112425
+|||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_industrial1.en
+||||||||||||||||||||||||||0.8793197481847083
+||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_industrial3.en
+|||||||||||||||||||||||||||0.9453440840026985
+||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_industrial2.en
+|||||||||||||||||||||||||0.8653030252439442
+|||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_undef12.en
+||||||||||||||||||||||||||0.8688716278949786
+||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_undef6.en
+|||||||||||||||||||||||||||0.8814389875361895
+||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CKTAUS_pharma11.en
+|||||||||||||||||||||||||||||0.9004220192821396
+|||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_electronics3.en
+||||||||||||||||||||||||||||||0.9076853774455169
+|||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CKTAUS_hardware1.en
+||||||||||||||||||||||||||||||||0.921789474088643
+||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_hardware12.en
+|||||||||||||||||||||||||||||||||0.9260684351666186
+||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_hardware21.en
+|||||||||||||||||||||||||||||||||||0.9530880041175144
+|||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_hardware10.en
+||||||||||||||||||||||||||||||||||||0.9538400664420329
+||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_hardware1.en
+|||||||||||||||||||||||||||||||||||||0.9561092201599263
+|||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_hardware6.en
+||||||||||||||||||||||||||||||||||||||0.9590104185804628
+||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_hardware11.en
+|||||||||||||||||||||||||||||||||||||||0.9590399841732431
+|||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_hardware3.en
+||||||||||||||||||||||||||||||||||||||||0.9595180695024438
+||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_hardware20.en
+|||||||||||||||||||||||||||||||||||||||||0.9610859319222703
+||||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_hardware19.en
+|||||||||||||||||||||||||||||||||||||||||||0.9638224405214519
+|||||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_hardware16.en
+||||||||||||||||||||||||||||||||||||||||||||0.9680284396879448
+||||||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_hardware5.en
+|||||||||||||||||||||||||||||||||||||||||||||0.9694094075062587
+|||||||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_hardware17.en
+||||||||||||||||||||||||||||||||||||||||||||||0.9700760433316278
+||||||||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_hardware18.en
+|||||||||||||||||||||||||||||||||||||||||||||||0.9706637278180618
+|||||||||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_hardware2.en
+||||||||||||||||||||||||||||||||||||||||||||||||0.9746321204195064
+|||||||||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_hardware4.en
+||||||||||||||||||||||||||||||||||||||||||0.9617694958812312
+||||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_hardware8.en
+|||||||||||||||||||||||||||||||||||||||||||0.9629238162094531
+|||||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_hardware14.en
+||||||||||||||||||||||||||||||||||||||||||||0.9674244334223905
+|||||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_hardware13.en
+||||||||||||||||||||||||||||||||||0.947853294702777
+||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_hardware7.en
+|||||||||||||||||||||||||||||||||||0.9516254419115855
+|||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_hardware9.en
+||||||||||||||||||||||||||||||||||||0.953417668010249
+|||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_hardware15.en
+|||||||||||||||||||||||||||||||0.9090655303401596
+||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_undef4.en
+|||||||||||||||||||||||||||||||||0.9483452416252839
+||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_undef5.en
+||||||||||||||||||||||||||||||||0.912411834455419
+|||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_software11.en
+||||||||||||||||||||||||||||||||||0.9280787417661447
+||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_software14.en
+|||||||||||||||||||||||||||||||||||0.9494886307690177
+|||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_software12.en
+||||||||||||||||||||||||||||||||||||0.9497161642066506
+|||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_software13.en
+|||||||||||||||||||||||||||||||||0.9158553525034097
+||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_undef11.en
+|||||||||||||||||||||||||||||||||||0.9398763221124615
+||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CKTAUS_undef6.en
+||||||||||||||||||||||||||||||||||0.9216124943247966
+|||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_electronics2.en
+||||||||||||||||||||||||||||||||||||0.9784103776100119
+|||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_electronics1.en
+|||||||||||||||||||||||||||||||||||0.9221036833089165
+||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_software8.en
+|||||||||||||||||||||||||||||||||||||0.9404590711192669
+|||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_software9.en
+||||||||||||||||||||||||||||||||||||||0.9458252753496604
+|||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_software10.en
+||||||||||||||||||||||||||||||||||||0.9242858085275809
+||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_software7.en
+|||||||||||||||||||||||||||||||||||||||0.9656234107552523
+||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_software1.en
+|||||||||||||||||||||||||||||||||||||||||0.9737696796349905
+||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_software2.en
+||||||||||||||||||||||||||||||||||||||||0.9713059691024214
+||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_software4.en
+|||||||||||||||||||||||||||||||||||||||||0.9726810831438357
+|||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_software6.en
+||||||||||||||||||||||||||||||||||||||||||0.9822126826906735
+||||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_software3.en
+|||||||||||||||||||||||||||||||||||||||||||0.9857345155118225
+||||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_software5.en
+||||||||||||||||||||||||||||||||||||||0.9353087501200495
+||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CKTAUS_electronics1.en
+|||||||||||||||||||||||||||||||||||||||0.9449933120445326
+|||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CKTAUS_industrial5.en
+||||||||||||||||||||||||||||||||||||||||0.9910162366240379
+||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CKTAUS_industrial4.en
+|||||||||||||||||||||||||||||||||||||||||0.9946597206164024
+|||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CKTAUS_industrial3.en
+||||||||||||||||||||||||||||||||||||||||||0.9961670505937477
+||||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CKTAUS_industrial1.en
+|||||||||||||||||||||||||||||||||||||||||||0.9971038107256477
+||||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CKTAUS_industrial2.en
+|||||||||||||||||||||||||||||||||||||0.924848771494826
+|||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_undef9.en
+||||||||||||||||||||||||||||||||||||||||0.9393440365027379
+|||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_undef8.en
+|||||||||||||||||||||||||||||||||||||||0.9319681709766042
+|||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_undef10.en
+||||||||||||||||||||||||||||||||||||||||0.9320210357062466
+||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CKTAUS_undef5.en
+|||||||||||||||||||||||||||||||||||||||||0.9427148537696637
+||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_undef7.en
+||||||||||||||||||||||||||||||||||||||0.9264009742766229
+||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CKTAUS_pharma19.en
+|||||||||||||||||||||||||||||||||||||||0.9267407780174097
+||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CKTAUS_software1.en
+|||||||||||||||||||||||||||||||||||||||||0.933980141111803
+|||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CKTAUS_pharma6.en
+||||||||||||||||||||||||||||||||||||||||||0.9390446203315587
+||||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CKTAUS_pharma17.en
+|||||||||||||||||||||||||||||||||||||||||||0.9391765778295147
+|||||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CKTAUS_pharma3.en
+||||||||||||||||||||||||||||||||||||||||||||0.9404704808915323
+||||||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CKTAUS_pharma16.en
+|||||||||||||||||||||||||||||||||||||||||||||0.9452310085830139
+|||||||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CKTAUS_pharma15.en
+||||||||||||||||||||||||||||||||||||||||||||||0.9463315816523075
+||||||||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CKTAUS_pharma13.en
+|||||||||||||||||||||||||||||||||||||||||||||||0.9563310222793487
+|||||||||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CKTAUS_pharma9.en
+||||||||||||||||||||||||||||||||||||||||||||||||0.9565907294571067
+||||||||||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CKTAUS_pharma5.en
+|||||||||||||||||||||||||||||||||||||||||||||||||0.9583600318063993
+|||||||||||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CKTAUS_pharma12.en
+||||||||||||||||||||||||||||||||||||||||||||||||||0.9594966639382954
+||||||||||||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CKTAUS_pharma18.en
+|||||||||||||||||||||||||||||||||||||||||||||||||||0.9599746423454397
+|||||||||||||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CKTAUS_pharma7.en
+||||||||||||||||||||||||||||||||||||||||||||||||||||0.9614270704199205
+||||||||||||||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CKTAUS_pharma2.en
+|||||||||||||||||||||||||||||||||||||||||||||||||||||0.9616194587627072
+|||||||||||||||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CKTAUS_pharma10.en
+||||||||||||||||||||||||||||||||||||||||||||||||||||||0.9624483850058506
+||||||||||||||||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CKTAUS_pharma1.en
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||0.9625489550329694
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CKTAUS_pharma20.en
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||0.9678268770400907
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CKTAUS_pharma21.en
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||0.9644089863638897
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CKTAUS_pharma4.en
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||0.9667427175767961
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CKTAUS_pharma8.en
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||0.969318607853041
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CKTAUS_pharma14.en
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||0.975171722801231
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CKTAUS_software9.en
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||0.9943585089490066
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CKTAUS_software4.en
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||0.995084592771559
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CKTAUS_software2.en
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||0.9952584271691479
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CKTAUS_software13.en
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||0.9954414795638674
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CKTAUS_software7.en
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||0.9955306110070865
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CKTAUS_software6.en
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||0.9955589078843051
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CKTAUS_software5.en
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||0.9956541367318269
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CKTAUS_software12.en
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||0.99566892387637
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CKTAUS_software11.en
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||0.9957030650676445
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CKTAUS_software3.en
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||0.9957420730954398
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CKTAUS_software8.en
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||0.9952701545386725
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CKTAUS_software14.en
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||0.9953379127005116
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CKTAUS_software10.en
+||||||||||||||||||||||||||||||||||||||||0.9327423352817006
+|||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CKTAUS_legal3.en
+||||||||||||||||||||||||||||||||||||||||||0.9404658339835708
+|||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CKTAUS_legal5.en
+|||||||||||||||||||||||||||||||||||||||||0.9334421789139868
+|||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CKTAUS_undef1.en
+||||||||||||||||||||||||||||||||||||||||||0.9377566863898977
+||||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CKTAUS_legal9.en
+|||||||||||||||||||||||||||||||||||||||||||0.974665502043311
+||||||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CKTAUS_finance1.en
+|||||||||||||||||||||||||||||||||||||||||||||0.9975145587755002
+|||||||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CKTAUS_finance2.en
+||||||||||||||||||||||||||||||||||||||||||||||0.9977697993693067
+||||||||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CKTAUS_finance16.en
+|||||||||||||||||||||||||||||||||||||||||||||||0.9979909387520988
+|||||||||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CKTAUS_finance6.en
+||||||||||||||||||||||||||||||||||||||||||||||||0.9980865271153566
+||||||||||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CKTAUS_finance3.en
+|||||||||||||||||||||||||||||||||||||||||||||||||0.9981526640552956
+|||||||||||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CKTAUS_finance15.en
+||||||||||||||||||||||||||||||||||||||||||||||||||0.9981570104389207
+||||||||||||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CKTAUS_finance21.en
+|||||||||||||||||||||||||||||||||||||||||||||||||||0.9981658811614371
+|||||||||||||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CKTAUS_finance8.en
+||||||||||||||||||||||||||||||||||||||||||||||||||||0.9982848497672508
+||||||||||||||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CKTAUS_finance20.en
+|||||||||||||||||||||||||||||||||||||||||||||||||||||0.9983033052835342
+|||||||||||||||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CKTAUS_finance10.en
+||||||||||||||||||||||||||||||||||||||||||||||||||||||0.9983208721279999
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CKTAUS_finance4.en
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||0.9983886365974647
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CKTAUS_finance11.en
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||0.9983495215700677
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CKTAUS_finance12.en
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||0.9983549530580699
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CKTAUS_finance18.en
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||0.9985090698163614
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CKTAUS_finance17.en
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||0.9985431785274109
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CKTAUS_finance7.en
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||0.9983778777954894
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CKTAUS_finance13.en
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||0.9984592992820133
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CKTAUS_finance14.en
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||0.9983878596077919
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CKTAUS_finance5.en
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||0.9983944369919217
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CKTAUS_finance9.en
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||0.9984777621644364
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CKTAUS_finance19.en
+||||||||||||||||||||||||||||||||||||||||||||0.9746806616651483
+|||||||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CKTAUS_undef2.en
+||||||||||||||||||||||||||||||||||||||||||||||0.9964144093815518
+||||||||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CKTAUS_undef3.en
+|||||||||||||||||||||||||||||||||||||||||||||||0.9991053864939452
+||||||||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CKTAUS_undef4.en
+|||||||||||||||||||||||||||||||||||||||||||||0.9800047341721835
+|||||||||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CKTAUS_legal17.en
+||||||||||||||||||||||||||||||||||||||||||||||||0.9880564872873937
+|||||||||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CKTAUS_legal16.en
+|||||||||||||||||||||||||||||||||||||||||||||||0.9813168970193256
+|||||||||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CKTAUS_legal13.en
+||||||||||||||||||||||||||||||||||||||||||||||||0.9833043585499169
+|||||||||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CKTAUS_legal14.en
+||||||||||||||||||||||||||||||||||||||||||||||0.9804322124087058
+|||||||||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CKTAUS_legal10.en
+||||||||||||||||||||||||||||||||||||||||||||||||0.9825925087696404
+||||||||||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CKTAUS_legal2.en
+|||||||||||||||||||||||||||||||||||||||||||||||||0.9826137111475254
+|||||||||||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CKTAUS_legal21.en
+||||||||||||||||||||||||||||||||||||||||||||||||||0.9844964121723953
+||||||||||||||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CKTAUS_legal11.en
+|||||||||||||||||||||||||||||||||||||||||||||||||||||0.9911350618087167
+|||||||||||||||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CKTAUS_legal12.en
+||||||||||||||||||||||||||||||||||||||||||||||||||||||0.9917844461847981
+|||||||||||||||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CKTAUS_legal8.en
+||||||||||||||||||||||||||||||||||||||||||||||||||||0.9893444737795762
+||||||||||||||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CKTAUS_legal7.en
+|||||||||||||||||||||||||||||||||||||||||||||||||||||0.9894205319384863
+||||||||||||||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CKTAUS_legal18.en
+|||||||||||||||||||||||||||||||||||||||||||||||||||0.9866046227672259
+|||||||||||||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CKTAUS_legal19.en
+||||||||||||||||||||||||||||||||||||||||||||||||||||0.988416229593813
+||||||||||||||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CKTAUS_legal6.en
+|||||||||||||||||||||||||||||||||||||||||||||||||||||0.9894394445405141
+||||||||||||||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CKTAUS_legal20.en
+|||||||||||||||||||||||||||||||||||||||||||||||0.9804376247683206
+|||||||||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CKTAUS_legal1.en
+||||||||||||||||||||||||||||||||||||||||||||||||0.982587188973159
+|||||||||||||||||||||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CKTAUS_legal15.en
+||||||||||||||||||||||||||||0.8823646466104623
+||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_undef3.en
+|||||||||||||||||||||||||||||0.8851282382302924
+||||||||||||||||||||||||||||-Observation: ../Testdata/dataset/English/CSTAUS_undef2.en
