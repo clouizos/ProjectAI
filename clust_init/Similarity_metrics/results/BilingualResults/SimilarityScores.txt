@@ -1,8 +1,0 @@
-Biling-ResultsChisquare.csv
-Biling-ResultsCosine.csv
-Biling-ResultsEuclidian.csv
-Biling-ResultsHellinger.csv
-Biling-ResultsJaccards.csv
-Biling-ResultsJSDivergence.csv
-Biling-ResultsKLDivergence.csv
-Biling-ResultsL1norm.csv
