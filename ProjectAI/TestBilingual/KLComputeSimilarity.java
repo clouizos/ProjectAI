@@ -15,7 +15,7 @@ import io.*;
  */
 public class KLComputeSimilarity{
 	public static void main(String[] args){
-        String directory = "/scratch/clust_init/models";
+        String directory = "../models";
         String fileName = "/model/lex.e2f";
         String[] files = FileLoadingUtils.listDirectoriesDirectory(directory);
         boolean bilingual = true;
