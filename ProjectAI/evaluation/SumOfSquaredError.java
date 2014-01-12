@@ -22,27 +22,29 @@ public class SumOfSquaredError{
 		int k = 10; // number of clusters
 		// Seeds are used to duplicate "random initalization" of clusters for 
 		// each metric.
-		Integer[] seeds = {1234, 123456, 99999, 98765};
-		String filePath = "../Testdata/English"; // directory of english dataset
+		//Integer[] seeds = {1234, 123456, 99999, 98765};
+		Integer[] seeds = {1234}; // use only one seed
+		String filePath = "./Testdata/English"; // directory of english dataset // changed according to new structure
 		String language = "english"; // using shortlist for english language
 		
-		Metric m1 = new Chisquare(true);
-		Metric m2 = new Cosine(true);
+		// Only keep one metric to test efficiently how it works
+		//Metric m1 = new Chisquare(true);
+		//Metric m2 = new Cosine(true);
 		Metric m3 = new EuclidianDistance(true);
-		Metric m4 = new HellingerFunction(true);
-		Metric m5 = new JaccardsCoefficient(true);
-		Metric m6 = new JSdivergence(true);
-		Metric m7 = new KLdivergence(true, "minimum");
-		Metric m8 = new L1norm(true);
+		//Metric m4 = new HellingerFunction(true);
+		//Metric m5 = new JaccardsCoefficient(true);
+		//Metric m6 = new JSdivergence(true);
+		//Metric m7 = new KLdivergence(true, "minimum");
+		//Metric m8 = new L1norm(true);
 		ArrayList<Metric> metrics = new ArrayList<Metric>();
-		metrics.add(m1);
-		metrics.add(m2);
+		//metrics.add(m1);
+		//metrics.add(m2);
 		metrics.add(m3);
-		metrics.add(m4);
-		metrics.add(m5);
-		metrics.add(m6);
-		metrics.add(m7);
-		metrics.add(m8);
+		//metrics.add(m4);
+		//metrics.add(m5);
+		//metrics.add(m6);
+		//metrics.add(m7);
+		//metrics.add(m8);
 		
 		try{
 			for( int i = 0; i < metrics.size(); i++ ){

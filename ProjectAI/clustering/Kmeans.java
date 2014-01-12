@@ -74,11 +74,17 @@ public class Kmeans{
 				if( iterations == 0 || clusters.get(i).hasChanged() ){
 					changes = true;
 				}
-				System.out.println("cluster " + i );
-				System.out.println(clusters.get(i).historyMembers.get(iterations));
-				System.out.println("");
+				//System.out.println("cluster " + i );
+				//System.out.println(clusters.get(i).historyMembers.get(iterations));
+				//System.out.println("");
 			}
 			iterations++;
+		}
+		// only show final clusters and not on every iteration
+		for (int i=0;i<clusters.size();i++){
+			System.out.println("cluster " + i );
+			System.out.println(clusters.get(i).historyMembers.get(iterations - 1)); 
+			System.out.println("");
 		}
 	}
 
@@ -94,13 +100,16 @@ public class Kmeans{
 		Random r = new Random();
 		r.setSeed(seed);
 		for( int i = 0; i < documentNames.size(); i++ ){
+			if(i == 200) // in order to test, pick only a small number of documents 
+				break; 
 			Document doc = new Document( documentNames.get(i), language );
 			documentObjects.add(doc);
 		}
+		
 		for( int i = 0; i < documentObjects.size(); i++ ){
 			documentObjects.get(i).createList( allWords, "forgy" );
 			System.out.println("Document parsed...");
-			allWords = documentObjects.get(i).initCentroid;
+			allWords = documentObjects.get(i).initCentroid;	
 		}
 
 		int docs = documentObjects.size();
@@ -121,9 +130,9 @@ public class Kmeans{
 				indexNewMean2 = r.nextInt(docs);
 			}
 			while( (indexNewMean == indexNewMean2) || (!possibleMeanIndices.contains(indexNewMean)) || (!possibleMeanIndices.contains(indexNewMean2)) );
-			System.out.println(indexNewMean + " " + documentObjects.get(indexNewMean).textFile);
-			System.out.println(indexNewMean2 + " " + documentObjects.get(indexNewMean2).textFile);
-			System.out.println("");
+			//System.out.println(indexNewMean + " " + documentObjects.get(indexNewMean).textFile);
+			//System.out.println(indexNewMean2 + " " + documentObjects.get(indexNewMean2).textFile);
+			//System.out.println("");
 			possibleMeanIndices.remove(indexNewMean);
 			possibleMeanIndices.remove(indexNewMean2);
 			Map<String, Double> newMean = documentObjects.get(indexNewMean).words;
@@ -150,6 +159,7 @@ public class Kmeans{
 		}
 
 		System.out.println("Clusters created...");
+		System.out.println("Number of documents to be clustered:"+documentObjects.size()+"\n");
 	}
 
 /*	public void init(){
@@ -198,7 +208,7 @@ public class Kmeans{
 		for( int c = 0; c < clusters.size(); c++ ){
 			clusters.get(c).members.clear();
 		}
-
+		
 		for( int i = 0; i < documentObjects.size(); i++ ){
 			int bestCluster = metric.getBestCluster(documentObjects.get(i), clusters);
 			clusters.get(bestCluster).addMember( documentObjects.get(i) );
