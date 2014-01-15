@@ -1,0 +1,13 @@
+/CRFOptimizableByEntropyRegularization.class
+/CRFOptimizableByGE.class
+/CRFTrainerByEntropyRegularization.class
+/CRFTrainerByGE.class
+/CRFTrainerByLikelihoodAndGE.class
+/EntropyLattice$LatticeNode.class
+/EntropyLattice.class
+/FSTConstraintUtil.class
+/GELattice$LatticeNode.class
+/GELattice.class
+/GELatticeTask.class
+/StateLabelMap.class
+/SumLatticeTask.class

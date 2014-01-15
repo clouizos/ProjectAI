@@ -1,0 +1,17 @@
+/AbstractMessageStrategy.class
+/BPRegionGenerator.class
+/ClusterVariationalRegionGenerator$BaseRegionComputer.class
+/ClusterVariationalRegionGenerator$ByFactorRegionComputer.class
+/ClusterVariationalRegionGenerator$Grid2x2RegionComputer.class
+/ClusterVariationalRegionGenerator.class
+/FactorizedRegion.class
+/FullMessageStrategy.class
+/Kikuchi4SquareRegionGenerator.class
+/MessageArray.class
+/MessageStrategy.class
+/ParentChildGBP.class
+/Region.class
+/RegionEdge.class
+/RegionGraph.class
+/RegionGraphGenerator.class
+/SparseMessageSender.class
