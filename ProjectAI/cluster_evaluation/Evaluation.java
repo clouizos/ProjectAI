@@ -65,20 +65,20 @@ public class Evaluation {
 		return 2*prec*rec/(prec+rec);
 	}
 
-	class Metrics{
-		
-	}
-	
+
 	public static void main(String[] args) {
 		String classDir = "../TrueLabel";
 		String clusterDir = "../MeasuredLabel";
 		HashMap<String, HashMap<String, Integer>> confMatrix = Evaluation.createConfusionMatrix(classDir, clusterDir);
+
 		//Count the pricision and recall
 		//For each cluster, we choose the corresponding class that gives
 		//the F1-Score.
 		for (String cluster : confMatrix.keySet()){
 			double maxF1=0;
-			String maxLabel="";
+			double maxPrec=0;
+			double maxRecall=0;
+			double entropy=0;
 			for (String label : confMatrix.get(cluster).keySet()){
 				double tp = confMatrix.get(cluster).get(label);
 				double totalInCluster = confMatrix.get(cluster).get("total");
@@ -87,10 +87,20 @@ public class Evaluation {
 				double recall = tp/totalInClass;
 				double F1 = 2*precision*recall/(precision+recall);
 				if (F1>=maxF1){
-					maxLabel = label;
+					maxF1 = F1;
+					maxPrec = precision;
+					maxRecall = recall;
 				}
+				
+				entropy+= -precision*Math.log(precision);
 //				System.out.println("Cluster : "+cluster+" Class : "+label+" Value : "+confMatrix.get(cluster).get(label));
 			}
+			System.out.println("Evaluation on Cluster "+cluster);
+			System.out.println("Precision : "+maxPrec);
+			System.out.println("Recall : "+maxRecall);
+			System.out.println("F1 score : "+maxF1);
+			System.out.println(("Entropy : "+entropy));
+			
 		}
 		
 		
