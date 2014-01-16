@@ -36,17 +36,28 @@ public class Evaluation {
 		String[] listClass= FileLoadingUtils.listDirectoriesDirectory(classDir);
 		String[] listClusters = FileLoadingUtils.listDirectoriesDirectory(clusterDir);
 		
+		
 		HashMap<String, ArrayList<String>> classMap = new HashMap<String, ArrayList<String>>();
 		HashMap<String, ArrayList<String>> clusterMap = new HashMap<String, ArrayList<String>>();
 		
-		for (String label : listClass){
-			classMap.put(label, FileLoadingUtils.listFilesName(classDir+"/"+label));
+		if (listClass.length>0 && listClusters.length>0){
+			for (String label : listClass){
+				classMap.put(label, FileLoadingUtils.listFilesName(classDir+"/"+label));
+			}	
+			
+			for (String cluster : listClusters){
+				clusterMap.put(cluster, FileLoadingUtils.listFilesName(clusterDir+"/"+cluster));
+			}
+		} else if (listClass.length==0){
+			System.out.println("Error : No class directories in "+classDir);
+			return confusionMatrix;
+		} else {
+			System.out.println("Error : No cluster directories in "+clusterDir);
+			return confusionMatrix;
 		}
 		
-		for (String cluster : listClusters){
-			clusterMap.put(cluster, FileLoadingUtils.listFilesName(clusterDir+"/"+cluster));
-		}
-		
+				
+		int totalDocs=0;
 		for (String cluster:clusterMap.keySet()){
 			confusionMatrix.put(cluster, new HashMap<String, Integer>());
 			for (String label:classMap.keySet()){
@@ -56,55 +67,16 @@ public class Evaluation {
 				sumOfColumn.put(label,classMap.get(label).size());
 			}
 			confusionMatrix.get(cluster).put("total", clusterMap.get(cluster).size());
+			totalDocs+=clusterMap.get(cluster).size();
 		}
+		sumOfColumn.put("total",totalDocs);
 		confusionMatrix.put("total", sumOfColumn);
 		return confusionMatrix;
 	}
 	
-	public static double F1Score(double prec, double rec){
-		return 2*prec*rec/(prec+rec);
-	}
+	
 
 
-	public static void main(String[] args) {
-		String classDir = "../TrueLabel";
-		String clusterDir = "../MeasuredLabel";
-		HashMap<String, HashMap<String, Integer>> confMatrix = Evaluation.createConfusionMatrix(classDir, clusterDir);
-
-		//Count the pricision and recall
-		//For each cluster, we choose the corresponding class that gives
-		//the F1-Score.
-		for (String cluster : confMatrix.keySet()){
-			double maxF1=0;
-			double maxPrec=0;
-			double maxRecall=0;
-			double entropy=0;
-			for (String label : confMatrix.get(cluster).keySet()){
-				double tp = confMatrix.get(cluster).get(label);
-				double totalInCluster = confMatrix.get(cluster).get("total");
-				double totalInClass = confMatrix.get("total").get(label);
-				double precision = tp/totalInCluster;
-				double recall = tp/totalInClass;
-				double F1 = 2*precision*recall/(precision+recall);
-				if (F1>=maxF1){
-					maxF1 = F1;
-					maxPrec = precision;
-					maxRecall = recall;
-				}
-				
-				entropy+= -precision*Math.log(precision);
-//				System.out.println("Cluster : "+cluster+" Class : "+label+" Value : "+confMatrix.get(cluster).get(label));
-			}
-			System.out.println("Evaluation on Cluster "+cluster);
-			System.out.println("Precision : "+maxPrec);
-			System.out.println("Recall : "+maxRecall);
-			System.out.println("F1 score : "+maxF1);
-			System.out.println(("Entropy : "+entropy));
-			
-		}
-		
-		
-		
-	}
+	
 
 }
