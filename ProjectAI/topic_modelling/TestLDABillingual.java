@@ -48,7 +48,7 @@ public class TestLDABillingual {
         // Create a model with 100 topics, alpha_t = 0.01, beta_w = 0.01
         //  Note that the first parameter is passed as the sum over topics, while
         //  the second is the parameter for a single dimension of the Dirichlet prior.
-        int numTopics = 10;
+        int numTopics = 30;
         PolylingualTopicModel model = new PolylingualTopicModel(numTopics,1.0);
         
         model.addInstances(training);
@@ -59,7 +59,7 @@ public class TestLDABillingual {
 
         // Run the model for 50 iterations and stop (this is for testing only, 
         //  for real applications, use 1000 to 2000 iterations)
-        model.setNumIterations(2);
+        model.setNumIterations(1000);
         model.estimate();
 
         // Show the words and topics in the first instance
@@ -89,6 +89,8 @@ public class TestLDABillingual {
         TopicInferencer infer_en = model.getInferencer(0);
         TopicInferencer infer_nl = model.getInferencer(1);
         
+        // Compare the distributions of topics for two documents (one is the translation of the other)
+        // the distributions should be approximately the same
         double[] topicDistribution_en = infer_en.getSampledDistribution(instances_en.get(3), 0, 0, 0);
         double[] topicDistribution_nl= infer_nl.getSampledDistribution(instances_nl.get(3), 0, 0, 0);
         System.out.println("----------------------------------------------");

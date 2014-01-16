@@ -1,0 +1,122 @@
+0	0.11895
+ 0	55700	0.004794144756089231	appliance device target user window select 
+ 1	53065	0.0086680759034522	toestel doelapparaat uit volgende kunt tot 
+1	0.15086
+ 0	23085	0.004794144756089231	our too very good little great 
+ 1	20946	0.0086680759034522	ons moeten kunnen onze wij door 
+2	0.29907
+ 0	109250	0.004794144756089231	your please account enter payment items 
+ 1	101051	0.0086680759034522	deze dit hebt voer via naar 
+3	0.11769
+ 0	19097	0.004794144756089231	she would said yes even life 
+ 1	17925	0.0086680759034522	tijd komt maken gedaan maak vinden 
+4	0.14382
+ 0	54687	0.004794144756089231	shall european article union member iii 
+ 1	34313	0.0086680759034522	worden deze door dit wordt tot 
+5	0.09201
+ 0	62419	0.004794144756089231	patients treatment dose your see section 
+ 1	62951	0.0086680759034522	bij patiënten worden tot wordt gebruik 
+6	0.09233
+ 0	77119	0.004794144756089231	your patients injection insulin use dose 
+ 1	78924	0.0086680759034522	bij patiënten worden gebruik behandeling wordt 
+7	0.15135
+ 0	17510	0.004794144756089231	video bzmd button settings equipment dicom 
+ 1	16633	0.0086680759034522	worden gebruik bzmd kan wordt apparatuur 
+8	0.01471
+ 0	63461	0.004794144756089231	dummy new see used around top 
+ 1	63709	0.0086680759034522	dummy nieuwe rond materialen boven telefoon 
+9	0.13537
+ 0	102996	0.004794144756089231	dell intel memory your hard mhz 
+ 1	97282	0.0086680759034522	dell inch intel maximaal mhz tot 
+10	0.12356
+ 0	26092	0.004794144756089231	services other class trade food n.e.c 
+ 1	22120	0.0086680759034522	klasse andere worden groep overige delen 
+11	0.10478
+ 0	50004	0.004794144756089231	don not all him how her 
+ 1	47483	0.0086680759034522	ben jij moet waar haar goed 
+12	0.11017
+ 0	26002	0.004794144756089231	must plant material animal products plants 
+ 1	23033	0.0086680759034522	insuline bij worden patiënten gebruik tabletten 
+13	0.15902
+ 0	92949	0.004794144756089231	not should may other been after 
+ 1	97498	0.0086680759034522	gebruikt dosis toediening ernstige bijsluiter onderzoek 
+14	0.68159
+ 0	132332	0.004794144756089231	all use has which one time 
+ 1	127699	0.0086680759034522	worden wordt deze door naar over 
+15	0.11464
+ 0	22786	0.004794144756089231	regulation shall measures community article apply 
+ 1	18607	0.0086680759034522	aranesp worden per patiënten bij voorgevulde 
+16	0.14651
+ 0	53644	0.004794144756089231	all select date learner offering report 
+ 1	51488	0.0086680759034522	wordt aantal alle cursisten dit deze 
+17	0.25054
+ 0	77903	0.004794144756089231	what your can know just get 
+ 1	74187	0.0086680759034522	wat heb mijn dit hier naar 
+18	0.15167
+ 0	69189	0.004794144756089231	picture projector when menu input signal 
+ 1	64834	0.0086680759034522	wordt projector beeld druk menu scherm 
+19	0.14233
+ 0	35307	0.004794144756089231	water washing machine not button your 
+ 1	32129	0.0086680759034522	wasmachine knop deze programma gebruik dit 
+20	0.27252
+ 0	80967	0.004794144756089231	your service software support network systems 
+ 1	76539	0.0086680759034522	dell worden kunt kunnen deze door 
+21	0.16645
+ 0	32396	0.004794144756089231	shall community member design which not 
+ 1	22654	0.0086680759034522	andere verband diensten industriële autoriteit producten 
+22	0.16452
+ 0	64597	0.004794144756089231	not cannot name type please offering 
+ 1	58967	0.0086680759034522	kan worden deze geen toevoegen moet 
+23	0.18127
+ 0	49679	0.004794144756089231	not abbyy file document software text 
+ 1	46730	0.0086680759034522	abbyy deze geen software kan dit 
+24	0.15873
+ 0	61852	0.004794144756089231	dell windows your storage can help 
+ 1	59794	0.0086680759034522	dell windows tot biedt bij naar 
+25	0.18407
+ 0	52698	0.004794144756089231	not click user name file all 
+ 1	49283	0.0086680759034522	worden wordt kan klik alle kunt 
+26	0.15843
+ 0	61767	0.004794144756089231	page contribute select blog your can 
+ 1	58560	0.0086680759034522	kunt wordt contribute website dialoogvenster naar 
+27	0.15338
+ 0	128814	0.004794144756089231	your ebay item will items not 
+ 1	118826	0.0086680759034522	object ebay objecten kunt wilt deze 
+28	0.13826
+ 0	75526	0.004794144756089231	shall article member which regulation commission 
+ 1	59520	0.0086680759034522	bij patiënten behandeling worden wordt kan 
+29	0.14307
+ 0	43786	0.004794144756089231	dell performance data drive more poweredge 
+ 1	42800	0.0086680759034522	dual biedt prestaties kan meer max 
+2428 735 ----------------------------------------------
+0	0.016	0	0.011	
+1	0.004	1	0.003	
+2	0.038	2	0.032	
+3	0.002	3	0.003	
+4	0.003	4	0.003	
+5	0.006	5	0.002	
+6	0.011	6	0.020	
+7	0.002	7	0.004	
+8	0.000	8	0.000	
+9	0.061	9	0.046	
+10	0.002	10	0.002	
+11	0.005	11	0.009	
+12	0.004	12	0.001	
+13	0.054	13	0.027	
+14	0.116	14	0.175	
+15	0.001	15	0.000	
+16	0.006	16	0.006	
+17	0.026	17	0.035	
+18	0.469	18	0.467	
+19	0.010	19	0.015	
+20	0.021	20	0.023	
+21	0.000	21	0.003	
+22	0.015	22	0.014	
+23	0.014	23	0.014	
+24	0.005	24	0.004	
+25	0.015	25	0.016	
+26	0.019	26	0.019	
+27	0.054	27	0.034	
+28	0.007	28	0.006	
+29	0.013	29	0.007	
+
