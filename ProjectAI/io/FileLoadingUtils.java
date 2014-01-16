@@ -48,6 +48,23 @@ public class FileLoadingUtils {
 		}
 		return fileList;
 	}
+	
+	/**
+	 * This method lists the files in the directory given as input.
+	 * @param filePath - directory of which the files will be listed.
+	 * @return fileList - list with the names of the files in the directory
+	 */
+	public static ArrayList<String> listFilesName( String filePath ){
+		ArrayList<String> fileList = new ArrayList<String>();
+		File[] files = new File(filePath).listFiles();
+
+		for (File file : files) {
+		    if (file.isFile()) {
+		    	fileList.add(file.getName());
+		    }
+		}
+		return fileList;
+	}
 
 	/**
 	 * This method lists the directories in the directory gives as input.
