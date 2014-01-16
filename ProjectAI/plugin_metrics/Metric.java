@@ -41,4 +41,8 @@ public abstract class Metric{
 		}
 		return bestCluster;
 	}
+	
+	public double computeDist(Map<String, Double> q, int corpusSizeQ, Map<String, Double> r, int corpusSizeR){
+		return computeDistance(q,corpusSizeQ,r,corpusSizeR);
+	}
 }
