@@ -2,13 +2,17 @@ package dimensionality_reduction;
 
 
 
+import io.FileLoadingUtils;
+
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Set;
 import java.util.TreeSet;
 
 import org.jmat.data.*;
 import org.jmat.data.matrixDecompositions.*;
 
+import data_representation.Centroid;
 import data_representation.Document;
 
 /**
@@ -52,7 +56,7 @@ public class PCA {
 		for (Document d : documentObjects){
 			vocabs.addAll(d.words.keySet());
 		}
-		
+		System.out.println("Vocab size : "+vocabs.size());
 		double[][] matrix = new double[documentObjects.size()][vocabs.size()];
 		
 		//Fill the matrix
@@ -73,12 +77,32 @@ public class PCA {
 	}
 
 	public static void main(String[] arg) {
+		ArrayList<Document> documentObjects = new ArrayList<Document>();
+		String filePath = "../Testdata/dataset/English";
+		ArrayList<String> documentNames = FileLoadingUtils.listFilesDirectory(filePath);
+		for( int i = 0; i < documentNames.size(); i++ ){
+			if(i == 20) // in order to test, pick only a small number of documents 
+				break; 
+			Document doc = new Document( documentNames.get(i), "english" );
+			documentObjects.add(doc);
+		}
+		
+		Centroid allWords = new Centroid();
+		for( int i = 0; i < documentObjects.size(); i++ ){
+			documentObjects.get(i).createList( allWords, "forgy" );
+			System.out.println("Document parsed...");
+			allWords = documentObjects.get(i).initCentroid;	
+		}
+		
 		//construct the matrix X
 		AbstractMatrix x1 = RandomMatrix.normal(100, 1, 0, 1);
 		AbstractMatrix x2 = RandomMatrix.normal(100, 1, 0, 1);
 		AbstractMatrix X = x1.plus(x2).mergeColumns(x2);
 
-//		PCA pca = new PCA(X);
+		System.out.println(documentObjects.size());
+		PCA pca = new PCA(documentObjects, 500);
+		System.out.println(pca.EigenValues.toString());
+//		System.out.println(pca.EigenVectors.toString());
 		
 
 		//display a Frame with data in a 2D-Plot and EigenValues and EigenVectors in the command line.
