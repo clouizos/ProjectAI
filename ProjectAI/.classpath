@@ -5,5 +5,7 @@
 	<classpathentry kind="lib" path="lib/mallet-deps.jar"/>
 	<classpathentry kind="lib" path="lib/mallet.jar"/>
 	<classpathentry kind="lib" path="lib/jmat_5.0.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jre7"/>
+	<classpathentry kind="lib" path="D:/COURSES/Project AI/20132014/ProjectAI/ProjectAI/lib/ejml-0.24.jar"/>
 	<classpathentry kind="output" path=""/>
 </classpath>
