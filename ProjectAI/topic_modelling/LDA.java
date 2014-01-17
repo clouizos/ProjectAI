@@ -171,7 +171,7 @@ public class LDA {
 	        	double[] topicDistribution = model.getTopicProbabilities(i);
 	        	System.out.println(instances.get(i).getName());
 	        	if (write)
-	        		writer.print(instances.get(i).getName()+" ");
+	        		writer.print(instances.get(i).getName());
 	        	for (int topic = 0; topic < numTopics; topic++) {
 	                //Iterator<IDSorter> iterator = topicSortedWords.get(topic).iterator();
 	                

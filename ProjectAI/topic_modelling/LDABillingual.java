@@ -181,7 +181,7 @@ public class LDABillingual {
 	        	double[] topicDistribution = infer_lang.getSampledDistribution(doc, 0, 0, 0);
 	        	System.out.println(doc.getName());
 	        	if (write)
-	        		writer.print(doc.getName()+" ");
+	        		writer.print(doc.getName());
 	        	for (int topic = 0; topic < numTopics; topic++) {
 	                //Iterator<IDSorter> iterator = topicSortedWords.get(topic).iterator();
 	                
