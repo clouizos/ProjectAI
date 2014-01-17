@@ -53,7 +53,7 @@ public class SumOfSquaredError{
 				for(int s = 0; s < seeds.length; s ++){
 					System.out.println("Seed : " + s);
 					Kmeans kmeans = new Kmeans(k, filePath, language, 
-							metrics.get(i), seeds[s]);
+							metrics.get(i), seeds[s],false,"");
 					double result = 0;
 					kmeans.startClustering();
 					ArrayList<Cluster> clusters = kmeans.clusters;

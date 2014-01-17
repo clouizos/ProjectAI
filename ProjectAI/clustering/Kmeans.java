@@ -1,11 +1,13 @@
 package clustering;
 
 import io.FileLoadingUtils;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Random;
+
 import plugin_metrics.*;
 import data_representation.*;
 
@@ -33,6 +35,8 @@ public class Kmeans{
 	ArrayList<Document> documentObjects = new ArrayList<Document>();
 	public ArrayList<Cluster> clusters = new ArrayList<Cluster>();
 	Random r = new Random();
+	boolean externalDataset;
+	String extFilePath;
 
 	/**
 	 * Constructor
@@ -42,13 +46,19 @@ public class Kmeans{
 	 * @param metric - the (distance) metric used. See method 
 	 * getClosestCluster() for more information on the numbers 
 	 * for the different metrics.
+	 * @param seed
+	 * @param externalDataset - true for external or false otherwise
+	 * @param extFilePath - File path for the external dataset
 	 */
-	public Kmeans( int k, String filePath, String language, Metric metric, int seed){
+	public Kmeans( int k, String filePath, String language, Metric metric, int seed, boolean externalDataset, String extFilePath){
 		this.k = k;
 		this.filePath = filePath;
 		this.language = language;
 		this.metric = metric;
 		this.seed = seed;
+		this.externalDataset = externalDataset;
+		this.extFilePath = extFilePath;
+		
 	}
 
 	/**
@@ -62,7 +72,10 @@ public class Kmeans{
 	public void startClustering(){
 		int iterations = 0;
 		// Initialize datapoints and initial centroids
-		init();
+		if(!externalDataset)
+			init();
+		else
+			init_external();
 
 		while( changes && iterations < iterationsMax ){
 			assignMembers();
@@ -81,11 +94,11 @@ public class Kmeans{
 			iterations++;
 		}
 		// only show final clusters and not on every iteration
-		for (int i=0;i<clusters.size();i++){
+		/*for (int i=0;i<clusters.size();i++){
 			System.out.println("cluster " + i );
 			System.out.println(clusters.get(i).historyMembers.get(iterations - 1)); 
 			System.out.println("");
-		}
+		}*/
 	}
 
 	/**
@@ -162,6 +175,82 @@ public class Kmeans{
 		System.out.println("Number of documents to be clustered:"+documentObjects.size()+"\n");
 	}
 
+	public void init_external(){
+		System.out.println("Initializing datapoints and clusters from external source...");
+		String options = "featureVectors_language_"+language+"_"+30+".data";
+		Map<String, ArrayList<Double>> dataset = new HashMap<String, ArrayList<Double>>();
+		ImportExternalDataset imp = new ImportExternalDataset(extFilePath);
+		dataset = imp.importData(options);
+		
+		//ArrayList<String> documentNames = FileLoadingUtils.listFilesDirectory(filePath);
+		Centroid allWords = new Centroid();
+		Random r = new Random();
+		r.setSeed(seed);
+		ArrayList<String> documentNames = new ArrayList<String>();
+		documentNames.addAll(dataset.keySet());
+		
+		for( int i = 0; i < documentNames.size(); i++ ){
+			//if(i == 200) // in order to test, pick only a small number of documents 
+			//	break; 
+			Document doc = new Document( documentNames.get(i), language );
+			documentObjects.add(doc);
+		}
+		
+		for( int i = 0; i < documentObjects.size(); i++ ){
+			documentObjects.get(i).createListExternal(allWords, "forgy", dataset.get(documentObjects.get(i).getFilename()));
+			System.out.println("Document parsed...");
+			allWords = documentObjects.get(i).initCentroid;	
+		}
+
+		int docs = documentObjects.size();
+		ArrayList<Integer> possibleMeanIndices = new ArrayList<Integer>();
+		for( int i = 0; i < docs; i++ ){
+			possibleMeanIndices.add(i);
+		}
+		if( docs < k ){
+			k = docs;
+			System.out.println("K was too large for the amount of documents, K revised to "+k + " ...");
+		}
+
+		for( int i = 0; i < k; i++ ){
+			Integer indexNewMean = 0;
+			Integer indexNewMean2 = 0;
+			do{ 
+				indexNewMean = r.nextInt(docs);
+				indexNewMean2 = r.nextInt(docs);
+			}
+			while( (indexNewMean == indexNewMean2) || (!possibleMeanIndices.contains(indexNewMean)) || (!possibleMeanIndices.contains(indexNewMean2)) );
+			//System.out.println(indexNewMean + " " + documentObjects.get(indexNewMean).textFile);
+			//System.out.println(indexNewMean2 + " " + documentObjects.get(indexNewMean2).textFile);
+			//System.out.println("");
+			possibleMeanIndices.remove(indexNewMean);
+			possibleMeanIndices.remove(indexNewMean2);
+			Map<String, Double> newMean = documentObjects.get(indexNewMean).words;
+			Map<String, Double> newMean2 = documentObjects.get(indexNewMean2).words;
+			Map<String, Double> d = new HashMap<String, Double>(allWords.distribution);
+
+			for( Entry<String, Double> entry:newMean.entrySet() ){
+				String key = entry.getKey();
+				Double value = entry.getValue() * 0.5;
+				d.put(key, value);
+			}
+			for( Entry<String, Double> entry: newMean2.entrySet() ){
+				String key = entry.getKey();
+				Double value = entry.getValue() * 0.5;
+				if( d.get(key) > 0 ){
+					value = value + d.get(key);
+				}
+				d.put(key, value);
+			}
+
+			Centroid c = new Centroid(d);
+			Cluster cluster = new Cluster(c);
+			clusters.add(cluster);		
+		}
+
+		System.out.println("Clusters created...");
+		System.out.println("Number of documents to be clustered:"+documentObjects.size()+"\n");
+	}
 /*	public void init(){
 		System.out.println("Initializing datapoints and clusters...");
 		ArrayList<String> documentNames = FileLoadingUtils.listFilesDirectory(filePath);
@@ -254,5 +343,31 @@ public class Kmeans{
 		else newMean = currentMean;
 
 		return newMean;
+	}
+	
+	public static void main(String[] args) throws Exception{
+		String extFilePath = "./featureVectorsLDA/";
+		String filePath = "";
+		String language = "english";
+		int K = 10;
+		int seed = 1234;
+		boolean useExternal = true;
+		
+		//Metric metric = new KLdivergence(true, "average");
+		Metric metric = new JSdivergence(true);
+		Kmeans kmeans = new Kmeans(K, filePath, language, metric, seed, useExternal, extFilePath);
+		kmeans.startClustering();
+		ArrayList<Cluster> clusters = kmeans.clusters;
+		
+		int i=1;
+		for(Cluster cluster : clusters){
+			System.out.println("Cluster "+i+":");
+			System.out.println("Centroid:"+cluster.centroid.distribution);
+			for(Document doc : cluster.members){
+				System.out.println(doc.getFilename());
+			}
+			i++;
+			System.out.println("");
+		}
 	}
 }

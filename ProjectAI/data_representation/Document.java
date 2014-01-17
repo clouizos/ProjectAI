@@ -23,6 +23,7 @@ public class Document extends FrequencyList {
 	public Map<String, Double> words = new HashMap<String, Double>();
 	String c;
 	Random random = new Random();
+	private String filename;
 	
 	/**
 	 * Constructor
@@ -32,6 +33,7 @@ public class Document extends FrequencyList {
 	 */
 	public Document(String textFile, String language ) {
 		super(textFile, language, -1);
+		filename = textFile;	
 	}
 
 	/**
@@ -59,6 +61,34 @@ public class Document extends FrequencyList {
 		else addRelativeFreq();
 		sortList(); // List is sorted, highly frequent words are placed up top.
 		words = list;
+		
+		return words;
+	}
+	
+	public Map<String, Double> createListExternal( Centroid initCentroid, String c, ArrayList<Double> distribution){
+		this.c = c;
+		this.initCentroid = initCentroid;
+		if( language != null){
+			standardVocab = new StandardVocabulary(language);
+			standardVocabUsed = true;
+		}
+		
+		//System.out.println(distribution.size());
+		for(int i=0; i<distribution.size(); i++){
+			this.words.put(Integer.toString(i), distribution.get(i));
+			this.initCentroid.distribution.put(Integer.toString(i), 0.0);
+			//double newValue = random.nextDouble();
+			//this.initCentroid.distribution.put(Integer.toString(i), newValue);
+		}
+		this.corpusSize = distribution.size();
+		
+		
+		//if( c != null && (c.equals("forgy") || c.equals("soft")) ){
+		//	addRelativeFreq(c);
+		//}
+		//else 
+		//sortList(); // List is sorted, highly frequent words are placed up top.
+		//words = list;
 		
 		return words;
 	}
@@ -154,5 +184,13 @@ public class Document extends FrequencyList {
 			double newValue = random.nextDouble();
 			initCentroid.distribution.put(word, newValue);
 		}
+	}
+
+	public String getFilename() {
+		return filename;
+	}
+
+	public void setFilename(String filename) {
+		this.filename = filename;
 	}
 }
