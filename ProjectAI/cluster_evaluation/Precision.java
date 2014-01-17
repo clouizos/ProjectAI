@@ -3,6 +3,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import data_representation.Cluster;
+
 import io.*;
 
 /**
@@ -17,12 +19,17 @@ public class Precision {
 	/**
 	 * @param args
 	 */
-	
-	
-	public static void main(String[] args) {
-		String classDir = "../TESTEVAL/TrueClass";
-		String clusterDir = "../TESTEVAL/Cluster";
+	public static void computeF1(String classDir, String clusterDir){
 		HashMap<String, HashMap<String, Integer>> confMatrix = Evaluation.createConfusionMatrix(classDir, clusterDir);
+		compute(confMatrix);
+	}
+	
+	public static void computeF1(String classDir, ArrayList<Cluster> clusterList){
+		HashMap<String, HashMap<String, Integer>> confMatrix = Evaluation.createConfusionMatrix(classDir, clusterList);
+		compute(confMatrix);
+	}
+	
+	private static void compute(HashMap<String, HashMap<String, Integer>>confMatrix){
 		if (confMatrix.size()==0){return;}
 		//Count the pricision and recall
 		//For each cluster, we choose the corresponding class that gives
@@ -71,6 +78,11 @@ public class Precision {
 		System.out.println("Precision : "+totalPrecision);
 		System.out.println("Recall : "+totalRecall);
 		System.out.println("F1 score : "+totalF1);
+	}
+	
+	public static void main(String[] args) {
+		String classDir = "../TESTEVAL/TrueClass";
+		String clusterDir = "../TESTEVAL/Cluster";
 		
 	}
 

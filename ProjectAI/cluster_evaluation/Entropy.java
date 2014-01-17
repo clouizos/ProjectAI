@@ -22,7 +22,7 @@ public class Entropy {
 				if (label=="total"){ continue; }
 				double tp = confMatrix.get(cluster).get(label);
 				double totalInCluster = confMatrix.get(cluster).get("total");
-				double precision = tp/totalInCluster;
+				double precision = Math.max(Double.MIN_VALUE, tp/totalInCluster);
 				entropy+= -precision*Math.log(precision);
 			}
 			System.out.println("Evaluation on Cluster "+cluster);

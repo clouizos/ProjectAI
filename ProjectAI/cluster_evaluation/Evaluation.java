@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import data_representation.Cluster;
+
 public class Evaluation {
 	
 	/**
@@ -30,8 +32,6 @@ public class Evaluation {
 	 * @return HashMap<String cluster, HashMap<String class, Integer intersection>>
 	 */
 	public static HashMap<String, HashMap<String, Integer>> createConfusionMatrix(String classDir, String clusterDir){
-		HashMap<String, HashMap<String, Integer>> confusionMatrix = new HashMap<String, HashMap<String, Integer>>();
-		HashMap<String, Integer> sumOfColumn = new HashMap<String, Integer>(); 
 		
 		String[] listClass= FileLoadingUtils.listDirectoriesDirectory(classDir);
 		String[] listClusters = FileLoadingUtils.listDirectoriesDirectory(clusterDir);
@@ -50,13 +50,68 @@ public class Evaluation {
 			}
 		} else if (listClass.length==0){
 			System.out.println("Error : No class directories in "+classDir);
-			return confusionMatrix;
+//			return confusionMatrix;
 		} else {
 			System.out.println("Error : No cluster directories in "+clusterDir);
-			return confusionMatrix;
+//			return confusionMatrix;
 		}
 		
-				
+		return fillMatrix(clusterMap, classMap);
+	}
+	
+	/**
+	 * This method create a confusion matrix between the clusters and the true classes.
+	 * The method compute the number of document intersection between cluster and true class 
+	 * by comparing the documents name.
+	 * @param classDir - directory contains documents with class name as part of documents' name.
+	 * @param clusterList - ArrayList<Cluster> list of cluster objects from clustering.
+	 * @return HashMap<String cluster, HashMap<String class, Integer intersection>>
+	 */
+	public static HashMap<String, HashMap<String, Integer>> createConfusionMatrix(String classDir, ArrayList<Cluster> clusterList){
+		
+		ArrayList<String> listClass= FileLoadingUtils.listFilesName(classDir);
+		
+		HashMap<String, ArrayList<String>> classMap = new HashMap<String, ArrayList<String>>();
+		HashMap<String, ArrayList<String>> clusterMap = new HashMap<String, ArrayList<String>>();
+		
+		if (listClass.size()>0 && clusterList.size()>0){
+			for (String name:listClass){
+				String label = name.replaceAll(".*_", "");
+				label = label.replaceAll("\\..*","");
+				label = label.replaceAll("[0-9]","");
+				try{
+					classMap.get(label).add(name);	
+				} catch (Exception e){
+					ArrayList<String> s = new ArrayList<String>();
+					s.add(name);
+					classMap.put(label,s);
+				}
+			}
+			
+			for (int i=0;i<clusterList.size();i++){
+				clusterMap.put("Topic"+Integer.toString(i),new ArrayList<String>());
+				int l = clusterList.get(i).historyMembers.size();
+				for (String name :clusterList.get(i).historyMembers.get(l-1)){
+					String fileName = name.replaceAll(".*/", "");
+					clusterMap.get("Topic"+Integer.toString(i)).add(fileName);	
+				}
+			}
+		} else if (listClass.size()==0){
+			System.out.println("Error : There's no files in "+classDir);
+//			return confusionMatrix;
+		} else {
+			System.out.println("Error : There's no cluster ");
+//			return confusionMatrix;
+		}
+		
+		return fillMatrix(clusterMap, classMap);		
+		
+	}
+	
+	private static HashMap<String, HashMap<String, Integer>> fillMatrix(HashMap<String, ArrayList<String>> clusterMap, HashMap<String, ArrayList<String>> classMap){
+		HashMap<String, HashMap<String, Integer>> confusionMatrix = new HashMap<String, HashMap<String, Integer>>();
+		HashMap<String, Integer> sumOfColumn = new HashMap<String, Integer>();
+		
 		int totalDocs=0;
 		for (String cluster:clusterMap.keySet()){
 			confusionMatrix.put(cluster, new HashMap<String, Integer>());
@@ -74,9 +129,4 @@ public class Evaluation {
 		return confusionMatrix;
 	}
 	
-	
-
-
-	
-
 }
