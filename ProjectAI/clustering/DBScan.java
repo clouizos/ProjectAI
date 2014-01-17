@@ -97,7 +97,7 @@ public class DBScan {
 	 * 		NeighborPts = regionQuery(P, eps)
 	 * 		if sizeof(NeighborPts) < MinPts
 	 * 			mark P as NOISE
-	 * 		elseMap<String, ArrayList<Double>> dataset = new HashMap<String, ArrayList<Double>>();
+	 * 		else
 	 * 			C = next cluster
 	 * 			expandCluster(P, NeighborPts, C, eps, MinPts)
 	 */
@@ -278,11 +278,11 @@ public class DBScan {
 		
 		DBScan dbscan = new DBScan(minPts, eps, filePath, language, metrics.get(0), seed, nrdocs, option, true, extFilePath);
 		dbscan.startClustering();
-		System.out.println("Finished clustering!");
+		System.out.println("Finished clustering!\n");
 		
 		// remove empty clusters (it can happen, dbscan can 'steal' points of a cluster and put it in another, if they are near each other)
 		for(int i=clusters.size()-1; i>=0; i--){
-			System.out.println(clusters.get(i).members.size());
+			//System.out.println(clusters.get(i).members.size());
 			if (clusters.get(i).members.size() == 0) 
 				clusters.remove(i);
 			if(removeSingleton)		// if you wanna remove clusters with only one point(document)
