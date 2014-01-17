@@ -265,8 +265,8 @@ public class LDA {
 	
 	public static void main(String[] args) throws Exception{
 		int numTopics = 30;
-		int numIterations = 50;
-		String language = "English";
+		int numIterations = 1000;
+		String language = "english";
 		String options = "numTopics_"+numTopics+"_numIterations_"+numIterations;
 		
 		LDA lda = new LDA(args[1], args[0], numTopics, numIterations, language);

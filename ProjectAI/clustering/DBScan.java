@@ -4,15 +4,20 @@
 package clustering;
 
 import io.FileLoadingUtils;
+import data_representation.ImportExternalDataset;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
+import java.util.Set;
 
 import metrics.KLdivergenceMetric;
+import plugin_metrics.EuclidianDistance;
 import plugin_metrics.KLdivergence;
 import plugin_metrics.Metric;
+import plugin_metrics.Cosine;
+import plugin_metrics.JSdivergence;
 import data_representation.Centroid;
 import data_representation.Cluster;
 import data_representation.Document;
@@ -49,6 +54,8 @@ public class DBScan {
 	Random r = new Random();
 	public int seed;
 	String option;
+	boolean useExternal;
+	String extFilePath;
 
 	
 	/**
@@ -61,7 +68,7 @@ public class DBScan {
 	 * getClosestCluster() for more information on the numbers 
 	 * for the different metrics.
 	 */
-	public DBScan(int minPts, double eps, String filePath, String language, Metric metric, int seed, int nrdocs, String option) {
+	public DBScan(int minPts, double eps, String filePath, String language, Metric metric, int seed, int nrdocs, String option, boolean useExternal, String extFilePath) {
 		this.filePath = filePath;
 		this.language = language;
 		this.metric = metric;
@@ -70,7 +77,8 @@ public class DBScan {
 		this.seed = seed;
 		this.nrdocs = nrdocs;
 		this.option = option;
-		
+		this.useExternal = useExternal;
+		this.extFilePath = extFilePath;
 	}
 	
 	/**
@@ -89,12 +97,15 @@ public class DBScan {
 	 * 		NeighborPts = regionQuery(P, eps)
 	 * 		if sizeof(NeighborPts) < MinPts
 	 * 			mark P as NOISE
-	 * 		else
+	 * 		elseMap<String, ArrayList<Double>> dataset = new HashMap<String, ArrayList<Double>>();
 	 * 			C = next cluster
 	 * 			expandCluster(P, NeighborPts, C, eps, MinPts)
 	 */
 	public void startClustering(){
-		init();
+		if(!useExternal)
+			init();
+		else
+			init_external();
 		Centroid dummycent = new Centroid();
 		
 		for(int i=0; i< documentObjects.size(); i++){
@@ -176,9 +187,13 @@ public class DBScan {
 		ArrayList<Document> neighbors = new ArrayList<Document>();
 		neighbors.add(document);
 		double distance = 0;
-		KLdivergence kldiv = new KLdivergence(true, option);
+		//KLdivergence kldiv = new KLdivergence(true, option);
+		metric = new KLdivergence(true, "average");
+		//metric = new JSdivergence(true);
+		//metric = new Cosine(true);
+		//metric = new EuclidianDistance(true);
 		for(int i=0; i<documentObjects.size(); i++){
-			distance = kldiv.computeDistance(document.words, document.corpusSize, documentObjects.get(i).words, documentObjects.get(i).corpusSize);
+			distance = metric.computeDist(document.words, document.corpusSize, documentObjects.get(i).words, documentObjects.get(i).corpusSize);
 			if(distance <= eps){
 				neighbors.add(documentObjects.get(i));
 			}
@@ -215,6 +230,37 @@ public class DBScan {
 		System.out.println("Number of documents to be clustered:"+documentObjects.size()+"\n");
 	}
 	
+	public void init_external(){
+		System.out.println("Creating external dataset...");
+		String options = "featureVectors_language_"+language+"_"+30+".data";
+		Map<String, ArrayList<Double>> dataset = new HashMap<String, ArrayList<Double>>();
+		ImportExternalDataset imp = new ImportExternalDataset(extFilePath);
+		dataset = imp.importData(options);
+		
+		ArrayList<String> documentNames = new ArrayList<String>();
+		documentNames.addAll(dataset.keySet());
+		
+		for( int i = 0; i < documentNames.size(); i++ ){
+			//if(i == nrdocs) // in order to test, pick only a small number of documents 
+			//	break; 
+			Document doc = new Document( documentNames.get(i), language );
+			documentObjects.add(doc);
+			visited.put(doc, false);
+		}
+		
+		// dummy centroid in order to use the method to get the normalized distributions
+		Centroid dummyCentroid = new Centroid();
+		for( int i = 0; i < documentObjects.size(); i++ ){
+			// get the normalized distribution
+			documentObjects.get(i).createListExternal( dummyCentroid, "forgy", dataset.get(documentObjects.get(i).getFilename()) );
+			//System.out.println("Document parsed...");
+			//System.out.println(words_test.toString());
+			//allWords = documentObjects.get(i).initCentroid;	
+		}
+		System.out.println("Finished parsing the documents...");
+		System.out.println("Number of documents to be clustered:"+documentObjects.size()+"\n");
+	}
+	
 	public static void main(String[] args){
 		String filePath = "./Testdata/English"; // directory of english dataset // changed according to new structure
 		String language = "english"; // using shortlist for english language
@@ -224,12 +270,13 @@ public class DBScan {
 		ArrayList<Metric> metrics = new ArrayList<Metric>();
 		metrics.add(m7);
 		int minPts = 5;
-		double eps = 0.9;
+		double eps = 2.0;
 		int seed = 1234;
-		int nrdocs = 1000;
+		int nrdocs = 139;
 		String option = "average"; //average or minimum, option for the KL-divergence
+		String extFilePath = "./featureVectorsLDA/";
 		
-		DBScan dbscan = new DBScan(minPts, eps, filePath, language, metrics.get(0), seed, nrdocs, option);
+		DBScan dbscan = new DBScan(minPts, eps, filePath, language, metrics.get(0), seed, nrdocs, option, true, extFilePath);
 		dbscan.startClustering();
 		System.out.println("Finished clustering!");
 		
@@ -259,6 +306,7 @@ public class DBScan {
 		}
 		
 		System.out.println("Total number of clustered points:"+tot_clustered_points);
+		System.out.println("Total number of clusters:"+clusters.size());
 		System.out.println("Total number noise points(singleton clusters):"+(nrdocs - tot_clustered_points));
 		
 		for (Document doc: noise.keySet()) 
