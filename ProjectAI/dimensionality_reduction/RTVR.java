@@ -67,14 +67,15 @@ public class RTVR {
 	private void computeReducedMatrix(AbstractMatrix C){
 		
 		int k=0;
-		ArrayList<Integer> E = new ArrayList<Integer>();
+		Map<Integer,ArrayList<Integer>> E = new HashMap<Integer,ArrayList<Integer>>();
 		ArrayList<Integer> notE = new ArrayList<Integer>();
 		Map<Integer,Integer> phi = new HashMap<Integer,Integer>();
 		System.out.println("Dimension of original matrix C : "+C.getRowDimension()+" x "+C.getColumnDimension());
 		System.out.println("Collecting rare features...");
 		for (int i=0;i<C.getRowDimension();i++){
-			if (docWithFeature(C,i).size()<this.treshold){
-				E.add(i);
+			ArrayList<Integer> Dfi = docWithFeature(C,i);
+			if (Dfi.size()<this.treshold){
+				E.put(i,Dfi);
 			} else {
 				notE.add(i);
 				phi.put(i,k);
@@ -87,17 +88,18 @@ public class RTVR {
 		System.out.println("Processing the E set");
 		System.out.println("Size of set E : "+E.size());
 		int count=0;
-		for (int i:E){
-			System.out.println(count++);
+		for (int i:E.keySet()){
 			int l=0;
-			ArrayList<Integer> Df = docWithFeature(C,i);
-			for (int j : Df){
-				R.setColumns(i, R.getColumn(i).plus(truncateVector(C.getColumn(j), E).times(C.get(i, j))));
+			for (int j : E.get(i)){
+				ArrayList<Integer> Elist = new ArrayList<Integer>();
+				Elist.addAll(E.keySet());
+				R.setColumns(i, R.getColumn(i).plus(truncateVector(C.getColumn(j), Elist).times(C.get(i, j))));
 				l+=Math.abs(C.get(i, j));
 			}
 			if (l!=0){
 				R.setColumns(i, R.getColumn(i).divide(l));
 			}
+			System.out.println(count++);
 		}
 		
 		System.out.println("Processing the not E set");
@@ -121,7 +123,7 @@ public class RTVR {
 		// TODO Auto-generated method stub
 		String filePath = "../Testdata/dataset/English";
 		int nDocs = 200;
-		int threshold=7;  //term that appear in less than this number will be replaced
+		int threshold=15;  //term that appear in less than this number will be replaced
 		FeatureMatrix FM = new FeatureMatrix(filePath,nDocs,"english","prob");
 		RTVR rtvr = new RTVR(FM, threshold);
 		System.out.println("ROW "+rtvr.reducedMatrix.getRowDimension());
