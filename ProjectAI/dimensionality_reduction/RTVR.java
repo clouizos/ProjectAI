@@ -121,8 +121,9 @@ public class RTVR {
 		// TODO Auto-generated method stub
 		String filePath = "../Testdata/dataset/English";
 		int nDocs = 200;
+		int threshold=7;  //term that appear in less than this number will be replaced
 		FeatureMatrix FM = new FeatureMatrix(filePath,nDocs,"english","prob");
-		RTVR rtvr = new RTVR(FM, 3);
+		RTVR rtvr = new RTVR(FM, threshold);
 		System.out.println("ROW "+rtvr.reducedMatrix.getRowDimension());
 		System.out.println("COLUMN "+rtvr.reducedMatrix.getColumnDimension());
 		
