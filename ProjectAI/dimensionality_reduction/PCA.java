@@ -36,6 +36,7 @@ public class PCA {
 		EigenvalueDecomposition e = covariance.eig();
 		EigenVectors = e.getV();
 		EigenValues = e.getD();
+		
 	}
 
 	public AbstractMatrix getVectors() {
@@ -52,7 +53,7 @@ public class PCA {
 	public static void main(String[] arg) {
 		String filePath = "../Testdata/dataset/English";
 		int nPrincipleComp = 50;
-		int nDocs = 10;
+		int nDocs = 30;
 		PCA pca = new PCA(filePath, nPrincipleComp,nDocs);
 		System.out.println(pca.EigenValues.getColumnDimension());
 		System.out.println(pca.EigenValues.getRowDimension());
