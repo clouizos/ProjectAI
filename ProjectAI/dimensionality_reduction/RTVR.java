@@ -1,5 +1,9 @@
 package dimensionality_reduction;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -114,11 +118,38 @@ public class RTVR {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		String filePath = "../Testdata/dataset/English";
-		int nDocs = 20;
+		int nDocs = 200;
 		FeatureMatrix FM = new FeatureMatrix(filePath,nDocs,"english","prob");
 		RTVR rtvr = new RTVR(FM, 3);
 		System.out.println("ROW "+rtvr.reducedMatrix.getRowDimension());
 		System.out.println("COLUMN "+rtvr.reducedMatrix.getColumnDimension());
+		
+		
+		
+		try{
+			 
+			FileOutputStream fout = new FileOutputStream("reducedMatrix.ser");
+			ObjectOutputStream oos = new ObjectOutputStream(fout);   
+			oos.writeObject(rtvr.reducedMatrix);
+			oos.close();
+			System.out.println("Done");
+	 
+		   }catch(Exception ex){
+			   ex.printStackTrace();
+		   }
+		
+		
+//		AbstractMatrix N=null;
+//		try{
+//			FileInputStream fin = new FileInputStream("reducedMatrix.ser");
+//			ObjectInputStream ois = new ObjectInputStream(fin);
+//			 N = (AbstractMatrix) ois.readObject();
+//		} catch(Exception e){
+//			e.printStackTrace();
+//		}
+		
+//		System.out.println(N);
+
 	}
 
 }
