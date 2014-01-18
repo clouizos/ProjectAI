@@ -28,6 +28,7 @@ public class PCA {
 	private AbstractMatrix EigenValues;
 	private Matrix X;
 	private int nPC;
+	
 	public PCA(String filePath, int nPC, int nDoc) {
 		this.nPC = nPC;
 		FeatureMatrix fm = new FeatureMatrix(filePath,nDoc);
@@ -51,7 +52,7 @@ public class PCA {
 	
 
 	public static void main(String[] arg) {
-		String filePath = "../Testdata/dataset/English";
+		String filePath = "./Testdata/dataset/English";
 		int nPrincipleComp = 50;
 		int nDocs = 30;
 		PCA pca = new PCA(filePath, nPrincipleComp,nDocs);

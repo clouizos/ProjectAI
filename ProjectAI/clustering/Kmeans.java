@@ -113,8 +113,8 @@ public class Kmeans{
 		Random r = new Random();
 		r.setSeed(seed);
 		for( int i = 0; i < documentNames.size(); i++ ){
-			if(i == 200) // in order to test, pick only a small number of documents 
-				break; 
+			//if(i == 200) // in order to test, pick only a small number of documents 
+		//		break; 
 			Document doc = new Document( documentNames.get(i), language );
 			documentObjects.add(doc);
 		}
@@ -347,14 +347,15 @@ public class Kmeans{
 	
 	public static void main(String[] args) throws Exception{
 		String extFilePath = "./featureVectorsLDA/";
-		String filePath = "";
+		String filePath = "./Testdata/dataset/English";
 		String language = "english";
 		int K = 10;
 		int seed = 1234;
-		boolean useExternal = true;
+		boolean useExternal = false;
 		
 		//Metric metric = new KLdivergence(true, "average");
-		Metric metric = new JSdivergence(true);
+		//Metric metric = new JSdivergence(true);
+		Metric metric = new EuclidianDistance(true);
 		Kmeans kmeans = new Kmeans(K, filePath, language, metric, seed, useExternal, extFilePath);
 		kmeans.startClustering();
 		ArrayList<Cluster> clusters = kmeans.clusters;
@@ -362,7 +363,7 @@ public class Kmeans{
 		int i=1;
 		for(Cluster cluster : clusters){
 			System.out.println("Cluster "+i+":");
-			System.out.println("Centroid:"+cluster.centroid.distribution);
+			//System.out.println("Centroid:"+cluster.centroid.distribution);
 			for(Document doc : cluster.members){
 				System.out.println(doc.getFilename());
 			}
