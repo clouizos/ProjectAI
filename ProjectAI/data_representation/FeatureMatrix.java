@@ -16,37 +16,52 @@ public class FeatureMatrix {
 	public double[][] matrix;
 	public ArrayList<String> rowLabel;
 	public ArrayList<String> columnLabel;
+	private String type;
+	
+	
 	
 	
 	/**
 	 * Constructor 
 	 * @param filePath - path of directory contains documents
+	 * @param maxDocs - maximum number of document to be proceeded
+	 * @param language - "english", "dutch", or "german" if using stopword, or null otherwise
+	 * @param type - how do you want to represent the word occurences. 
+	 * "freq" : raw frequency. "prob" : relative frequency
 	 */
-	public FeatureMatrix(String filePath, int maxDocs){
-		ArrayList<Document> documentObjects = new ArrayList<Document>();
+	public FeatureMatrix(String filePath, int maxDocs, String language, String type){
+		this.type = type;
+		ArrayList<FrequencyList> documentObjects = new ArrayList<FrequencyList>();
 		ArrayList<String> documentNames = FileLoadingUtils.listFilesDirectory(filePath);
 		this.rowLabel = new ArrayList<String>();
 		for( int i = 0; i < documentNames.size(); i++ ){
 			if(i == maxDocs) // in order to test, pick only a small number of documents 
 				break; 
+			if (this.type.equals("prob")){
+				Document doc = new Document( documentNames.get(i), language );
+				this.rowLabel.add(documentNames.get(i));
+				documentObjects.add(doc);
+			}
 			
-			Document doc = new Document( documentNames.get(i), "english" );
-			this.rowLabel.add(documentNames.get(i));
-			documentObjects.add(doc);
 		}
 		
 		Centroid allWords = new Centroid();
 		for( int i = 0; i < documentObjects.size(); i++ ){
-			documentObjects.get(i).createList( allWords, "forgy" );
+			if (this.type.equals("prob")){
+				Document D = (Document)documentObjects.get(i);
+				D.createList( allWords, "forgy" );
+			} else if(this.type.equals("freq")){
+				documentObjects.get(i).createListVoid();
+			}
+			
 			System.out.println("Document parsed...");
-			allWords = documentObjects.get(i).initCentroid;	
 		}
 		
 		this.matrix = construct2dMatrix(documentObjects);
 	}
 	
 	
-	public FeatureMatrix(ArrayList<Document> documentObjects){
+	public FeatureMatrix(ArrayList<FrequencyList> documentObjects){
 		this.matrix = construct2dMatrix(documentObjects);
 	}
 	
@@ -55,11 +70,17 @@ public class FeatureMatrix {
 	 * each column is feature
 	 * @param ArrayList<Document> - list of document objects
 	 */
-	private double[][] construct2dMatrix(ArrayList<Document> documentObjects){
+	private double[][] construct2dMatrix(ArrayList<FrequencyList> documentObjects){
 		this.columnLabel = new ArrayList<String>();
 		Set<String> vocabs = new TreeSet<String>();
-		for (Document d : documentObjects){
-			vocabs.addAll(d.words.keySet());
+		for (FrequencyList d : documentObjects){
+			if (this.type.equals("prob")){
+				Document D = (Document)d;
+				vocabs.addAll(D.words.keySet());
+			} else if (this.type.equals("freq")){
+				vocabs.addAll(d.list.keySet());
+			}
+			
 		}
 		this.columnLabel.addAll(vocabs);
 		System.out.println("Vocab size : "+vocabs.size());
@@ -70,7 +91,13 @@ public class FeatureMatrix {
 			int j=0;
 			for (String v : vocabs){
 				try {
-					matrix[i][j] = documentObjects.get(i).words.get(v);
+					if (this.type.equals("prob")){
+						Document D = (Document)documentObjects.get(i);
+						matrix[i][j] = D.words.get(v);
+					} else if (this.type.equals("freq")){
+						matrix[i][j] = documentObjects.get(i).list.get(v);
+					}
+					
 				} catch(Exception e){
 					matrix[i][j] = 0;
 				}

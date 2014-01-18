@@ -1,8 +1,6 @@
 package dimensionality_reduction;
 
-import io.FileLoadingUtils;
 
-import java.util.ArrayList;
 
 import org.ejml.data.DenseMatrix64F;
 import org.ejml.factory.DecompositionFactory;
@@ -10,11 +8,6 @@ import org.ejml.factory.SingularValueDecomposition;
 import org.ejml.ops.CommonOps;
 import org.ejml.ops.NormOps;
 import org.ejml.ops.SingularOps;
-import org.jmat.data.AbstractMatrix;
-import org.jmat.data.RandomMatrix;
-
-import data_representation.Centroid;
-import data_representation.Document;
 import data_representation.FeatureMatrix;
 
 public class PrincipleComponentAnalysis {
@@ -222,10 +215,10 @@ public class PrincipleComponentAnalysis {
     }
     
     public static void main(String[] arg) {
-		String filePath = "./Testdata/dataset/English";
-		
-		int nDocs = 30;
-		FeatureMatrix FM = new FeatureMatrix(filePath,nDocs);
+		String filePath = "../Testdata/dataset/English";
+		int nPC = 8;
+		int nDocs = 2;
+		FeatureMatrix FM = new FeatureMatrix(filePath,nDocs,"english","freq");
 		PrincipleComponentAnalysis Pca = new PrincipleComponentAnalysis();
 		Pca.setup(FM.rowLabel.size(), FM.columnLabel.size());
 		for (int i=0;i<FM.rowLabel.size();i++){
@@ -236,7 +229,7 @@ public class PrincipleComponentAnalysis {
 		System.out.println(Pca.V_t.getNumCols());
 		
 		for (int i=0;i<Pca.V_t.getNumRows();i++){
-			for (int j=0;j<8;j++){
+			for (int j=0;j<nPC;j++){
 				System.out.printf("%.5f \t",Pca.V_t.get(i, j));
 			}
 			System.out.println();
