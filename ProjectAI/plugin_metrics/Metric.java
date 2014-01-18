@@ -2,6 +2,7 @@ package plugin_metrics;
 
 import java.util.ArrayList;
 import java.util.Map;
+
 import data_representation.*;
 
 /**
@@ -32,14 +33,54 @@ public abstract class Metric{
 		ArrayList<Integer> closestCentroid = getClosestCentroids(doc, clusters);
 
 		// Determine closest centroid from the resulting list
-		int numberMembers = Integer.MAX_VALUE;
-		for( int c:closestCentroid ){
+		//int numberMembers = Integer.MAX_VALUE;
+		/*for( int c:closestCentroid ){
 			if( clusters.get(c).members.size() < numberMembers ){
 				bestCluster = c;
 				numberMembers = clusters.get(c).members.size();
 			}
-		}
+		}*/
+		bestCluster = closestCentroid.get(0);
 		return bestCluster;
+	}
+	
+	public ArrayList<Double> getBestClusterFuzzy(Document doc, ArrayList<Cluster> clusters){
+		ArrayList<Double> centroid_distances = new ArrayList<Double>();
+		centroid_distances = getClosestCentroidsFuzzy(doc, clusters);
+		
+		return centroid_distances;
+	}
+	
+	public ArrayList<Double> getClosestCentroidsFuzzy(Document doc, ArrayList<Cluster> clusters){
+		
+		ArrayList<Integer> closestCentroids = new ArrayList<Integer>();
+		ArrayList<Double> closestCentroidsDist = new ArrayList<Double>();
+		
+		double bestDistance = Double.POSITIVE_INFINITY;
+		for(int c = 0; c < clusters.size(); c++){
+			double distance =  computeDistance(
+								clusters.get(c).centroid.distribution,
+								clusters.get(c).centroid.distributionSize,
+								doc.words,
+								doc.corpusSize
+								);
+			closestCentroidsDist.add(distance);
+			if( distance == bestDistance ){
+				closestCentroids.add(c);
+				
+			}
+			else if( distance < bestDistance ){
+				closestCentroids.clear();
+				//closestCentroidsDist.clear();
+				closestCentroids.add(c);
+				//closestCentroidsDist.add(distance);
+				bestDistance = distance;
+			}
+		}
+		
+		//System.out.println(closestCentroids);
+		//System.out.println(closestCentroidsDist);
+		return closestCentroidsDist;
 	}
 	
 	public double computeDist(Map<String, Double> q, int corpusSizeQ, Map<String, Double> r, int corpusSizeR){
