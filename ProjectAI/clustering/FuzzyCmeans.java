@@ -271,15 +271,15 @@ public class FuzzyCmeans{
 				else{
 					double newWeight = 0;
 					
-					for (int k=0; k< j;  k++)
-						newWeight += Math.pow(dist/bestClusterfuzzy.get(k),(double)2/(m-1));
-					for (int k = doc_memberships.size() - 1; k > j; k--)
-						newWeight += Math.pow(dist/bestClusterfuzzy.get(k),(double)2/(m-1));
+					//for (int k=0; k< j;  k++)
+					//	newWeight += Math.pow(dist/bestClusterfuzzy.get(k), m);//(double)2/(m-1));
+					//for (int k = doc_memberships.size() - 1; k > j; k--)
+					//	newWeight += Math.pow(dist/bestClusterfuzzy.get(k), m);//(double)2/(m-1));
 					
-					/*
-					 * for(int k=0; k<doc_memberships.size(); k++)
-					 * 		newWeight += Math.pow(dist/bestClusterfuzzy.get(k),(double)2/(m-1));
-					 */
+					
+					 for(int k=0; k<doc_memberships.size(); k++)
+					 	newWeight += Math.pow(dist/bestClusterfuzzy.get(k), m); //(double)2/(m-1));
+					 
 					
 					newWeight =  1/newWeight;
 					change += Math.abs(newWeight - doc_memberships.get(j));
@@ -365,8 +365,12 @@ public class FuzzyCmeans{
 			i++;
 			System.out.println("");
 		}
+		ArrayList<Double> check = weights.get("English/D_CKTAUS_hardware1.en");
 		System.out.println(weights.get("English/D_CKTAUS_hardware1.en"));
-
+		double sum = 0;
+		for(double val : check)
+			sum += val;
+		System.out.println(sum);
 	}
 
 }
