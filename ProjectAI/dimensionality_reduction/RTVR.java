@@ -79,7 +79,10 @@ public class RTVR {
 		System.out.println("Computing the R matrix...");
 		AbstractMatrix R = new Matrix(k,C.getRowDimension());
 		System.out.println("Processing the E set");
+		System.out.println("Size of set E : "+E.size());
+		int count=0;
 		for (int i:E){
+			System.out.println(count++);
 			int l=0;
 			AbstractMatrix Df = docWithFeature(C,i);
 			for (int j=0;j<Df.getColumnDimension();j++){
@@ -92,7 +95,10 @@ public class RTVR {
 		}
 		
 		System.out.println("Processing the not E set");
+		System.out.println("Size of set notE "+notE.size());
+		count=0;
 		for (int i:notE){
+			System.out.println(count++);
 			R.setColumns(i, getBasisVector(k, phi.get(i)));
 		}
 		
