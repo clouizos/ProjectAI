@@ -60,6 +60,17 @@ public class FrequencyList{
 
 		return list;
 	}
+	
+	public void createListVoid(){
+		// Use shortlist
+		if( language != null){
+			standardVocab = new StandardVocabulary(language);
+			standardVocabUsed = true;
+		}
+		parseFile();
+		sortList();
+
+	}
 
 	/**
 	 * Getter for the list of words and corresponding frequencies

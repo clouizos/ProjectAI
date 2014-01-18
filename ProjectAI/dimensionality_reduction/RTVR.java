@@ -59,10 +59,13 @@ public class RTVR {
 	}
 	
 	private void computeReducedMatrix(AbstractMatrix C){
+		
 		int k=0;
 		ArrayList<Integer> E = new ArrayList<Integer>();
 		ArrayList<Integer> notE = new ArrayList<Integer>();
 		Map<Integer,Integer> phi = new HashMap<Integer,Integer>();
+		System.out.println("Dimension of original matrix C : "+C.getRowDimension()+" x "+C.getColumnDimension());
+		System.out.println("Collecting rare features...");
 		for (int i=0;i<C.getRowDimension();i++){
 			if (docWithFeature(C,i).getColumnDimension()<this.treshold){
 				E.add(i);
@@ -72,9 +75,10 @@ public class RTVR {
 				k++;
 			}
 		}
-		
+		System.out.println("Total new dimension : "+k);
+		System.out.println("Computing the R matrix...");
 		AbstractMatrix R = new Matrix(k,C.getRowDimension());
-		
+		System.out.println("Processing the E set");
 		for (int i:E){
 			int l=0;
 			AbstractMatrix Df = docWithFeature(C,i);
@@ -87,6 +91,7 @@ public class RTVR {
 			}
 		}
 		
+		System.out.println("Processing the not E set");
 		for (int i:notE){
 			R.setColumns(i, getBasisVector(k, phi.get(i)));
 		}
@@ -102,7 +107,12 @@ public class RTVR {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		
+		String filePath = "../Testdata/dataset/English";
+		int nDocs = 20;
+		FeatureMatrix FM = new FeatureMatrix(filePath,nDocs,"english","prob");
+		RTVR rtvr = new RTVR(FM, 3);
+		System.out.println("ROW "+rtvr.reducedMatrix.getRowDimension());
+		System.out.println("COLUMN "+rtvr.reducedMatrix.getColumnDimension());
 	}
 
 }
