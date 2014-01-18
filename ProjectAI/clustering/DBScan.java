@@ -262,9 +262,10 @@ public class DBScan {
 	}
 	
 	public static void main(String[] args){
-		String filePath = "./Testdata/English"; // directory of english dataset // changed according to new structure
+		String filePath = "./Testdata/dataset/English"; // directory of english dataset // changed according to new structure
 		String language = "english"; // using shortlist for english language
 		boolean removeSingleton = true;
+		boolean useExtPath = false;
 		
 		Metric m7 = new KLdivergence(true, "minimum");
 		ArrayList<Metric> metrics = new ArrayList<Metric>();
@@ -276,7 +277,7 @@ public class DBScan {
 		String option = "average"; //average or minimum, option for the KL-divergence
 		String extFilePath = "./featureVectorsLDA/";
 		
-		DBScan dbscan = new DBScan(minPts, eps, filePath, language, metrics.get(0), seed, nrdocs, option, true, extFilePath);
+		DBScan dbscan = new DBScan(minPts, eps, filePath, language, metrics.get(0), seed, nrdocs, option, useExtPath, extFilePath);
 		dbscan.startClustering();
 		System.out.println("Finished clustering!\n");
 		
