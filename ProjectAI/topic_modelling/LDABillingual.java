@@ -267,17 +267,24 @@ public class LDABillingual {
 		int numTopics = 30;
 		int numIterations = 50;
 		String options = "numTopics_"+numTopics+"_numIterations_"+numIterations;
+		int language = 0; // 0 english, 1 dutch
 		
-		LDABillingual ldabil = new LDABillingual(args[2], args[3], args[0], args[1], numTopics, numIterations);
+		String pathEnglishData = "DataLDA/english_final.data";
+		String pathDutchData = "DataLDA/dutch_final.data";
+		
+		String pathStopEn = "englishStopwords_mixed.txt";
+		String pathStopDu = "dutchStopwords_mixed.txt";
+		
+		LDABillingual ldabil = new LDABillingual(pathStopEn, pathStopDu, pathEnglishData, pathDutchData, numTopics, numIterations);
 		
 		// if you want to train the model
-		//ldabil.createModel();
-		//PolylingualTopicModel model = ldabil.getModel();
-		//ldabil.writeModel(model, options);
+		ldabil.createModel();
+		PolylingualTopicModel model = ldabil.getModel();
+		ldabil.writeModel(model, options);
 		
 		// parse an already trained one and estimate the feature vectors
 		ldabil.loadModel(options);
-		ldabil.doInference(ldabil.getModel(), 1, args[1], args[3], numTopics, true);
+		ldabil.doInference(ldabil.getModel(), language, pathEnglishData, pathStopEn, numTopics, true);
 	}
 
 	
