@@ -278,7 +278,7 @@ public class FuzzyCmeans{
 					
 					
 					 for(int k=0; k<doc_memberships.size(); k++)
-					 	newWeight += Math.pow(dist/bestClusterfuzzy.get(k), m); //(double)2/(m-1));
+					 	newWeight += Math.pow(dist/bestClusterfuzzy.get(k),/* m);*/ (double)2/(m-1));
 					 
 					
 					newWeight =  1/newWeight;
@@ -337,9 +337,9 @@ public class FuzzyCmeans{
 		String extFilePath = "./featureVectorsLDA/";
 		String filePath = "./Testdata/dataset/English";
 		String language = "english";
-		int c = 9; //total number of domains (true is 9)
-		int m = 10; // fuzziness 2/(m-1)
-		double thres = Math.pow(10, -8);
+		int c = 10; //total number of domains (true is 9)
+		double m = 2; // fuzziness 2/(m-1)
+		double thres = Math.pow(10, -3);
 		int seed = 1234;
 		boolean useExternal = true;
 		
