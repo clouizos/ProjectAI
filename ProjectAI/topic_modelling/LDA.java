@@ -21,6 +21,7 @@ public class LDA {
 	private int numIterations;
 	private String language;
 
+	
 	public LDA(String stopwords, String data_source, int numTopics, int numIterations,String language) {
 		this.stopwords = stopwords;
 		this.data_source = data_source;
@@ -269,16 +270,22 @@ public class LDA {
 		String language = "english";
 		String options = "numTopics_"+numTopics+"_numIterations_"+numIterations;
 		
-		LDA lda = new LDA(args[1], args[0], numTopics, numIterations, language);
+		String pathEnglishData = "DataLDA/english_final.data";
+		String pathDutchData = "DataLDA/dutch_final.data";
+		
+		String pathStopEn = "englishStopwords_mixed.txt";
+		String pathStopDu = "dutchStopwords_mixed.txt";
+		
+		LDA lda = new LDA(pathStopEn, pathEnglishData, numTopics, numIterations, language);
 		
 		// if you want to train the model
-		//lda.createModel();
-	    //ParallelTopicModel model = lda.getModel();
-		//lda.writeModel(model, options);
+		lda.createModel();
+	    ParallelTopicModel model = lda.getModel();
+		lda.writeModel(model, options);
 		
 		// parse an already trained one and estimate the feature vectors
 		lda.loadModel(options,language);
-		lda.doInference(lda.getModel(), args[0], args[1], numTopics, true);
+		lda.doInference(lda.getModel(), pathEnglishData, pathStopEn, numTopics, true);
 	}
 	
 	}
