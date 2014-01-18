@@ -23,8 +23,6 @@ public class FeatureMatrix {
 	 * @param filePath - path of directory contains documents
 	 */
 	public FeatureMatrix(String filePath, int maxDocs){
-//		int maxDocs = 100;
-//		filePath = "../Testdata/dataset/English";
 		ArrayList<Document> documentObjects = new ArrayList<Document>();
 		ArrayList<String> documentNames = FileLoadingUtils.listFilesDirectory(filePath);
 		this.rowLabel = new ArrayList<String>();
@@ -44,6 +42,11 @@ public class FeatureMatrix {
 			allWords = documentObjects.get(i).initCentroid;	
 		}
 		
+		this.matrix = construct2dMatrix(documentObjects);
+	}
+	
+	
+	public FeatureMatrix(ArrayList<Document> documentObjects){
 		this.matrix = construct2dMatrix(documentObjects);
 	}
 	

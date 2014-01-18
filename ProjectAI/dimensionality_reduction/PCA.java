@@ -37,6 +37,7 @@ public class PCA {
 		EigenvalueDecomposition e = covariance.eig();
 		EigenVectors = e.getV();
 		EigenValues = e.getD();
+		
 	}
 
 	public AbstractMatrix getVectors() {
