@@ -339,7 +339,7 @@ public class FuzzyCmeans{
 		String language = "english";
 		int c = 9; //total number of domains (true is 9)
 		int m = 10; // fuzziness 2/(m-1)
-		double thres = Math.pow(10, -10);
+		double thres = Math.pow(10, -8);
 		int seed = 1234;
 		boolean useExternal = true;
 		
