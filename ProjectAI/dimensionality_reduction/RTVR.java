@@ -37,14 +37,16 @@ public class RTVR {
 	 * @param featureIndex - index of the feature
 	 * @return D -  documents contain feature with index featureIndex
 	 */
-	private AbstractMatrix docWithFeature(AbstractMatrix matrix, int featureIndex){
+	private ArrayList<Integer> docWithFeature(AbstractMatrix matrix, int featureIndex){
 		AbstractMatrix D=new Matrix(matrix.getRowDimension(),0);
+		ArrayList<Integer> D2 = new ArrayList<Integer>();
 		for (int i=0;i<matrix.getColumnDimension();i++){
 			if (matrix.get(featureIndex, i)>0){
-				D.insertColumnsEquals(D.getColumnDimension(), matrix.getColumn(i));
+//				D.insertColumnsEquals(D.getColumnDimension(), matrix.getColumn(i));
+				D2.add(i);
 			}
 		}
-		return D;
+		return D2;
 	}
 	
 	private AbstractMatrix getBasisVector(int nRows, int index){
@@ -71,7 +73,7 @@ public class RTVR {
 		System.out.println("Dimension of original matrix C : "+C.getRowDimension()+" x "+C.getColumnDimension());
 		System.out.println("Collecting rare features...");
 		for (int i=0;i<C.getRowDimension();i++){
-			if (docWithFeature(C,i).getColumnDimension()<this.treshold){
+			if (docWithFeature(C,i).size()<this.treshold){
 				E.add(i);
 			} else {
 				notE.add(i);
@@ -88,8 +90,8 @@ public class RTVR {
 		for (int i:E){
 			System.out.println(count++);
 			int l=0;
-			AbstractMatrix Df = docWithFeature(C,i);
-			for (int j=0;j<Df.getColumnDimension();j++){
+			ArrayList<Integer> Df = docWithFeature(C,i);
+			for (int j : Df){
 				R.setColumns(i, R.getColumn(i).plus(truncateVector(C.getColumn(j), E).times(C.get(i, j))));
 				l+=Math.abs(C.get(i, j));
 			}
