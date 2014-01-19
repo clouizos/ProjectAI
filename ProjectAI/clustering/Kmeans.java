@@ -22,7 +22,7 @@ import data_representation.*;
  * After creating a Kmeans object, the startClustering() method has to be 
  * called in order to start the clustering process.
  */
-public class Kmeans{
+public class Kmeans extends Clustering{
 	public int k;
 	public Metric metric;
 	public int iterationsMax = 2500;
