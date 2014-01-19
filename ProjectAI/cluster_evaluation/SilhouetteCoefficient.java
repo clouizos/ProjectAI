@@ -22,21 +22,28 @@ public class SilhouetteCoefficient extends IntrinsicEvaluation {
 		ArrayList<Double> S = new ArrayList<Double>();
 		double clusteringMean = 0;
 		int count =0;
+		System.out.println("Number of clusters : "+C.clusters.size());
 		for (Cluster cluster : C.clusters){
-			double A=0;
-			double B=0;
+			System.out.println("Computing Silhouette Coeff Cluster "+count);
+			System.out.println("Number of document in cluster : "+cluster.members.size());
+			double clusterMean = 0;
 			for (Document d :cluster.members){
+				double A=0;
+				double B=0;
 				double sumA = 0;
 				for (Document notD : cluster.members){
 					if (d==notD){continue;}
 					sumA += metric.computeDist(d.words, 0, notD.words, 0);
+					System.out.println("SUMA "+sumA);
 				}
 				A = sumA/(double) (cluster.members.size()-1) ;
+				System.out.println("A : "+A);
 				
 				//cari cluster terdekat
 				double minDist = Double.MAX_VALUE;
 				Cluster closestCluster=null;
 				for (Cluster c : C.clusters){
+					if (c.members.size()==0){continue;}
 					double dist = metric.computeDist(cluster.centroid.distribution, 0, c.centroid.distribution, 0);
 					if (dist<minDist){
 						minDist=dist;
@@ -51,17 +58,25 @@ public class SilhouetteCoefficient extends IntrinsicEvaluation {
 					sumB += metric.computeDist(d.words, 0, D.words, 0);
 				}
 				B = sumB/(double) (closestCluster.members.size()) ;
+				System.out.println("B : "+B);
 				
+				double Si = (B-A)/Math.max(B, A);
+				if (Math.max(B, A)==0){
+					Si = 0;
+				}
+				clusterMean+=Si;
+				System.out.println(clusterMean);
 			}
-			double Si = (B-A)/Math.max(B, A);
-			System.out.println("Silhoutte Coefficient for Cluster "+count+" : "+Si);
-			S.add(Si);
+			
+			clusterMean=clusterMean/cluster.members.size();
+			System.out.println("Silhoutte Coefficient for Cluster "+count+" : "+clusterMean);
+			System.out.println();
+			S.add(clusterMean);
 			count++;
-			clusteringMean+=Si;
+			clusteringMean+=clusterMean;
 		}
 		clusteringMean = clusteringMean/C.clusters.size();
 		System.out.println("Silhouette Coefficient for CLUSTERING : "+clusteringMean);
-		
 	}
 	
 	
