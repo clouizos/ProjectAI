@@ -10,8 +10,8 @@ public class Entropy {
 	public static void main(String[] args) {
 		String classDir = "../TESTEVAL/TrueClass";
 		String clusterDir = "../TESTEVAL/Cluster";
-		HashMap<String, HashMap<String, Integer>> confMatrix = Evaluation.createConfusionMatrix(classDir, clusterDir);
-
+//		HashMap<String, HashMap<String, Integer>> confMatrix = Evaluation.createConfusionMatrix(classDir, clusterDir);
+		HashMap<String, HashMap<String, Integer>> confMatrix=new HashMap<String,HashMap<String,Integer>>();
 		//Count entropy for each cluster and entropy for all cluster
 		double totalEntropy=0;
 		double totalDocs = confMatrix.get("total").get("total");

@@ -10,7 +10,8 @@ public class Purity {
 	public static void main(String[] args) {
 		String classDir = "../TESTEVAL/TrueClass";
 		String clusterDir = "../TESTEVAL/Cluster";
-		HashMap<String, HashMap<String, Integer>> confMatrix = Evaluation.createConfusionMatrix(classDir, clusterDir);
+//		HashMap<String, HashMap<String, Integer>> confMatrix = Evaluation.createConfusionMatrix(classDir, clusterDir);
+		HashMap<String, HashMap<String, Integer>> confMatrix=new HashMap<String,HashMap<String,Integer>>();
 		
 		if (confMatrix.size()==0){return;}
 		

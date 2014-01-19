@@ -13,8 +13,7 @@ public class SilhouetteCoefficient extends IntrinsicEvaluation {
 	public SilhouetteCoefficient(Metric metric){
 		this.metric = metric;
 	}
-	
-		
+			
 	@Override
 	public void computeScore(Clustering C) {
 //		ArrayList<Double> A = new ArrayList<Double>();
@@ -33,11 +32,11 @@ public class SilhouetteCoefficient extends IntrinsicEvaluation {
 				double sumA = 0;
 				for (Document notD : cluster.members){
 					if (d==notD){continue;}
-					sumA += metric.computeDist(d.words, 0, notD.words, 0);
-					System.out.println("SUMA "+sumA);
+					sumA += metric.computeDist(d.words, d.words.size(), notD.words, notD.words.size());
+//					System.out.println("SUMA "+sumA);
 				}
 				A = sumA/(double) (cluster.members.size()-1) ;
-				System.out.println("A : "+A);
+//				System.out.println("A : "+A);
 				
 				//cari cluster terdekat
 				double minDist = Double.MAX_VALUE;
@@ -58,17 +57,20 @@ public class SilhouetteCoefficient extends IntrinsicEvaluation {
 					sumB += metric.computeDist(d.words, 0, D.words, 0);
 				}
 				B = sumB/(double) (closestCluster.members.size()) ;
-				System.out.println("B : "+B);
+//				System.out.println("B : "+B);
 				
 				double Si = (B-A)/Math.max(B, A);
 				if (Math.max(B, A)==0){
 					Si = 0;
 				}
 				clusterMean+=Si;
-				System.out.println(clusterMean);
+//				System.out.println(clusterMean);
 			}
 			
-			clusterMean=clusterMean/cluster.members.size();
+			if (cluster.members.size()>0){
+				clusterMean=clusterMean/cluster.members.size();
+			}
+			
 			System.out.println("Silhoutte Coefficient for Cluster "+count+" : "+clusterMean);
 			System.out.println();
 			S.add(clusterMean);
