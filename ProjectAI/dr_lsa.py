@@ -2,7 +2,7 @@
 """
 Created on Sat Jan 18 22:07:30 2014
 
-@author: xiln
+@author: modified by Chuan to perform unsupervised clustering and lsa on custom data
 """
 
 # Author: Peter Prettenhofer <peter.prettenhofer@gmail.com>

@@ -6,6 +6,6 @@
 	<classpathentry kind="lib" path="lib/mallet.jar"/>
 	<classpathentry kind="lib" path="lib/jmat_5.0.jar"/>
 	<classpathentry kind="lib" path="lib/ejml-0.24.jar"/>
-	<classpathentry kind="lib" path="lib/concurrent-1.3.4.jar"/>
+	<classpathentry kind="lib" path="lib/concurrent.jar"/>
 	<classpathentry kind="output" path=""/>
 </classpath>
