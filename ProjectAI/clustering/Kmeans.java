@@ -29,11 +29,11 @@ public class Kmeans extends Clustering{
 	public int topNChisquare = 500;
 	public int seed;
 	public String language;
-//	public String filePath;
+	public String filePath;
 	public boolean changes = true;
 	public boolean relativeFreq = true;
 	ArrayList<Document> documentObjects = new ArrayList<Document>();
-//	public ArrayList<Cluster> clusters = new ArrayList<Cluster>();
+	public ArrayList<Cluster> clusters = new ArrayList<Cluster>();
 	Random r = new Random();
 	boolean externalDataset;
 	String extFilePath;
@@ -94,11 +94,11 @@ public class Kmeans extends Clustering{
 			iterations++;
 		}
 		// only show final clusters and not on every iteration
-		for (int i=0;i<clusters.size();i++){
+		/*for (int i=0;i<clusters.size();i++){
 			System.out.println("cluster " + i );
 			System.out.println(clusters.get(i).historyMembers.get(iterations - 1)); 
 			System.out.println("");
-		}
+		}*/
 	}
 
 	/**
