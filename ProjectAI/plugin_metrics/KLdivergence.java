@@ -220,7 +220,6 @@ public class KLdivergence extends Metric{
 		double result = 0;
 		double q1 = 0;
 		double r1 = 1;
-
 		for( Entry<String, Double> entry : q.entrySet() ){
 			String word = entry.getKey();
 			q1 = entry.getValue();
