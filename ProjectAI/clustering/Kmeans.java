@@ -350,8 +350,8 @@ public class Kmeans extends Clustering{
 	}
 	
 	public static void main(String[] args) throws Exception{
-		String extFilePath = "./featureVectorsLDA/";
-		String filePath = "./Testdata/dataset/English";
+		String extFilePath = "../features_lsa_English_100.data";
+		String filePath = "../Testdata/dataset/English";
 		String language = "english";
 		int K = 10;
 		int seed = 1234;
