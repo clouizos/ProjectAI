@@ -2,16 +2,14 @@ package ranking;
 
 import io.FileLoadingUtils;
 
-import java.io.FileNotFoundException;
 import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-import data_representation.Document;
 import data_representation.Centroid;
+import data_representation.Document;
 
 public class IDFStopwords {
 
@@ -150,8 +148,8 @@ public class IDFStopwords {
 	}
 
 	public static void main(String[] args) {
-		String filePath = "./Testdata/dataset/Dutch";
-		String language = "dutch";
+		String filePath = "./Testdata/dataset/English";
+		String language = "english";
 		String path = "./";
 		String filename = language+"Stopwords_mixed.txt";
 		

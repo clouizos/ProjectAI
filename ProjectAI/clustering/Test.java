@@ -1,17 +1,10 @@
 package clustering;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Set;
-import java.util.TreeSet;
-
 import org.jmat.data.AbstractMatrix;
 import org.jmat.data.Matrix;
 
-
 import plugin_metrics.KLdivergence;
-import plugin_metrics.Metric;
-import cluster_evaluation.*;
+import cluster_evaluation.SilhouetteCoefficient;
 
 public class Test {
 
@@ -19,9 +12,11 @@ public class Test {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		String extFilePath = "./featureVectorsLDA/";
+		boolean useExtPath = true;
+		
 		KLdivergence KL = new KLdivergence(true, "average");
-		Kmeans KM=new  Kmeans(8, "../Testdata/dataset/English", "english", KL, 20, false, null);
+		Kmeans KM=new  Kmeans(8, "./Testdata/dataset/English", "english", KL, 20, useExtPath, extFilePath);
 //		Kmeans KM=new Kmeans( 8, String filePath, String language, Metric metric, int seed, boolean externalDataset, String extFilePath){
 		KM.startClustering();
 		SilhouetteCoefficient SC = new SilhouetteCoefficient(KL);

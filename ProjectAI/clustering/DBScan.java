@@ -4,23 +4,19 @@
 package clustering;
 
 import io.FileLoadingUtils;
-import data_representation.ImportExternalDataset;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
-import java.util.Set;
 
 import metrics.KLdivergenceMetric;
-import plugin_metrics.EuclidianDistance;
 import plugin_metrics.KLdivergence;
 import plugin_metrics.Metric;
-import plugin_metrics.Cosine;
-import plugin_metrics.JSdivergence;
 import data_representation.Centroid;
 import data_representation.Cluster;
 import data_representation.Document;
+import data_representation.ImportExternalDataset;
 
 /**
  * @author pathos
@@ -34,7 +30,7 @@ import data_representation.Document;
  * After creating a DBScan object, the startClustering() method has to be 
  * called in order to start the clustering process.
  */
-public class DBScan {
+public class DBScan extends Clustering{
 	
 	public int minPts;
 	public int nrdocs;
@@ -44,13 +40,13 @@ public class DBScan {
 	public int iterationsMax = 2500;
 	public int topNChisquare = 500;
 	public String language;
-	public String filePath;
+	//public String filePath;
 	public boolean changes = true;
 	public boolean relativeFreq = true;
 	ArrayList<Document> documentObjects = new ArrayList<Document>();
 	public Map<Document, Boolean> visited = new HashMap<Document, Boolean>();
 	public static Map<Document, Boolean> noise = new HashMap<Document, Boolean>();
-	public static ArrayList<Cluster> clusters = new ArrayList<Cluster>();
+	//public static ArrayList<Cluster> clusters = new ArrayList<Cluster>();
 	Random r = new Random();
 	public int seed;
 	String option;
@@ -282,14 +278,14 @@ public class DBScan {
 		System.out.println("Finished clustering!\n");
 		
 		// remove empty clusters (it can happen, dbscan can 'steal' points of a cluster and put it in another, if they are near each other)
-		for(int i=clusters.size()-1; i>=0; i--){
+		/*for(int i=clusters.size()-1; i>=0; i--){
 			//System.out.println(clusters.get(i).members.size());
 			if (clusters.get(i).members.size() == 0) 
 				clusters.remove(i);
 			if(removeSingleton)		// if you wanna remove clusters with only one point(document)
 				if(clusters.get(i).members.size() == 1)
 					clusters.remove(i);
-		}
+		}*/
 		
 		// show clusters and their members
 		for(int i=0; i< clusters.size(); i++){
