@@ -27,6 +27,7 @@ public class Cluster{
 	 */
 	public void addMember( Document doc ){
 		members.add(doc);
+		
 	}
 
 	/**

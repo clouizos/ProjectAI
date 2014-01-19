@@ -3,6 +3,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import clustering.Clustering;
+
 import data_representation.Cluster;
 
 import io.*;
@@ -13,25 +15,32 @@ import io.*;
  * Assume we have the true cluster of documents, then this class will compute 
  * the precision of clusters resulted by clustering process.
  */
-public class Precision {
+public class Precision extends ExtrinsicEvaluation{
 	
 	
 	/**
 	 * @param args
 	 */
-	public static void computeF1(String classDir, String clusterDir){
-		HashMap<String, HashMap<String, Integer>> confMatrix = Evaluation.createConfusionMatrix(classDir, clusterDir);
+	
+	@Override
+	public void computeScore(Clustering C) {
+		HashMap<String, HashMap<String, Integer>> confMatrix = createConfusionMatrix(C.filePath, C.clusters);
 		compute(confMatrix);
 	}
 	
-	public static void computeF1(String classDir, ArrayList<Cluster> clusterList){
-		HashMap<String, HashMap<String, Integer>> confMatrix = Evaluation.createConfusionMatrix(classDir, clusterList);
-		compute(confMatrix);
-	}
+//	public void computeF1(String classDir, String clusterDir){
+//		HashMap<String, HashMap<String, Integer>> confMatrix = createConfusionMatrix(classDir, clusterDir);
+//		compute(confMatrix);
+//	}
+//	
+//	public void computeF1(String classDir, ArrayList<Cluster> clusterList){
+//		HashMap<String, HashMap<String, Integer>> confMatrix = createConfusionMatrix(classDir, clusterList);
+//		compute(confMatrix);
+//	}
 	
 	private static void compute(HashMap<String, HashMap<String, Integer>>confMatrix){
 		if (confMatrix.size()==0){return;}
-		//Count the pricision and recall
+		//Count the precision and recall
 		//For each cluster, we choose the corresponding class that gives
 		//the F1-Score.
 		double totalDocs = confMatrix.get("total").get("total");
@@ -79,11 +88,13 @@ public class Precision {
 		System.out.println("Recall : "+totalRecall);
 		System.out.println("F1 score : "+totalF1);
 	}
+
 	
-	public static void main(String[] args) {
-		String classDir = "../TESTEVAL/TrueClass";
-		String clusterDir = "../TESTEVAL/Cluster";
-		
-	}
+	
+//	public static void main(String[] args) {
+//		String classDir = "../TESTEVAL/TrueClass";
+//		String clusterDir = "../TESTEVAL/Cluster";
+//		
+//	}
 
 }
