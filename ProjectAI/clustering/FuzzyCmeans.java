@@ -5,16 +5,17 @@ import io.FileLoadingUtils;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
 import java.util.Map.Entry;
+import java.util.Random;
 
-import plugin_metrics.*;
+import plugin_metrics.KLdivergence;
+import plugin_metrics.Metric;
 import data_representation.Centroid;
 import data_representation.Cluster;
 import data_representation.Document;
 import data_representation.ImportExternalDataset;
 
-public class FuzzyCmeans{
+public class FuzzyCmeans extends Clustering{
 	
 	public int c;
 	public double m;
@@ -23,11 +24,11 @@ public class FuzzyCmeans{
 	public int topNChisquare = 500;
 	public int seed;
 	public String language;
-	public String filePath;
+	//public String filePath;
 	public boolean changes = true;
 	public boolean relativeFreq = true;
 	ArrayList<Document> documentObjects = new ArrayList<Document>();
-	public ArrayList<Cluster> clusters = new ArrayList<Cluster>();
+	//public ArrayList<Cluster> clusters = new ArrayList<Cluster>();
 	Random r = new Random();
 	boolean externalDataset;
 	String extFilePath;
