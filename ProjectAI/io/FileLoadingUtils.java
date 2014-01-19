@@ -1,13 +1,14 @@
 package io;
 import java.io.File;
+import java.io.FilenameFilter;
 import java.io.IOException;
 import java.nio.file.DirectoryStream;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
-import java.io.FilenameFilter;
 
 
 /**
@@ -46,6 +47,8 @@ public class FileLoadingUtils {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+		Collections.sort(fileList);
 		return fileList;
 	}
 	
@@ -63,6 +66,7 @@ public class FileLoadingUtils {
 		    	fileList.add(file.getName());
 		    }
 		}
+		Collections.sort(fileList);
 		return fileList;
 	}
 
