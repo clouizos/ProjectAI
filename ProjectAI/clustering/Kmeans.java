@@ -41,6 +41,7 @@ public class Kmeans extends Clustering{
 	Random r = new Random();
 	boolean externalDataset;
 	String extFilePath;
+	int numTopics;
 
 	/**
 	 * Constructor
@@ -54,7 +55,7 @@ public class Kmeans extends Clustering{
 	 * @param externalDataset - true for external or false otherwise
 	 * @param extFilePath - File path for the external dataset
 	 */
-	public Kmeans( int k, String filePath, String language, Metric metric, int seed, boolean externalDataset, String extFilePath){
+	public Kmeans( int k, String filePath, String language, Metric metric, int seed, boolean externalDataset, String extFilePath, int numTopics){
 		this.k = k;
 		this.filePath = filePath;
 		this.language = language;
@@ -62,6 +63,7 @@ public class Kmeans extends Clustering{
 		this.seed = seed;
 		this.externalDataset = externalDataset;
 		this.extFilePath = extFilePath;
+		this.numTopics = numTopics;
 		
 	}
 
@@ -181,7 +183,7 @@ public class Kmeans extends Clustering{
 
 	public void init_external(){
 		System.out.println("Initializing datapoints and clusters from external source...");
-		String options = "featureVectors_language_"+language+"_"+30+".data";
+		String options = "featureVectors_language_"+language+"_"+numTopics+".data";
 		Map<String, ArrayList<Double>> dataset = new HashMap<String, ArrayList<Double>>();
 		ImportExternalDataset imp = new ImportExternalDataset(extFilePath);
 		dataset = imp.importData(options);
@@ -350,17 +352,18 @@ public class Kmeans extends Clustering{
 	}
 	
 	public static void main(String[] args) throws Exception{
-		String extFilePath = "../features_lsa_English_100.data";
-		String filePath = "../Testdata/dataset/English";
+		String extFilePath = "./featureVectorsLDA/";
+		String filePath = "./Testdata/dataset/English";
 		String language = "english";
 		int K = 10;
 		int seed = 1234;
 		boolean useExternal = false;
+		int numTopics = 20;
 		
 		//Metric metric = new KLdivergence(true, "average");
 		//Metric metric = new JSdivergence(true);
 		Metric metric = new EuclidianDistance(true);
-		Kmeans kmeans = new Kmeans(K, filePath, language, metric, seed, useExternal, extFilePath);
+		Kmeans kmeans = new Kmeans(K, filePath, language, metric, seed, useExternal, extFilePath, numTopics);
 		kmeans.startClustering();
 		ArrayList<Cluster> clusters = kmeans.clusters;
 		

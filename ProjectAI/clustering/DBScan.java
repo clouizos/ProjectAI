@@ -52,6 +52,7 @@ public class DBScan extends Clustering{
 	String option;
 	boolean useExternal;
 	String extFilePath;
+	int numTopics;
 
 	
 	/**
@@ -64,7 +65,7 @@ public class DBScan extends Clustering{
 	 * getClosestCluster() for more information on the numbers 
 	 * for the different metrics.
 	 */
-	public DBScan(int minPts, double eps, String filePath, String language, Metric metric, int seed, int nrdocs, String option, boolean useExternal, String extFilePath) {
+	public DBScan(int minPts, double eps, String filePath, String language, Metric metric, int seed, int nrdocs, String option, boolean useExternal, String extFilePath, int numTopics) {
 		this.filePath = filePath;
 		this.language = language;
 		this.metric = metric;
@@ -75,6 +76,7 @@ public class DBScan extends Clustering{
 		this.option = option;
 		this.useExternal = useExternal;
 		this.extFilePath = extFilePath;
+		this.numTopics = numTopics;
 	}
 	
 	/**
@@ -228,7 +230,7 @@ public class DBScan extends Clustering{
 	
 	public void init_external(){
 		System.out.println("Creating external dataset...");
-		String options = "featureVectors_language_"+language+"_"+30+".data";
+		String options = "featureVectors_language_"+language+"_"+numTopics+".data";
 		Map<String, ArrayList<Double>> dataset = new HashMap<String, ArrayList<Double>>();
 		ImportExternalDataset imp = new ImportExternalDataset(extFilePath);
 		dataset = imp.importData(options);
@@ -272,8 +274,9 @@ public class DBScan extends Clustering{
 		int nrdocs = 139;
 		String option = "average"; //average or minimum, option for the KL-divergence
 		String extFilePath = "./featureVectorsLDA/";
+		int numTopics = 20;
 		
-		DBScan dbscan = new DBScan(minPts, eps, filePath, language, metrics.get(0), seed, nrdocs, option, useExtPath, extFilePath);
+		DBScan dbscan = new DBScan(minPts, eps, filePath, language, metrics.get(0), seed, nrdocs, option, useExtPath, extFilePath, numTopics);
 		dbscan.startClustering();
 		System.out.println("Finished clustering!\n");
 		

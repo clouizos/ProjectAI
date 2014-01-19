@@ -5,6 +5,8 @@ import org.jmat.data.Matrix;
 
 import plugin_metrics.KLdivergence;
 import cluster_evaluation.SilhouetteCoefficient;
+import data_representation.Cluster;
+import data_representation.Document;
 
 public class Test {
 
@@ -14,13 +16,26 @@ public class Test {
 	public static void main(String[] args) {
 		String extFilePath = "./featureVectorsLDA/";
 		boolean useExtPath = true;
+		int numTopics = 20;
+		int seed = 20;
 		
 		KLdivergence KL = new KLdivergence(true, "average");
-		Kmeans KM=new  Kmeans(8, "./Testdata/dataset/English", "english", KL, 20, useExtPath, extFilePath);
+		Kmeans KM=new  Kmeans(10, "./Testdata/dataset/English", "english", KL, seed, useExtPath, extFilePath, numTopics);
 //		Kmeans KM=new Kmeans( 8, String filePath, String language, Metric metric, int seed, boolean externalDataset, String extFilePath){
 		KM.startClustering();
 		SilhouetteCoefficient SC = new SilhouetteCoefficient(KL);
 		SC.computeScore(KM);
+		
+		int i=1;
+		for(Cluster cluster : Clustering.clusters){
+			System.out.println("Cluster "+i+":");
+			//System.out.println("Centroid:"+cluster.centroid.distribution);
+			for(Document doc : cluster.members){
+				System.out.println(doc.getFilename());
+			}
+			i++;
+			System.out.println("");
+		}
 //		Precision.computeF1("../Testdata/dataset/English", KM.clusters);
 		
 //		String name = "D_pharma21.txt";

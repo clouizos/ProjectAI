@@ -34,10 +34,11 @@ public class FuzzyCmeans extends Clustering{
 	String extFilePath;
 	public boolean converged = false;
 	double thres;
+	int numTopics;
 
 	public static Map<String, ArrayList<Double>> weights = new HashMap<String, ArrayList<Double>>();
 
-	public FuzzyCmeans(int c, double m, double thres, String filePath, String language, Metric metric, int seed, boolean externalDataset, String extFilePath) {
+	public FuzzyCmeans(int c, double m, double thres, String filePath, String language, Metric metric, int seed, boolean externalDataset, String extFilePath, int numTopics) {
 		
 		this.c = c;
 		this.m = m;
@@ -48,6 +49,7 @@ public class FuzzyCmeans extends Clustering{
 		this.seed = seed;
 		this.externalDataset = externalDataset;
 		this.extFilePath = extFilePath;
+		this.numTopics = numTopics;
 		
 	}
 	
@@ -168,7 +170,7 @@ public class FuzzyCmeans extends Clustering{
 
 	public void init_external(){
 		System.out.println("Initializing datapoints and clusters from external source...");
-		String options = "featureVectors_language_"+language+"_"+30+".data";
+		String options = "featureVectors_language_"+language+"_"+numTopics+".data";
 		Map<String, ArrayList<Double>> dataset = new HashMap<String, ArrayList<Double>>();
 		ImportExternalDataset imp = new ImportExternalDataset(extFilePath);
 		dataset = imp.importData(options);
@@ -343,6 +345,7 @@ public class FuzzyCmeans extends Clustering{
 		double thres = Math.pow(10, -3);
 		int seed = 1234;
 		boolean useExternal = true;
+		int numTopics = 10;
 		
 		Metric metric = new KLdivergence(true, "average");
 		//Metric metric = new JSdivergence(true);
@@ -352,7 +355,7 @@ public class FuzzyCmeans extends Clustering{
 		//Metric metric = new HellingerFunction(true);
 		//Metric metric = new Chisquare(true);
 		
-		FuzzyCmeans fuzzyCmeans = new FuzzyCmeans(c, m, thres, filePath, language, metric, seed, useExternal, extFilePath);
+		FuzzyCmeans fuzzyCmeans = new FuzzyCmeans(c, m, thres, filePath, language, metric, seed, useExternal, extFilePath, numTopics);
 		fuzzyCmeans.startClustering();
 		ArrayList<Cluster> clusters = fuzzyCmeans.clusters;
 		
