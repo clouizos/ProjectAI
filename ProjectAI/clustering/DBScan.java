@@ -124,6 +124,8 @@ public class DBScan extends Clustering{
 			}
 		}
 		
+		removeSingletonClusters();
+		
 	}
 	
 	/**
@@ -199,7 +201,18 @@ public class DBScan extends Clustering{
 		return neighbors;
 		
 	}
-		
+	
+	private void removeSingletonClusters(){
+	// remove empty clusters (it can happen, dbscan can 'steal' points of a cluster and put it in another, if they are near each other)
+		for(int i=clusters.size()-1; i>=0; i--){
+			//System.out.println(clusters.get(i).members.size());
+			if (clusters.get(i).members.size() == 0) 
+				clusters.remove(i);
+			if(true)		// if you wanna remove clusters with only one point(document)
+				if(clusters.get(i).members.size() == 1)
+					clusters.remove(i);
+		}
+	}
 	
 	/**
 	 * This method initializes the dataset (documents) 
