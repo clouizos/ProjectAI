@@ -194,7 +194,13 @@ public class LDABillingual {
 	        
 	        TopicInferencer infer_lang = model.getInferencer(language);
 	        Formatter out = new Formatter(new StringBuilder(), Locale.US);
-	        PrintWriter writer = new PrintWriter("./features/bilfeatureVectors_language_"+language+"_"+numTopics+".data", "UTF-8");
+	        String name = "";
+	        if(language == 0)
+	        	name = "english";
+	        else
+	        	name = "dutch";
+	        
+	        PrintWriter writer = new PrintWriter("./features/bilfeatureVectors_language_"+name+"_"+numTopics+".data", "UTF-8");
 	        
 //	        DecimalFormat df = new DecimalFormat("#.###");
 	        for(Instance doc : instances){
@@ -239,7 +245,7 @@ public class LDABillingual {
 		        
 		        TopicInferencer infer_lang = model.getInferencer(0);
 		        Formatter out = new Formatter(new StringBuilder(), Locale.US);
-		        PrintWriter writer = new PrintWriter("./featureVectorsLDA/bilfeatureVectors_language_"+language+"_"+numTopics+".data", "UTF-8");
+		        PrintWriter writer = new PrintWriter("./features/bilfeatureVectors_language_both_"+numTopics+".data", "UTF-8");
 		        	
 //		        DecimalFormat df = new DecimalFormat("#.###");
 		        for(Instance doc : instances){
