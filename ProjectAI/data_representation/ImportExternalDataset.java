@@ -16,10 +16,10 @@ public class ImportExternalDataset {
 		this.filePath = filePath;
 	}
 
-	public Map<String,ArrayList<Double>> importData(String options){
+	public Map<String,ArrayList<Double>> importData(){
 		Map<String, ArrayList<Double>> dataset = new HashMap<String, ArrayList<Double>>();
 		try{
-			FileInputStream fin = new FileInputStream(filePath+options);
+			FileInputStream fin = new FileInputStream(filePath);
 			InputStreamReader in = new InputStreamReader(fin, "UTF-8");
 			BufferedReader br = new BufferedReader(in);
 			String line;
@@ -57,7 +57,7 @@ public class ImportExternalDataset {
 		Map<String, ArrayList<Double>> dataset = new HashMap<String, ArrayList<Double>>();
 		ImportExternalDataset imp = new ImportExternalDataset(filePath);
 		String options = "featureVectors_language_"+language+"_"+numTopics+".data";
-		dataset = imp.importData(options);
+		dataset = imp.importData();
 		System.out.println(dataset);
 	}
 

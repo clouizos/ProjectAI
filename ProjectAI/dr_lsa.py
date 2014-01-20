@@ -64,7 +64,7 @@ if len(args) > 0:
     sys.exit(1)
 
 def output(docs, X, language, components):
-    f = open('features_lsa_'+language+'_'+str(components)+'.data', 'w')
+    f = open('features/features_lsa_'+language+'_'+str(components)+'.data', 'w')
     i = 0
     for filename in docs:
         f.write(filename+','+' '.join(map(str,X[i]))+'\n')
@@ -74,6 +74,10 @@ def output(docs, X, language, components):
 # state documents to read in
 language = 'English'
 docs = glob.glob('../Testdata/dataset/'+language+'/*.en')
+
+# standard english stopwords
+#stopwords = 'english'
+stopwords = [line.strip() for line in open('englishStopwords_mixed.txt')]
 
 # Uncomment the following to do the analysis on all the DESCR
 DESCR = None
@@ -90,7 +94,7 @@ if opts.use_hashing:
     if opts.use_idf:
         # Perform an IDF normalization on the output of HashingVectorizer
         hasher = HashingVectorizer(n_features=opts.n_features,
-                                   stop_words='english', non_negative=True,
+                                   stop_words=stopwords, non_negative=True,
                                    norm=None, binary=False)
         vectorizer = Pipeline((
             ('hasher', hasher),
@@ -98,12 +102,12 @@ if opts.use_hashing:
         ))
     else:
         vectorizer = HashingVectorizer(n_features=opts.n_features,
-                                       stop_words='english',
+                                       stop_words=stopwords,
                                        non_negative=False, norm='l2',
                                        binary=False)
 else:
     vectorizer = TfidfVectorizer(max_df=0.5, max_features=opts.n_features,
-                                 stop_words='english', use_idf=opts.use_idf)
+                                 stop_words=stopwords, use_idf=opts.use_idf)
 X = vectorizer.fit_transform(docs)
 
 print("done in %fs" % (time() - t0))

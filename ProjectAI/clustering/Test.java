@@ -20,7 +20,7 @@ public class Test {
 		int seed = 20;
 		
 		KLdivergence KL = new KLdivergence(true, "average");
-		Kmeans KM=new  Kmeans(10, "./Testdata/dataset/English", "english", KL, seed, useExtPath, extFilePath, numTopics);
+		Kmeans KM=new  Kmeans(10, "./Testdata/dataset/English", "english", KL, seed, useExtPath, extFilePath);
 //		Kmeans KM=new Kmeans( 8, String filePath, String language, Metric metric, int seed, boolean externalDataset, String extFilePath){
 		KM.startClustering();
 		SilhouetteCoefficient SC = new SilhouetteCoefficient(KL);

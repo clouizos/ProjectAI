@@ -3,6 +3,7 @@ package evaluation;
 import clustering.Kmeans;
 import data_representation.*;
 import plugin_metrics.*;
+
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -53,7 +54,7 @@ public class SumOfSquaredError{
 				for(int s = 0; s < seeds.length; s ++){
 					System.out.println("Seed : " + s);
 					Kmeans kmeans = new Kmeans(k, filePath, language, 
-							metrics.get(i), seeds[s],false,"");
+							metrics.get(i), seeds[s],false, "");
 					double result = 0;
 					kmeans.startClustering();
 					ArrayList<Cluster> clusters = kmeans.clusters;

@@ -65,7 +65,7 @@ public class DBScan extends Clustering{
 	 * getClosestCluster() for more information on the numbers 
 	 * for the different metrics.
 	 */
-	public DBScan(int minPts, double eps, String filePath, String language, Metric metric, int seed, int nrdocs, String option, boolean useExternal, String extFilePath, int numTopics) {
+	public DBScan(int minPts, double eps, String filePath, String language, Metric metric, int seed, int nrdocs, String option, boolean useExternal, String extFilePath) {
 		this.filePath = filePath;
 		this.language = language;
 		this.metric = metric;
@@ -76,7 +76,6 @@ public class DBScan extends Clustering{
 		this.option = option;
 		this.useExternal = useExternal;
 		this.extFilePath = extFilePath;
-		this.numTopics = numTopics;
 	}
 	
 	/**
@@ -233,7 +232,7 @@ public class DBScan extends Clustering{
 		String options = "featureVectors_language_"+language+"_"+numTopics+".data";
 		Map<String, ArrayList<Double>> dataset = new HashMap<String, ArrayList<Double>>();
 		ImportExternalDataset imp = new ImportExternalDataset(extFilePath);
-		dataset = imp.importData(options);
+		dataset = imp.importData();
 		
 		ArrayList<String> documentNames = new ArrayList<String>();
 		documentNames.addAll(dataset.keySet());
@@ -273,10 +272,11 @@ public class DBScan extends Clustering{
 		int seed = 1234;
 		int nrdocs = 139;
 		String option = "average"; //average or minimum, option for the KL-divergence
-		String extFilePath = "./featureVectorsLDA/";
-		int numTopics = 20;
+		String directory = "features/";
+		String fileName = "featureVectors_language_english_20.data";
+        String extFilePath = directory+fileName;
 		
-		DBScan dbscan = new DBScan(minPts, eps, filePath, language, metrics.get(0), seed, nrdocs, option, useExtPath, extFilePath, numTopics);
+		DBScan dbscan = new DBScan(minPts, eps, filePath, language, metrics.get(0), seed, nrdocs, option, useExtPath, extFilePath);
 		dbscan.startClustering();
 		System.out.println("Finished clustering!\n");
 		

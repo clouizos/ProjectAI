@@ -166,7 +166,7 @@ public class LDA {
 	        
 	        
 	        Formatter out = new Formatter(new StringBuilder(), Locale.US);
-	        PrintWriter writer = new PrintWriter("./featureVectorsLDA/featureVectors_language_"+language+"_"+numTopics+".data", "UTF-8");
+	        PrintWriter writer = new PrintWriter("./features/featureVectors_language_"+language+"_"+numTopics+".data", "UTF-8");
 	        		
 	        for(int i=0; i< instances.size(); i++){
 	        	double[] topicDistribution = model.getTopicProbabilities(i);

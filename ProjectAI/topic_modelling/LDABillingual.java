@@ -175,7 +175,7 @@ public class LDABillingual {
 	        
 	        TopicInferencer infer_lang = model.getInferencer(language);
 	        Formatter out = new Formatter(new StringBuilder(), Locale.US);
-	        PrintWriter writer = new PrintWriter("./featureVectorsLDA/bilfeatureVectors_language_"+language+"_"+numTopics+".data", "UTF-8");
+	        PrintWriter writer = new PrintWriter("./features/bilfeatureVectors_language_"+language+"_"+numTopics+".data", "UTF-8");
 	        		
 	        for(Instance doc : instances){
 	        	double[] topicDistribution = infer_lang.getSampledDistribution(doc, 0, 0, 0);
