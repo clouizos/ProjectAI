@@ -10,6 +10,7 @@ import java.io.PrintWriter;
 import java.io.Reader;
 import java.util.ArrayList;
 import java.util.Formatter;
+import java.util.Iterator;
 import java.util.Locale;
 import java.util.regex.Pattern;
 
@@ -242,33 +243,6 @@ public class LDABillingual {
 		                                               3, 2, 1)); // data, label, name fields
 		        
 		        
-		        
-		        TopicInferencer infer_lang = model.getInferencer(0);
-		        Formatter out = new Formatter(new StringBuilder(), Locale.US);
-		        PrintWriter writer = new PrintWriter("./features/bilfeatureVectors_language_both_"+numTopics+".data", "UTF-8");
-		        	
-//		        DecimalFormat df = new DecimalFormat("#.###");
-		        for(Instance doc : instances){
-		        	double[] topicDistribution = infer_lang.getSampledDistribution(doc, 1000, 10, 100);
-		        	System.out.println(doc.getName());
-		        	if (write)
-		        		writer.print(doc.getName());
-		        	for (int topic = 0; topic < numTopics; topic++) {
-		                //Iterator<IDSorter> iterator = topicSortedWords.get(topic).iterator();
-		                
-		                out = new Formatter(new StringBuilder(), Locale.US);
-		                out.format("%d\t%.3f\t", topic, topicDistribution[topic]);
-		                System.out.println(out);
-		                if(write)
-		                	writer.print(topicDistribution[topic]+" ");
-		            
-		            }
-		        	if(write)
-		        		writer.print("\n");
-	                System.out.println("");
-		        }
-		        
-		        System.out.println("Doing dutch");
 		        // for dutch
 		        ArrayList<Pipe> pipeList2 = new ArrayList<Pipe>();
 		        pipeList2.add( new CharSequenceLowercase() );
@@ -283,16 +257,28 @@ public class LDABillingual {
 		                                               3, 2, 1)); // data, label, name fields
 		        
 		        
-		        
+		        TopicInferencer infer_lang = model.getInferencer(0);
 		        TopicInferencer infer_lang2 = model.getInferencer(1);
-		        		   
 		        
+		        Formatter out = new Formatter(new StringBuilder(), Locale.US);
+		        PrintWriter writer = new PrintWriter("./features/bilfeatureVectors_language_both_"+numTopics+".data", "UTF-8");
+		        	
+//		        DecimalFormat df = new DecimalFormat("#.###");
+		        Iterator<Instance> it1 = instances.iterator();
+		        Iterator<Instance> it2 = instances2.iterator();
 		        
-		        for(Instance doc : instances2){
-		        	double[] topicDistribution = infer_lang2.getSampledDistribution(doc, 1000, 10, 100);
-		        	System.out.println(doc.getName());
+		        while(it1.hasNext() && it2.hasNext()) {
+		        	
+		        	Instance english = it1.next();
+		        	Instance dutch = it2.next();
+		        	
+		        	double[] topicDistribution = infer_lang.getSampledDistribution(english, 1000, 10, 100);
+		        	double[] topicDistribution2 = infer_lang2.getSampledDistribution(dutch, 1000, 10, 100);
+		        	
+		        	System.out.println(english.getName());
+		        	
 		        	if (write)
-		        		writer.print(doc.getName());
+		        		writer.print(english.getName());
 		        	for (int topic = 0; topic < numTopics; topic++) {
 		                //Iterator<IDSorter> iterator = topicSortedWords.get(topic).iterator();
 		                
@@ -305,9 +291,71 @@ public class LDABillingual {
 		            }
 		        	if(write)
 		        		writer.print("\n");
+		        	
 	                System.out.println("");
+	                
+	                System.out.println(dutch.getName());
+	                
+	                if (write)
+		        		writer.print(dutch.getName());
+		        	for (int topic = 0; topic < numTopics; topic++) {
+		                //Iterator<IDSorter> iterator = topicSortedWords.get(topic).iterator();
+		                
+		                out = new Formatter(new StringBuilder(), Locale.US);
+		                out.format("%d\t%.3f\t", topic, topicDistribution2[topic]);
+		                System.out.println(out);
+		                if(write)
+		                	writer.print(topicDistribution2[topic]+" ");
+		            
+		            }
+		        	if(write)
+		        		writer.print("\n");
+		        	
+		        	System.out.println("");
+		           
 		        }
 		        
+//		        for(Instance doc : instances){
+//		        	double[] topicDistribution = infer_lang.getSampledDistribution(doc, 1000, 10, 100);
+//		        	System.out.println(doc.getName());
+//		        	if (write)
+//		        		writer.print(doc.getName());
+//		        	for (int topic = 0; topic < numTopics; topic++) {
+//		                //Iterator<IDSorter> iterator = topicSortedWords.get(topic).iterator();
+//		                
+//		                out = new Formatter(new StringBuilder(), Locale.US);
+//		                out.format("%d\t%.3f\t", topic, topicDistribution[topic]);
+//		                System.out.println(out);
+//		                if(write)
+//		                	writer.print(topicDistribution[topic]+" ");
+//		            
+//		            }
+//		        	if(write)
+//		        		writer.print("\n");
+//	                System.out.println("");
+//		        }
+		             
+		        
+//		        for(Instance doc : instances2){
+//		        	double[] topicDistribution = infer_lang2.getSampledDistribution(doc, 1000, 10, 100);
+//		        	System.out.println(doc.getName());
+//		        	if (write)
+//		        		writer.print(doc.getName());
+//		        	for (int topic = 0; topic < numTopics; topic++) {
+//		                //Iterator<IDSorter> iterator = topicSortedWords.get(topic).iterator();
+//		                
+//		                out = new Formatter(new StringBuilder(), Locale.US);
+//		                out.format("%d\t%.3f\t", topic, topicDistribution[topic]);
+//		                System.out.println(out);
+//		                if(write)
+//		                	writer.print(topicDistribution[topic]+" ");
+//		            
+//		            }
+//		        	if(write)
+//		        		writer.print("\n");
+//	                System.out.println("");
+//		        }
+//		        
 		        writer.close();
 		        if(write)
 		        	System.out.println("Finished Writing the feature vectors.");
