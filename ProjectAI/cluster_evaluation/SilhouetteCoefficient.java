@@ -1,5 +1,7 @@
 package cluster_evaluation;
 
+import io.IOFile;
+
 import java.util.ArrayList;
 
 import plugin_metrics.Metric;
@@ -14,7 +16,7 @@ import data_representation.Document;
  * B is average distance of point i from other points from the closest cluster.
  */
 public class SilhouetteCoefficient extends IntrinsicEvaluation {
-	
+	private double score;
 	public SilhouetteCoefficient(Metric metric){
 		this.metric = metric;
 	}
@@ -83,6 +85,14 @@ public class SilhouetteCoefficient extends IntrinsicEvaluation {
 			clusteringMean+=clusterMean;
 		}
 		clusteringMean = clusteringMean/C.clusters.size();
+		this.score = clusteringMean;
+		IOFile io = new IOFile();
+		io.openWriteFile("Silhouette.csv");
+		io.write(C.ID);
+		io.write(",");
+		io.write(Double.toString(this.score));
+		io.write("\n");
+		io.close();
 		System.out.println("Silhouette Coefficient for CLUSTERING : "+clusteringMean);
 	}
 	

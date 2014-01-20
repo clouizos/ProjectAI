@@ -1,4 +1,6 @@
 package cluster_evaluation;
+import io.IOFile;
+
 import java.util.HashMap;
 
 import clustering.Clustering;
@@ -10,7 +12,9 @@ import clustering.Clustering;
  * the precision of clusters resulted by clustering process.
  */
 public class Precision extends ExtrinsicEvaluation{
-	
+	private double precision;
+	private double recall;
+	private double f1;
 	
 	/**
 	 * @param args
@@ -20,19 +24,20 @@ public class Precision extends ExtrinsicEvaluation{
 	public void computeScore(Clustering C) {
 		HashMap<String, HashMap<String, Integer>> confMatrix = createConfusionMatrix(C.filePath, C.clusters);
 		compute(confMatrix);
+		IOFile io = new IOFile();
+		io.openWriteFile("Precision.csv");
+		io.write(C.ID);
+		io.write(",");
+		io.write(Double.toString(this.precision));
+		io.write(",");
+		io.write(Double.toString(this.recall));
+		io.write(",");
+		io.write(Double.toString(this.f1));
+		io.write("\n");
+		io.close();
 	}
 	
-//	public void computeF1(String classDir, String clusterDir){
-//		HashMap<String, HashMap<String, Integer>> confMatrix = createConfusionMatrix(classDir, clusterDir);
-//		compute(confMatrix);
-//	}
-//	
-//	public void computeF1(String classDir, ArrayList<Cluster> clusterList){
-//		HashMap<String, HashMap<String, Integer>> confMatrix = createConfusionMatrix(classDir, clusterList);
-//		compute(confMatrix);
-//	}
-	
-	private static void compute(HashMap<String, HashMap<String, Integer>>confMatrix){
+	private void compute(HashMap<String, HashMap<String, Integer>>confMatrix){
 		if (confMatrix.size()==0){return;}
 		//Count the precision and recall
 		//For each cluster, we choose the corresponding class that gives
@@ -62,7 +67,6 @@ public class Precision extends ExtrinsicEvaluation{
 					maxLabel = label;
 				}
 				
-//				System.out.println("Cluster : "+cluster+" Class : "+label+" Value : "+confMatrix.get(cluster).get(label));
 			}
 			System.out.println("Evaluation on Cluster "+cluster);
 			System.out.println("Coresponding True Class "+maxLabel);
@@ -81,6 +85,11 @@ public class Precision extends ExtrinsicEvaluation{
 		System.out.println("Precision : "+totalPrecision);
 		System.out.println("Recall : "+totalRecall);
 		System.out.println("F1 score : "+totalF1);
+		
+		this.precision = totalPrecision;
+		this.recall = totalRecall;
+		this.f1 = totalF1;
+		
 	}
 
 	
