@@ -1,6 +1,7 @@
 package clustering;
 
-import plugin_metrics.KLdivergence;
+import plugin_metrics.EuclidianDistance;
+import plugin_metrics.Metric;
 import cluster_evaluation.Precision;
 import cluster_evaluation.SilhouetteCoefficient;
 import data_representation.Cluster;
@@ -26,10 +27,12 @@ public class Test {
 			
 		extFilePath = extFilePath + "features_lsa_English_10.data";
 		//extFilePath = extFilePath + "featureVectors_language_english_10.data";
-		KLdivergence KL = new KLdivergence(true, "average");
-		Kmeans KM=new  Kmeans(10, "./Testdata/dataset/English", "english", KL, seed, useExtPath, extFilePath);
+		//KLdivergence KL = new KLdivergence(true, "average");
+		Metric metric  = new EuclidianDistance(true);
+		
+		Kmeans KM=new  Kmeans(10, "./Testdata/dataset/English", "english", metric, seed, useExtPath, extFilePath);
 		KM.startClustering();
-		SilhouetteCoefficient SC = new SilhouetteCoefficient(KL);
+		SilhouetteCoefficient SC = new SilhouetteCoefficient(metric);
 		SC.computeScore(KM);
 		
 		int i=0;
