@@ -20,6 +20,7 @@ public class HellingerFunction extends Metric{
 	 * words/wordpairs.
 	 */
 	public HellingerFunction(boolean relativeFreq){
+		ID = "HellingerFunction";
 		this.relativeFreq = relativeFreq;
 	}
 	

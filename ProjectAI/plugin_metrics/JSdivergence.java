@@ -21,6 +21,7 @@ public class JSdivergence extends Metric{
 	 * words/wordpairs.
 	 */
 	public JSdivergence(boolean relativeFreq){
+		ID = "JSdivergence";
 		this.relativeFreq = relativeFreq;
 	}
 

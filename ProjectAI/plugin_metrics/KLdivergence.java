@@ -25,6 +25,7 @@ public class KLdivergence extends Metric{
 	 * (q -> r and r -> q). This can be "average" or "minimum".
 	 */
 	public KLdivergence(boolean relativeFreq, String combiMethod){
+		ID = "KLdivergence";
 		this.relativeFreq = relativeFreq;
 		this.combiMethod = combiMethod;
 	}

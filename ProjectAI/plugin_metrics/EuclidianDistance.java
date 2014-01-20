@@ -20,6 +20,7 @@ public class EuclidianDistance extends Metric{
 	 * words/wordpairs.
 	 */
 	public EuclidianDistance(boolean relativeFreq){
+		ID = "EuclidianDistance";
 		this.relativeFreq = relativeFreq;
 	}
 

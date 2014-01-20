@@ -22,6 +22,7 @@ public class Chisquare extends Metric{
 	 * words/wordpairs.
 	 */
 	public Chisquare(boolean relativeFreq){
+		ID = "Chisquare";
 		this.relativeFreq = relativeFreq;
 	}
 

@@ -76,6 +76,7 @@ public class DBScan extends Clustering{
 		this.option = option;
 		this.useExternal = useExternal;
 		this.extFilePath = extFilePath;
+		this.ID = "DBScan-"+minPts+"-"+eps+"-"+metric.ID+"-"+useExternal;
 	}
 	
 	/**
@@ -291,22 +292,22 @@ public class DBScan extends Clustering{
 		}*/
 		
 		// show clusters and their members
-		for(int i=0; i< clusters.size(); i++){
+		for(int i=0; i< dbscan.clusters.size(); i++){
 			System.out.println("cluster " + i );
-			for(int j = 0; j< clusters.get(i).members.size(); j++){
-				System.out.println(clusters.get(i).members.get(j).textFile);
+			for(int j = 0; j< dbscan.clusters.get(i).members.size(); j++){
+				System.out.println(dbscan.clusters.get(i).members.get(j).textFile);
 			}
 			System.out.println("");
 		}
 		
 		// find total number of clustered points, as well as points treated as noise
 		int tot_clustered_points = 0;
-		for (int j =0; j<clusters.size(); j++){
-			tot_clustered_points += clusters.get(j).members.size();
+		for (int j =0; j<dbscan.clusters.size(); j++){
+			tot_clustered_points += dbscan.clusters.get(j).members.size();
 		}
 		
 		System.out.println("Total number of clustered points:"+tot_clustered_points);
-		System.out.println("Total number of clusters:"+clusters.size());
+		System.out.println("Total number of clusters:"+dbscan.clusters.size());
 		System.out.println("Total number noise points(singleton clusters):"+(nrdocs - tot_clustered_points));
 		
 		for (Document doc: noise.keySet()) 

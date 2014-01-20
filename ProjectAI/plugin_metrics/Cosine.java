@@ -21,6 +21,7 @@ public class Cosine extends Metric{
 	 * words/wordpairs.
 	 */
 	public Cosine(boolean relativeFreq){
+		ID = "Cosine";
 		this.relativeFreq = relativeFreq;
 	}
 

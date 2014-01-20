@@ -14,10 +14,12 @@ import data_representation.*;
  * implemented method that determines the closest cluster to a document.
  */
 public abstract class Metric{
+	public String ID;
 	abstract double computeDistance(Map<String, Double> q, int corpusSizeQ, 
 			Map<String, Double> r, int corpusSizeR);
 	abstract ArrayList<Integer> getClosestCentroids(Document doc, 
 			ArrayList<Cluster> clusters);
+	
 
 	/**
 	 * This method determines the closest cluster for a document by computing

@@ -21,6 +21,7 @@ public class JaccardsCoefficient extends Metric{
 	 * words/wordpairs.
 	 */
 	public JaccardsCoefficient(boolean relativeFreq){
+		ID = "JaccardsCoefficient";
 		this.relativeFreq = relativeFreq;
 	}
 

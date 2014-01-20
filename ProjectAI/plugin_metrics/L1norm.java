@@ -21,6 +21,7 @@ public class L1norm extends Metric{
 	 * words/wordpairs.
 	 */
 	public L1norm(boolean relativeFreq){
+		ID = "L1norm";
 		this.relativeFreq = relativeFreq;
 	}
 

@@ -61,7 +61,8 @@ public class Kmeans extends Clustering{
                 this.metric = metric;
                 this.seed = seed;
                 this.externalDataset = externalDataset;
-                this.extFilePath = extFilePath;                
+                this.extFilePath = extFilePath;        
+                this.ID = "Kmeans-"+k+"-"+metric.ID+"-"+externalDataset;
         }
 
         /**
