@@ -1,6 +1,7 @@
 package clustering;
 
 import plugin_metrics.KLdivergence;
+import cluster_evaluation.Precision;
 import cluster_evaluation.SilhouetteCoefficient;
 import data_representation.Cluster;
 import data_representation.Document;
@@ -13,24 +14,25 @@ public class Test {
 	public static void main(String[] args) {
 		String extFilePath = "./features/";
 		boolean useExtPath = true;
-		int numTopics = 20;
+		int numTopics = 10;
 		int seed = 20;
-		boolean bilingual = true;
-		String language = "2";
+		boolean bilingual = false;
+		String language = "english";
 		
-		if(bilingual)
-			extFilePath = extFilePath + "bilfeatureVectors_language_"+language+"_"+numTopics+".data";
-		else
-			extFilePath = extFilePath + "featureVectors_language_"+language+"_"+numTopics+".data";
+//		if(bilingual)
+//			extFilePath = extFilePath + "bilfeatureVectors_language_"+language+"_"+numTopics+".data";
+//		else
+//			extFilePath = extFilePath + "featureVectors_language_"+language+"_"+numTopics+".data";
 			
-		
+		extFilePath = extFilePath + "features_lsa_English_10.data";
+		//extFilePath = extFilePath + "featureVectors_language_english_10.data";
 		KLdivergence KL = new KLdivergence(true, "average");
 		Kmeans KM=new  Kmeans(10, "./Testdata/dataset/English", "english", KL, seed, useExtPath, extFilePath);
 		KM.startClustering();
 		SilhouetteCoefficient SC = new SilhouetteCoefficient(KL);
 		SC.computeScore(KM);
 		
-		int i=1;
+		int i=0;
 		for(Cluster cluster : KM.clusters){
 			System.out.println("Cluster "+i+":");
 			//System.out.println("Centroid:"+cluster.centroid.distribution);
@@ -40,7 +42,10 @@ public class Test {
 			i++;
 			System.out.println("");
 		}
-//		Precision.computeF1("../Testdata/dataset/English", KM.clusters);
+		 
+		Precision evaluate = new Precision();
+		
+		evaluate.computeScore(KM);
 		
 //		String name = "D_pharma21.txt";
 //		String label = name.replaceAll(".*_", "");
