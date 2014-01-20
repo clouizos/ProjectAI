@@ -98,11 +98,11 @@ public class Kmeans extends Clustering{
                         iterations++;
                 }
                 // only show final clusters and not on every iteration
-                for (int i=0;i<clusters.size();i++){
-                        System.out.println("cluster " + i );
-                        System.out.println(clusters.get(i).historyMembers.get(iterations - 1)); 
-                        System.out.println("");
-                }
+//                for (int i=0;i<clusters.size();i++){
+//                        System.out.println("cluster " + i );
+//                        System.out.println(clusters.get(i).historyMembers.get(iterations - 1)); 
+//                        System.out.println("");
+//                }
         }
 
         /**
