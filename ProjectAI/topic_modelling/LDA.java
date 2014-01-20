@@ -1,15 +1,35 @@
 package topic_modelling;
 
-import cc.mallet.util.*;
-import cc.mallet.types.*;
-import cc.mallet.pipe.*;
-import cc.mallet.pipe.iterator.*;
-import cc.mallet.topics.*;
-
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.PrintWriter;
+import java.io.Reader;
 import java.text.DecimalFormat;
-import java.util.*;
-import java.util.regex.*;
-import java.io.*;
+import java.util.ArrayList;
+import java.util.Formatter;
+import java.util.Iterator;
+import java.util.Locale;
+import java.util.TreeSet;
+import java.util.regex.Pattern;
+
+import cc.mallet.pipe.CharSequence2TokenSequence;
+import cc.mallet.pipe.CharSequenceLowercase;
+import cc.mallet.pipe.Pipe;
+import cc.mallet.pipe.SerialPipes;
+import cc.mallet.pipe.TokenSequence2FeatureSequence;
+import cc.mallet.pipe.TokenSequenceRemoveStopwords;
+import cc.mallet.pipe.iterator.CsvIterator;
+import cc.mallet.topics.ParallelTopicModel;
+import cc.mallet.topics.TopicInferencer;
+import cc.mallet.types.Alphabet;
+import cc.mallet.types.FeatureSequence;
+import cc.mallet.types.IDSorter;
+import cc.mallet.types.InstanceList;
+import cc.mallet.types.LabelSequence;
 
 
 public class LDA {
@@ -167,9 +187,12 @@ public class LDA {
 	        
 	        Formatter out = new Formatter(new StringBuilder(), Locale.US);
 	        PrintWriter writer = new PrintWriter("./features/featureVectors_language_"+language+"_"+numTopics+".data", "UTF-8");
-	        		
+	        TopicInferencer inf = model.getInferencer();
+	        
+	        DecimalFormat df = new DecimalFormat("#.###");
 	        for(int i=0; i< instances.size(); i++){
-	        	double[] topicDistribution = model.getTopicProbabilities(i);
+	        	//double[] topicDistribution = model.getTopicProbabilities(i);
+	        	double[] topicDistribution = inf.getSampledDistribution(instances.get(i), 1000, 10, 100);
 	        	System.out.println(instances.get(i).getName());
 	        	if (write)
 	        		writer.print(instances.get(i).getName());
@@ -265,7 +288,7 @@ public class LDA {
 	}
 	
 	public static void main(String[] args) throws Exception{
-		int numTopics = 30;
+		int numTopics = 10;
 		int numIterations = 1000;
 		String language = "english";
 		String options = "numTopics_"+numTopics+"_numIterations_"+numIterations;
@@ -279,9 +302,9 @@ public class LDA {
 		LDA lda = new LDA(pathStopEn, pathEnglishData, numTopics, numIterations, language);
 		
 		// if you want to train the model
-		lda.createModel();
-	    ParallelTopicModel model = lda.getModel();
-		lda.writeModel(model, options);
+		//lda.createModel();
+	    //ParallelTopicModel model = lda.getModel();
+		//lda.writeModel(model, options);
 		
 		// parse an already trained one and estimate the feature vectors
 		lda.loadModel(options,language);

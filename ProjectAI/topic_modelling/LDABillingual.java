@@ -1,15 +1,32 @@
 package topic_modelling;
 
-import cc.mallet.util.*;
-import cc.mallet.types.*;
-import cc.mallet.pipe.*;
-import cc.mallet.pipe.iterator.*;
-import cc.mallet.topics.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.PrintWriter;
+import java.io.Reader;
+import java.util.ArrayList;
+import java.util.Formatter;
+import java.util.Locale;
+import java.util.regex.Pattern;
 
-import java.text.DecimalFormat;
-import java.util.*;
-import java.util.regex.*;
-import java.io.*;
+import cc.mallet.pipe.CharSequence2TokenSequence;
+import cc.mallet.pipe.CharSequenceLowercase;
+import cc.mallet.pipe.Pipe;
+import cc.mallet.pipe.SerialPipes;
+import cc.mallet.pipe.TokenSequence2FeatureSequence;
+import cc.mallet.pipe.TokenSequenceRemoveStopwords;
+import cc.mallet.pipe.iterator.CsvIterator;
+import cc.mallet.topics.PolylingualTopicModel;
+import cc.mallet.topics.TopicInferencer;
+import cc.mallet.types.Alphabet;
+import cc.mallet.types.FeatureSequence;
+import cc.mallet.types.Instance;
+import cc.mallet.types.InstanceList;
+import cc.mallet.types.LabelSequence;
 
 public class LDABillingual {
 	
@@ -156,9 +173,11 @@ public class LDABillingual {
 	 * @throws Exception
 	 */
 	
-	public void doInference(PolylingualTopicModel model, int language, String datasource, String stopwords, int numTopics, boolean write) throws Exception{
-		 ArrayList<Pipe> pipeList = new ArrayList<Pipe>();
-
+	public void doInference(PolylingualTopicModel model, int language, String datasource, String stopwords, String datasource2, String stopwords2, int numTopics, boolean write) throws Exception{
+		    
+			ArrayList<Pipe> pipeList = new ArrayList<Pipe>();
+			
+			if(language == 0 || language == 1){
 	        // Pipes: lowercase, tokenize, remove stopwords, map to features
 	        pipeList.add( new CharSequenceLowercase() );
 	        pipeList.add( new CharSequence2TokenSequence(Pattern.compile("\\p{L}[\\p{L}\\p{P}]+\\p{L}")) );
@@ -176,9 +195,10 @@ public class LDABillingual {
 	        TopicInferencer infer_lang = model.getInferencer(language);
 	        Formatter out = new Formatter(new StringBuilder(), Locale.US);
 	        PrintWriter writer = new PrintWriter("./features/bilfeatureVectors_language_"+language+"_"+numTopics+".data", "UTF-8");
-	        		
+	        
+//	        DecimalFormat df = new DecimalFormat("#.###");
 	        for(Instance doc : instances){
-	        	double[] topicDistribution = infer_lang.getSampledDistribution(doc, 0, 0, 0);
+	        	double[] topicDistribution = infer_lang.getSampledDistribution(doc, 1000, 10, 100);
 	        	System.out.println(doc.getName());
 	        	if (write)
 	        		writer.print(doc.getName());
@@ -200,7 +220,94 @@ public class LDABillingual {
 	        writer.close();
 	        if(write)
 	        	System.out.println("Finished Writing the feature vectors.");
-	}
+		 }
+		 else if (language == 2){
+			 
+			 // for english
+			  pipeList.add( new CharSequenceLowercase() );
+		        pipeList.add( new CharSequence2TokenSequence(Pattern.compile("\\p{L}[\\p{L}\\p{P}]+\\p{L}")) );
+		        pipeList.add( new TokenSequenceRemoveStopwords(new File(stopwords), "UTF-8", false, false, false) );
+		        pipeList.add( new TokenSequence2FeatureSequence() );
+
+		        InstanceList instances = new InstanceList (new SerialPipes(pipeList));
+
+		        Reader fileReader = new InputStreamReader(new FileInputStream(new File(datasource)), "UTF-8");
+		        instances.addThruPipe(new CsvIterator (fileReader, Pattern.compile("^(\\S*)[\\s,]*(\\S*)[\\s,]*(.*)$"),
+		                                               3, 2, 1)); // data, label, name fields
+		        
+		        
+		        
+		        TopicInferencer infer_lang = model.getInferencer(0);
+		        Formatter out = new Formatter(new StringBuilder(), Locale.US);
+		        PrintWriter writer = new PrintWriter("./featureVectorsLDA/bilfeatureVectors_language_"+language+"_"+numTopics+".data", "UTF-8");
+		        	
+//		        DecimalFormat df = new DecimalFormat("#.###");
+		        for(Instance doc : instances){
+		        	double[] topicDistribution = infer_lang.getSampledDistribution(doc, 1000, 10, 100);
+		        	System.out.println(doc.getName());
+		        	if (write)
+		        		writer.print(doc.getName());
+		        	for (int topic = 0; topic < numTopics; topic++) {
+		                //Iterator<IDSorter> iterator = topicSortedWords.get(topic).iterator();
+		                
+		                out = new Formatter(new StringBuilder(), Locale.US);
+		                out.format("%d\t%.3f\t", topic, topicDistribution[topic]);
+		                System.out.println(out);
+		                if(write)
+		                	writer.print(topicDistribution[topic]+" ");
+		            
+		            }
+		        	if(write)
+		        		writer.print("\n");
+	                System.out.println("");
+		        }
+		        
+		        System.out.println("Doing dutch");
+		        // for dutch
+		        ArrayList<Pipe> pipeList2 = new ArrayList<Pipe>();
+		        pipeList2.add( new CharSequenceLowercase() );
+		        pipeList2.add( new CharSequence2TokenSequence(Pattern.compile("\\p{L}[\\p{L}\\p{P}]+\\p{L}")) );
+		        pipeList2.add( new TokenSequenceRemoveStopwords(new File(stopwords2), "UTF-8", false, false, false) );
+		        pipeList2.add( new TokenSequence2FeatureSequence() );
+
+		        InstanceList instances2 = new InstanceList (new SerialPipes(pipeList2));
+
+		        Reader fileReader2 = new InputStreamReader(new FileInputStream(new File(datasource2)), "UTF-8");
+		        instances2.addThruPipe(new CsvIterator (fileReader2, Pattern.compile("^(\\S*)[\\s,]*(\\S*)[\\s,]*(.*)$"),
+		                                               3, 2, 1)); // data, label, name fields
+		        
+		        
+		        
+		        TopicInferencer infer_lang2 = model.getInferencer(1);
+		        		   
+		        
+		        
+		        for(Instance doc : instances2){
+		        	double[] topicDistribution = infer_lang2.getSampledDistribution(doc, 1000, 10, 100);
+		        	System.out.println(doc.getName());
+		        	if (write)
+		        		writer.print(doc.getName());
+		        	for (int topic = 0; topic < numTopics; topic++) {
+		                //Iterator<IDSorter> iterator = topicSortedWords.get(topic).iterator();
+		                
+		                out = new Formatter(new StringBuilder(), Locale.US);
+		                out.format("%d\t%.3f\t", topic, topicDistribution[topic]);
+		                System.out.println(out);
+		                if(write)
+		                	writer.print(topicDistribution[topic]+" ");
+		            
+		            }
+		        	if(write)
+		        		writer.print("\n");
+	                System.out.println("");
+		        }
+		        
+		        writer.close();
+		        if(write)
+		        	System.out.println("Finished Writing the feature vectors.");
+		 }
+}
+
 	
 	/**
 	 * Saves a model into a directory modelsLDA
@@ -265,9 +372,9 @@ public class LDABillingual {
 	
 	public static void main(String[] args) throws Exception{
 		int numTopics = 30;
-		int numIterations = 50;
+		int numIterations = 1000;
 		String options = "numTopics_"+numTopics+"_numIterations_"+numIterations;
-		int language = 0; // 0 english, 1 dutch
+		int language = 2; // 0 english, 1 dutch, 2 mixed
 		
 		String pathEnglishData = "DataLDA/english_final.data";
 		String pathDutchData = "DataLDA/dutch_final.data";
@@ -278,13 +385,13 @@ public class LDABillingual {
 		LDABillingual ldabil = new LDABillingual(pathStopEn, pathStopDu, pathEnglishData, pathDutchData, numTopics, numIterations);
 		
 		// if you want to train the model
-		ldabil.createModel();
-		PolylingualTopicModel model = ldabil.getModel();
-		ldabil.writeModel(model, options);
+		//ldabil.createModel();
+		//PolylingualTopicModel model = ldabil.getModel();
+		//ldabil.writeModel(model, options);
 		
 		// parse an already trained one and estimate the feature vectors
 		ldabil.loadModel(options);
-		ldabil.doInference(ldabil.getModel(), language, pathEnglishData, pathStopEn, numTopics, true);
+		ldabil.doInference(ldabil.getModel(), language, pathEnglishData, pathStopEn, pathDutchData, pathStopDu, numTopics, true);
 	}
 
 	
