@@ -1,7 +1,7 @@
 package clustering;
 
-import plugin_metrics.EuclidianDistance;
-import plugin_metrics.Metric;
+import plugin_metrics.*;
+import cluster_evaluation.DBIndex;
 import cluster_evaluation.Entropy;
 import cluster_evaluation.Precision;
 import cluster_evaluation.Purity;
@@ -27,15 +27,20 @@ public class Test {
 //		else
 //			extFilePath = extFilePath + "featureVectors_language_"+language+"_"+numTopics+".data";
 			
-		extFilePath = extFilePath + "bilfeatureVectors_language_both_20.data";
-		//extFilePath = extFilePath + "featureVectors_language_english_10.data";
+		extFilePath = extFilePath + "featureVectors_language_english_20.data";
+		//extFilePath = extFilePath + "features_lsa_English_30.data";
+		
 		//Metric metric = new KLdivergence(true, "average");
-		Metric metric  = new EuclidianDistance(true);
+		//Metric metric  = new EuclidianDistance(true);
+		//Metric metric = new JSdivergence(true);
+		//Metric metric = new HellingerFunction(true);
+		//Metric metric = new JaccardsCoefficient(true);
+		Metric metric = new L1norm(true);
+		//Metric metric = new Chisquare(true);
 		
 		Kmeans KM=new  Kmeans(10, "./Testdata/dataset/English", "english", metric, seed, useExtPath, extFilePath);
 		KM.startClustering();
-		SilhouetteCoefficient SC = new SilhouetteCoefficient(metric);
-		SC.computeScore(KM);
+		
 		
 		int i=0;
 		for(Cluster cluster : KM.clusters){
@@ -48,12 +53,25 @@ public class Test {
 			System.out.println("");
 		}
 		 
+		
+		// intrinsic evaluation
+		SilhouetteCoefficient SC = new SilhouetteCoefficient(metric);
+		DBIndex DB = new DBIndex(metric);
+				
+		SC.computeScore(KM);
+		System.out.println("");
+		DB.computeScore(KM);
+		System.out.println("");
+		
+		// extrinsic evaluation
 		Precision evaluate = new Precision();
 		Purity pure = new Purity();
 		Entropy entr = new Entropy();
 		
 		evaluate.computeScore(KM);
+		System.out.println("");
 		pure.computeScore(KM);
+		System.out.println("");
 		entr.computeScore(KM);
 		
 //		String name = "D_pharma21.txt";
