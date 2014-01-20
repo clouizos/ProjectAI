@@ -2,7 +2,9 @@ package clustering;
 
 import plugin_metrics.EuclidianDistance;
 import plugin_metrics.Metric;
+import cluster_evaluation.Entropy;
 import cluster_evaluation.Precision;
+import cluster_evaluation.Purity;
 import cluster_evaluation.SilhouetteCoefficient;
 import data_representation.Cluster;
 import data_representation.Document;
@@ -25,9 +27,9 @@ public class Test {
 //		else
 //			extFilePath = extFilePath + "featureVectors_language_"+language+"_"+numTopics+".data";
 			
-		extFilePath = extFilePath + "features_lsa_English_10.data";
+		extFilePath = extFilePath + "bilfeatureVectors_language_both_20.data";
 		//extFilePath = extFilePath + "featureVectors_language_english_10.data";
-		//KLdivergence KL = new KLdivergence(true, "average");
+		//Metric metric = new KLdivergence(true, "average");
 		Metric metric  = new EuclidianDistance(true);
 		
 		Kmeans KM=new  Kmeans(10, "./Testdata/dataset/English", "english", metric, seed, useExtPath, extFilePath);
@@ -47,8 +49,12 @@ public class Test {
 		}
 		 
 		Precision evaluate = new Precision();
+		Purity pure = new Purity();
+		Entropy entr = new Entropy();
 		
 		evaluate.computeScore(KM);
+		pure.computeScore(KM);
+		entr.computeScore(KM);
 		
 //		String name = "D_pharma21.txt";
 //		String label = name.replaceAll(".*_", "");
