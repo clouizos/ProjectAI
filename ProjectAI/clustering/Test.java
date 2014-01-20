@@ -17,17 +17,18 @@ public class Test {
 	public static void main(String[] args) {
 		String extFilePath = "./features/";
 		boolean useExtPath = true;
-		int numTopics = 10;
+		int numTopics = 30;
 		int seed = 20;
-		boolean bilingual = false;
+		boolean bilingual = true;
 		String language = "english";
+		boolean removeSingleton = true;
 		
 //		if(bilingual)
-//			extFilePath = extFilePath + "bilfeatureVectors_language_"+language+"_"+numTopics+".data";
+			//extFilePath = extFilePath + "bilfeatureVectors_language_"+language+"_"+numTopics+".data";
 //		else
-//			extFilePath = extFilePath + "featureVectors_language_"+language+"_"+numTopics+".data";
+			extFilePath = extFilePath + "featureVectors_language_"+language+"_"+numTopics+".data";
 			
-		extFilePath = extFilePath + "featureVectors_language_english_20.data";
+//		extFilePath = extFilePath + "featureVectors_language_english_20.data";
 		//extFilePath = extFilePath + "features_lsa_English_30.data";
 		
 		//Metric metric = new KLdivergence(true, "average");
@@ -38,12 +39,14 @@ public class Test {
 		Metric metric = new L1norm(true);
 		//Metric metric = new Chisquare(true);
 		
-		Kmeans KM=new  Kmeans(10, "./Testdata/dataset/English", "english", metric, seed, useExtPath, extFilePath);
-		KM.startClustering();
+		//Kmeans clusterer = new  Kmeans(10, "./Testdata/dataset/English", "english", metric, seed, useExtPath, extFilePath);
+		//FuzzyCmeans clusterer = new FuzzyCmeans(10, 2, 0.001, "./Testdata/dataset/English", "english", metric, seed, useExtPath, extFilePath);
+		DBScan clusterer = new DBScan(5, 0.1, "./Testdata/dataset/English", "english", metric, seed, 400, removeSingleton, useExtPath, extFilePath);
+		clusterer.startClustering();
 		
 		
 		int i=0;
-		for(Cluster cluster : KM.clusters){
+		for(Cluster cluster : clusterer.clusters){
 			System.out.println("Cluster "+i+":");
 			//System.out.println("Centroid:"+cluster.centroid.distribution);
 			for(Document doc : cluster.members){
@@ -58,9 +61,9 @@ public class Test {
 		SilhouetteCoefficient SC = new SilhouetteCoefficient(metric);
 		DBIndex DB = new DBIndex(metric);
 				
-		SC.computeScore(KM);
+		SC.computeScore(clusterer);
 		System.out.println("");
-		DB.computeScore(KM);
+		DB.computeScore(clusterer);
 		System.out.println("");
 		
 		// extrinsic evaluation
@@ -68,11 +71,11 @@ public class Test {
 		Purity pure = new Purity();
 		Entropy entr = new Entropy();
 		
-		evaluate.computeScore(KM);
+		evaluate.computeScore(clusterer);
 		System.out.println("");
-		pure.computeScore(KM);
+		pure.computeScore(clusterer);
 		System.out.println("");
-		entr.computeScore(KM);
+		entr.computeScore(clusterer);
 		
 //		String name = "D_pharma21.txt";
 //		String label = name.replaceAll(".*_", "");
