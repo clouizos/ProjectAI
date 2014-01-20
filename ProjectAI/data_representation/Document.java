@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Scanner;
 import java.util.Random;
+import java.util.Scanner;
 
 /**
  * 
@@ -68,10 +68,11 @@ public class Document extends FrequencyList {
 	public Map<String, Double> createListExternal( Centroid initCentroid, String c, ArrayList<Double> distribution){
 		this.c = c;
 		this.initCentroid = initCentroid;
-		if( language != null){
+		
+		/*if( language != null){
 			standardVocab = new StandardVocabulary(language);
 			standardVocabUsed = true;
-		}
+		}*/
 		
 		//System.out.println(distribution.size());
 		for(int i=0; i<distribution.size(); i++){
