@@ -49,7 +49,7 @@ public class DBScan extends Clustering{
 	//public static ArrayList<Cluster> clusters = new ArrayList<Cluster>();
 	Random r = new Random();
 	public int seed;
-	String option;
+	boolean removeSingle;
 	boolean useExternal;
 	String extFilePath;
 	int numTopics;
@@ -65,7 +65,7 @@ public class DBScan extends Clustering{
 	 * getClosestCluster() for more information on the numbers 
 	 * for the different metrics.
 	 */
-	public DBScan(int minPts, double eps, String filePath, String language, Metric metric, int seed, int nrdocs, String option, boolean useExternal, String extFilePath) {
+	public DBScan(int minPts, double eps, String filePath, String language, Metric metric, int seed, int nrdocs, boolean removeSingle, boolean useExternal, String extFilePath) {
 		this.filePath = filePath;
 		this.language = language;
 		this.metric = metric;
@@ -73,7 +73,7 @@ public class DBScan extends Clustering{
 		this.eps = eps;
 		this.seed = seed;
 		this.nrdocs = nrdocs;
-		this.option = option;
+		this.removeSingle = removeSingle;
 		this.useExternal = useExternal;
 		this.extFilePath = extFilePath;
 		this.ID = "DBScan-"+minPts+"-"+eps+"-"+metric.ID+"-"+useExternal;
@@ -124,7 +124,8 @@ public class DBScan extends Clustering{
 			}
 		}
 		
-		removeSingletonClusters();
+		if(removeSingle)
+			removeSingletonClusters();
 		
 	}
 	
@@ -188,7 +189,7 @@ public class DBScan extends Clustering{
 		neighbors.add(document);
 		double distance = 0;
 		//KLdivergence kldiv = new KLdivergence(true, option);
-		metric = new KLdivergence(true, "average");
+		//metric = new KLdivergence(true, "average");
 		//metric = new JSdivergence(true);
 		//metric = new Cosine(true);
 		//metric = new EuclidianDistance(true);
@@ -243,7 +244,7 @@ public class DBScan extends Clustering{
 	
 	public void init_external(){
 		System.out.println("Creating external dataset...");
-		String options = "featureVectors_language_"+language+"_"+numTopics+".data";
+		//String options = "featureVectors_language_"+language+"_"+numTopics+".data";
 		Map<String, ArrayList<Double>> dataset = new HashMap<String, ArrayList<Double>>();
 		ImportExternalDataset imp = new ImportExternalDataset(extFilePath);
 		dataset = imp.importData();
@@ -275,7 +276,6 @@ public class DBScan extends Clustering{
 	public static void main(String[] args){
 		String filePath = "./Testdata/dataset/English"; // directory of english dataset // changed according to new structure
 		String language = "english"; // using shortlist for english language
-		boolean removeSingleton = true;
 		boolean useExtPath = false;
 		
 		Metric m7 = new KLdivergence(true, "minimum");
@@ -285,12 +285,12 @@ public class DBScan extends Clustering{
 		double eps = 2.0;
 		int seed = 1234;
 		int nrdocs = 139;
-		String option = "average"; //average or minimum, option for the KL-divergence
+		boolean removeSingle = true;
 		String directory = "features/";
 		String fileName = "featureVectors_language_english_20.data";
         String extFilePath = directory+fileName;
 		
-		DBScan dbscan = new DBScan(minPts, eps, filePath, language, metrics.get(0), seed, nrdocs, option, useExtPath, extFilePath);
+		DBScan dbscan = new DBScan(minPts, eps, filePath, language, metrics.get(0), seed, nrdocs, removeSingle, useExtPath, extFilePath);
 		dbscan.startClustering();
 		System.out.println("Finished clustering!\n");
 		
