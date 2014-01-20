@@ -16,7 +16,7 @@ import data_representation.Document;
  * B is average distance of point i from other points from the closest cluster.
  */
 public class SilhouetteCoefficient extends IntrinsicEvaluation {
-	private double score;
+	
 	public SilhouetteCoefficient(Metric metric){
 		this.metric = metric;
 	}

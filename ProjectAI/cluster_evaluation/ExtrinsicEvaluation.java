@@ -10,7 +10,7 @@ import clustering.Clustering;
 
 import data_representation.Cluster;
 
-public abstract class ExtrinsicEvaluation {
+public abstract class ExtrinsicEvaluation extends Evaluation{
 	
 	public abstract void computeScore(Clustering C); 
 	

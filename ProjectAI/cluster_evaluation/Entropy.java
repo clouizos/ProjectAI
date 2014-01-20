@@ -5,7 +5,7 @@ import java.util.HashMap;
 import clustering.Clustering;
 
 public class Entropy extends ExtrinsicEvaluation{
-
+	
 	/**
 	 * @param args
 	 */
