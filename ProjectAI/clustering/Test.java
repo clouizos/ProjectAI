@@ -1,11 +1,5 @@
 package clustering;
 
-import java.util.ArrayList;
-import java.util.Collections;
-
-import org.jmat.data.AbstractMatrix;
-import org.jmat.data.Matrix;
-
 import plugin_metrics.KLdivergence;
 import cluster_evaluation.SilhouetteCoefficient;
 import data_representation.Cluster;
@@ -17,27 +11,35 @@ public class Test {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-//		String extFilePath = "./featureVectorsLDA/";
-//		boolean useExtPath = true;
-//		int numTopics = 20;
-//		int seed = 20;
-//		
-//		KLdivergence KL = new KLdivergence(true, "average");
-//		Kmeans KM=new  Kmeans(10, "./Testdata/dataset/English", "english", KL, seed, useExtPath, extFilePath);
-//		KM.startClustering();
-//		SilhouetteCoefficient SC = new SilhouetteCoefficient(KL);
-//		SC.computeScore(KM);
-//		
-//		int i=1;
-//		for(Cluster cluster : Clustering.clusters){
-//			System.out.println("Cluster "+i+":");
-//			//System.out.println("Centroid:"+cluster.centroid.distribution);
-//			for(Document doc : cluster.members){
-//				System.out.println(doc.getFilename());
-//			}
-//			i++;
-//			System.out.println("");
-//		}
+		String extFilePath = "./features/";
+		boolean useExtPath = true;
+		int numTopics = 20;
+		int seed = 20;
+		boolean bilingual = true;
+		String language = "2";
+		
+		if(bilingual)
+			extFilePath = extFilePath + "bilfeatureVectors_language_"+language+"_"+numTopics+".data";
+		else
+			extFilePath = extFilePath + "featureVectors_language_"+language+"_"+numTopics+".data";
+			
+		
+		KLdivergence KL = new KLdivergence(true, "average");
+		Kmeans KM=new  Kmeans(10, "./Testdata/dataset/English", "english", KL, seed, useExtPath, extFilePath);
+		KM.startClustering();
+		SilhouetteCoefficient SC = new SilhouetteCoefficient(KL);
+		SC.computeScore(KM);
+		
+		int i=1;
+		for(Cluster cluster : KM.clusters){
+			System.out.println("Cluster "+i+":");
+			//System.out.println("Centroid:"+cluster.centroid.distribution);
+			for(Document doc : cluster.members){
+				System.out.println(doc.getFilename());
+			}
+			i++;
+			System.out.println("");
+		}
 //		Precision.computeF1("../Testdata/dataset/English", KM.clusters);
 		
 //		String name = "D_pharma21.txt";
@@ -81,18 +83,18 @@ public class Test {
 //		Collections.reverse(list);
 //		System.out.println(list.toString());
 		
-		ArrayList<Integer> list = new ArrayList<Integer>();
-		list.add(1);
-		list.add(2);
-		list.add(3);
-		list.add(4);
-		list.add(5);
-		System.out.println(list.toString());
-		Collections.shuffle(list);
-		System.out.println(list.toString());
-		for (int i=0;i<list.size()/2;i++){
-			System.out.println(i);
-		}
+//		ArrayList<Integer> list = new ArrayList<Integer>();
+//		list.add(1);
+//		list.add(2);
+//		list.add(3);
+//		list.add(4);
+//		list.add(5);
+//		System.out.println(list.toString());
+//		Collections.shuffle(list);
+//		System.out.println(list.toString());
+//		for (int i=0;i<list.size()/2;i++){
+//			System.out.println(i);
+//		}
 
 	}
 
