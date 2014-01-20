@@ -1,13 +1,7 @@
 package cluster_evaluation;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 import clustering.Clustering;
-
-import data_representation.Cluster;
-
-import io.*;
 
 /**
  * 
