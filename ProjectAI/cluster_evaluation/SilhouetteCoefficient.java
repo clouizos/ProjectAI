@@ -7,6 +7,12 @@ import clustering.Clustering;
 import data_representation.Cluster;
 import data_representation.Document;
 
+/*
+ * This class is an internal evaluation on clustering. The highest the score the better
+ * the clustering quality. Silhouette Index of a point i Si = (b - a)/Max(b,a). 
+ * A is average distance of point i from other points within the same cluster,
+ * B is average distance of point i from other points from the closest cluster.
+ */
 public class SilhouetteCoefficient extends IntrinsicEvaluation {
 	private Metric metric;
 	
