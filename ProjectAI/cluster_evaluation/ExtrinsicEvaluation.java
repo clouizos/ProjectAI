@@ -7,8 +7,8 @@ import java.util.HashMap;
 import java.util.List;
 
 import clustering.Clustering;
-
 import data_representation.Cluster;
+import data_representation.Document;
 
 public abstract class ExtrinsicEvaluation extends Evaluation{
 	
@@ -93,9 +93,17 @@ public abstract class ExtrinsicEvaluation extends Evaluation{
 			for (int i=0;i<clusterList.size();i++){
 				clusterMap.put("Topic"+Integer.toString(i),new ArrayList<String>());
 				int l = clusterList.get(i).historyMembers.size();
-				for (String name :clusterList.get(i).historyMembers.get(l-1)){
-					String fileName = name.replaceAll(".*/", "");
-					clusterMap.get("Topic"+Integer.toString(i)).add(fileName);	
+				if (l != 0){
+					for (String name :clusterList.get(i).historyMembers.get(l-1)){
+						String fileName = name.replaceAll(".*/", "");
+						clusterMap.get("Topic"+Integer.toString(i)).add(fileName);	
+					}
+				}else{
+					for (Document doc : clusterList.get(i).members){
+						String name = doc.getFilename();
+						String fileName = name.replaceAll(".*/", "");
+						clusterMap.get("Topic"+Integer.toString(i)).add(fileName);
+					}
 				}
 			}
 		} else if (listClass.size()==0){
