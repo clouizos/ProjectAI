@@ -29,7 +29,7 @@ import data_representation.ImportExternalDataset;
 public class Kmeans extends Clustering{
         public int k;
         public Metric metric;
-        public int iterationsMax = 2500;
+        public int iterationsMax = 100;
         public int topNChisquare = 500;
         public int seed;
         public String language;
