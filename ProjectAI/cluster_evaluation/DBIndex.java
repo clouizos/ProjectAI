@@ -11,7 +11,6 @@ import data_representation.Cluster;
 import data_representation.Document;
 
 public class DBIndex extends IntrinsicEvaluation{
-	private Metric metric;
 	
 	public DBIndex(Metric metric){
 		this.metric = metric;
