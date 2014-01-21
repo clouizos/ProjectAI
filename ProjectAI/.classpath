@@ -7,5 +7,17 @@
 	<classpathentry kind="lib" path="lib/jmat_5.0.jar"/>
 	<classpathentry kind="lib" path="lib/ejml-0.24.jar"/>
 	<classpathentry kind="lib" path="lib/concurrent.jar"/>
+	<classpathentry kind="lib" path="lib/cognitivefactory/arpack-combo-0.1.jar"/>
+	<classpathentry kind="lib" path="lib/cognitivefactory/gov-sandia-cognition-common-core.jar"/>
+	<classpathentry kind="lib" path="lib/cognitivefactory/gov-sandia-cognition-common-data.jar"/>
+	<classpathentry kind="lib" path="lib/cognitivefactory/gov-sandia-cognition-framework-core.jar"/>
+	<classpathentry kind="lib" path="lib/cognitivefactory/gov-sandia-cognition-framework-learning.jar"/>
+	<classpathentry kind="lib" path="lib/cognitivefactory/gov-sandia-cognition-learning-core.jar"/>
+	<classpathentry kind="lib" path="lib/cognitivefactory/gov-sandia-cognition-text-core.jar"/>
+	<classpathentry kind="lib" path="lib/cognitivefactory/mtj-0.9.14.jar"/>
+	<classpathentry kind="lib" path="lib/cognitivefactory/netlib-java-0.9.3.jar"/>
+	<classpathentry kind="lib" path="lib/cognitivefactory/porter-stemmer-1.4.jar"/>
+	<classpathentry kind="lib" path="lib/cognitivefactory/xpp3_min-1.1.4c.jar"/>
+	<classpathentry kind="lib" path="lib/cognitivefactory/xstream-1.4.4.jar"/>
 	<classpathentry kind="output" path=""/>
 </classpath>

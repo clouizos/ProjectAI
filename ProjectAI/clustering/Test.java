@@ -17,32 +17,32 @@ public class Test {
 	public static void main(String[] args) {
 		String extFilePath = "./features/";
 		boolean useExtPath = true;
-		int numTopics = 30;
+		int numTopics = 20;
 		int seed = 20;
-		boolean bilingual = false;
+		boolean bilingual = true;
 		String language = "english";
 		boolean removeSingleton = true;
 		
 //		if(bilingual)
 			//extFilePath = extFilePath + "bilfeatureVectors_language_"+language+"_"+numTopics+".data";
 //		else
-//			extFilePath = extFilePath + "featureVectors_language_"+language+"_"+numTopics+".data";
+			extFilePath = extFilePath + "featureVectors_language_"+language+"_"+numTopics+".data";
 			
-		//extFilePath = extFilePath + "featureVectors_language_english_30.data";
-		//extFilePath = extFilePath + "features_lsa_English_100.data";
-		extFilePath = extFilePath + "features_cca_100.data";
+//		extFilePath = extFilePath + "featureVectors_language_english_20.data";
+		//extFilePath = extFilePath + "features_lsa_English_30.data";
 		
 		//Metric metric = new KLdivergence(true, "average");
-		Metric metric  = new EuclidianDistance(true);
+		//Metric metric  = new EuclidianDistance(true);
 		//Metric metric = new JSdivergence(true);
 		//Metric metric = new HellingerFunction(true);
 		//Metric metric = new JaccardsCoefficient(true);
-		//Metric metric = new L1norm(true);
-		//Metric metric = new Chisquare(true);
+		Metric metric = new L1norm(true);
 		
-		Kmeans clusterer = new  Kmeans(10, "../Testdata/dataset/English", "english", metric, seed, useExtPath, extFilePath);
+		//Kmeans clusterer = new  Kmeans(10, "./Testdata/dataset/English", "english", metric, seed, useExtPath, extFilePath);
 		//FuzzyCmeans clusterer = new FuzzyCmeans(10, 2, 0.001, "./Testdata/dataset/English", "english", metric, seed, useExtPath, extFilePath);
 		//DBScan clusterer = new DBScan(5, 0.1, "./Testdata/dataset/English", "english", metric, seed, 400, removeSingleton, useExtPath, extFilePath);
+		GMM clusterer = new GMM(10, "./Testdata/dataset/English", "english", 20, seed, bilingual, extFilePath);
+		
 		clusterer.startClustering();
 		
 		
