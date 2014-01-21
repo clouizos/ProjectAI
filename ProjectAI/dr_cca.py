@@ -11,6 +11,7 @@ Created on Sat Jan 18 22:07:30 2014
 
 from __future__ import print_function
 
+from nltk.corpus import stopwords
 from sklearn.pls import PLSCanonical, PLSRegression, CCA
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.feature_extraction.text import HashingVectorizer
@@ -48,7 +49,7 @@ op.add_option("--no-idf",
 op.add_option("--use-hashing",
               action="store_true", default=False,
               help="Use a hashing feature vectorizer")
-op.add_option("--n-features", type=int, default=10000,
+op.add_option("--n-features", type=int, default=25000,
               help="Maximum number of features (dimensions)"
                    "to extract from text.")
 op.add_option("--verbose",
@@ -73,13 +74,19 @@ def output(docs, X, language, components):
     
 # state documents to read in
 language = 'English'
-docs = glob.glob('../Testdata/dataset/'+language+'/*.en')
+filenames = glob.glob('../Testdata/dataset/'+language+'/*.en')
 language = 'Dutch'
-docs2 = glob.glob('../Testdata/dataset/'+language+'/*.nl')
+filenames2 = glob.glob('../Testdata/dataset/'+language+'/*.nl')
 
-# standard english stopwords
+docs = [open(f).read() for f in filenames]
+docs2 = [open(f).read() for f in filenames2]
+
+# standard english stopwords - 318 words
 #stopwords = 'english'
-stopwords = [line.strip() for line in open('englishStopwords_mixed.txt')]
+# stopwords from nltk english: 127 dutch: 101
+s_words = stopwords.words('english')
+s_words2 = stopwords.words('dutch')
+#stopwords = [line.strip() for line in open('englishStopwords_mixed.txt')]
 
 # Uncomment the following to do the analysis on all the DESCR
 DESCR = None
@@ -96,22 +103,35 @@ if opts.use_hashing:
     if opts.use_idf:
         # Perform an IDF normalization on the output of HashingVectorizer
         hasher = HashingVectorizer(n_features=opts.n_features,
-                                   stop_words=stopwords, non_negative=True,
+                                   stop_words=s_words, non_negative=True,
                                    norm=None, binary=False)
+        hasher2 = HashingVectorizer(n_features=opts.n_features,
+                                   stop_words=s_words2, non_negative=True,
+                                   norm=None, binary=False)                         
         vectorizer = Pipeline((
+            ('hasher', hasher),
+            ('tf_idf', TfidfTransformer())
+        ))
+        vectorizer2 = Pipeline((
             ('hasher', hasher),
             ('tf_idf', TfidfTransformer())
         ))
     else:
         vectorizer = HashingVectorizer(n_features=opts.n_features,
-                                       stop_words=stopwords,
+                                       stop_words=s_words,
                                        non_negative=False, norm='l2',
                                        binary=False)
+        vectorizer2 = HashingVectorizer(n_features=opts.n_features,
+                                       stop_words=s_words2,
+                                       non_negative=False, norm='l2',
+                                       binary=False)                               
 else:
     vectorizer = TfidfVectorizer(max_df=0.5, max_features=opts.n_features,
-                                 stop_words=stopwords, use_idf=opts.use_idf)
+                                 stop_words=s_words, use_idf=opts.use_idf)
+    vectorizer2 = TfidfVectorizer(max_df=0.5, max_features=opts.n_features,
+                                 stop_words=s_words2, use_idf=opts.use_idf)
 X = vectorizer.fit_transform(docs)
-Y = vectorizer.fit_transform(docs2)
+Y = vectorizer2.fit_transform(docs2)
 
 print("done in %fs" % (time() - t0))
 print("n_samples: %d, n_features: %d x 2" % X.shape)
@@ -125,14 +145,14 @@ if opts.n_components:
     X = X.toarray()
     Y = Y.toarray()
     cca.fit(X, Y)
-    CCA(copy=True, max_iter=500, n_components=opts.n_components,
+    CCA(copy=True, max_iter=1000, n_components=opts.n_components,
         scale=True, tol=1e-06)
     X_, Y_ = cca.transform(X, Y)
     # Vectorizer results are normalized, which makes KMeans behave as
     # spherical k-means for better results. Since LSA/SVD results are
     # not normalized, we have to redo the normalization.
-    X = Normalizer(copy=False).fit_transform(X_)
-    Y = Normalizer(copy=False).fit_transform(Y_)
+    #X = Normalizer(copy=False).fit_transform(X_)
+    #Y = Normalizer(copy=False).fit_transform(Y_)
 
     print("done in %fs" % (time() - t0))
     print()
@@ -164,4 +184,4 @@ print()
 
 print()
 
-output(docs, X, language, opts.n_components)
+output(filenames, X_, language, opts.n_components)

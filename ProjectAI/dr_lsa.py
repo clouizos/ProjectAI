@@ -12,6 +12,7 @@ Created on Sat Jan 18 22:07:30 2014
 from __future__ import print_function
 
 from sklearn.decomposition import TruncatedSVD
+from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.feature_extraction.text import HashingVectorizer
 from sklearn.feature_extraction.text import TfidfTransformer
@@ -48,7 +49,7 @@ op.add_option("--no-idf",
 op.add_option("--use-hashing",
               action="store_true", default=False,
               help="Use a hashing feature vectorizer")
-op.add_option("--n-features", type=int, default=10000,
+op.add_option("--n-features", type=int, default=None,
               help="Maximum number of features (dimensions)"
                    "to extract from text.")
 op.add_option("--verbose",
@@ -63,21 +64,23 @@ if len(args) > 0:
     op.error("this script takes no arguments.")
     sys.exit(1)
 
-def output(docs, X, language, components):
+def output(filenames, X, language, components):
     f = open('features/features_lsa_'+language+'_'+str(components)+'.data', 'w')
     i = 0
-    for filename in docs:
+    for filename in filenames:
         f.write(filename+','+' '.join(map(str,X[i]))+'\n')
         i += 1
-    f.close
+    f.close 
     
 # state documents to read in
 language = 'English'
-docs = glob.glob('../Testdata/dataset/'+language+'/*.en')
+filenames = glob.glob('../Testdata/dataset/'+language+'/*.en')
 
-# standard english stopwords
-#stopwords = 'english'
-stopwords = [line.strip() for line in open('englishStopwords_mixed.txt')]
+docs = [open(f).read() for f in filenames]
+
+# standard english stopwords - 318 words
+stopwords = 'english'
+#stopwords = [line.strip() for line in open('englishStopwords_mixed.txt')]
 
 # Uncomment the following to do the analysis on all the DESCR
 DESCR = None
@@ -108,6 +111,8 @@ if opts.use_hashing:
 else:
     vectorizer = TfidfVectorizer(max_df=0.5, max_features=opts.n_features,
                                  stop_words=stopwords, use_idf=opts.use_idf)
+    #vectorizer = CountVectorizer(stop_words=stopwords)
+    
 X = vectorizer.fit_transform(docs)
 
 print("done in %fs" % (time() - t0))
@@ -154,4 +159,4 @@ print()
 
 print()
 
-output(docs, X, language, opts.n_components)
+output(filenames, X, language, opts.n_components)

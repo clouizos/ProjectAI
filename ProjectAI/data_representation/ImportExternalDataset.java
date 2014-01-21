@@ -53,10 +53,10 @@ public class ImportExternalDataset {
 	public static void main(String[] args) {
 		String language = "English";
 		int numTopics = 30;
-		String filePath = "./featureVectorsLDA/";
+		String filePath = "./features/";
+		filePath = filePath + "features_lsa_English_100.data";
 		Map<String, ArrayList<Double>> dataset = new HashMap<String, ArrayList<Double>>();
 		ImportExternalDataset imp = new ImportExternalDataset(filePath);
-		String options = "featureVectors_language_"+language+"_"+numTopics+".data";
 		dataset = imp.importData();
 		System.out.println(dataset);
 	}
