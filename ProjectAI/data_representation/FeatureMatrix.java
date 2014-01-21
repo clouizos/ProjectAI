@@ -16,7 +16,9 @@ public class FeatureMatrix {
 	public double[][] matrix;
 	public ArrayList<String> rowLabel;
 	public ArrayList<String> columnLabel;
-	private String type;
+	public double[] maxValue;
+	public double[] minValue;
+	private String type="prob";
 	
 	
 	
@@ -41,7 +43,7 @@ public class FeatureMatrix {
 				Document doc = new Document( documentNames.get(i), language );
 				this.rowLabel.add(documentNames.get(i));
 				documentObjects.add(doc);
-			}
+			} // still need to add "freq" option
 			
 		}
 		
@@ -74,10 +76,12 @@ public class FeatureMatrix {
 		this.columnLabel = new ArrayList<String>();
 		Set<String> vocabs = new TreeSet<String>();
 		for (FrequencyList d : documentObjects){
-			if (this.type.equals("prob")){
+//			if (this.type.equals("prob")){
+			if (d instanceof Document){
 				Document D = (Document)d;
 				vocabs.addAll(D.words.keySet());
-			} else if (this.type.equals("freq")){
+//			} else if (this.type.equals("freq")){
+			} else if (d instanceof FrequencyList){
 				vocabs.addAll(d.list.keySet());
 			}
 			
@@ -85,22 +89,35 @@ public class FeatureMatrix {
 		this.columnLabel.addAll(vocabs);
 		System.out.println("Vocab size : "+vocabs.size());
 		double[][] matrix = new double[documentObjects.size()][vocabs.size()];
+		this.maxValue = new double[vocabs.size()];
+		this.minValue = new double[vocabs.size()];
+		
+		//initialize maxValue and minValue
+		for (int i=0;i<vocabs.size();i++){
+			this.maxValue[i]=Double.MIN_VALUE;
+			this.minValue[i]=Double.MAX_VALUE;
+		}
 		
 		//Fill the matrix
+		double value=0;
 		for (int i=0;i< documentObjects.size();i++){
 			int j=0;
 			for (String v : vocabs){
 				try {
 					if (this.type.equals("prob")){
 						Document D = (Document)documentObjects.get(i);
-						matrix[i][j] = D.words.get(v);
+						value = D.words.get(v);
+						
 					} else if (this.type.equals("freq")){
-						matrix[i][j] = documentObjects.get(i).list.get(v);
+						value = documentObjects.get(i).list.get(v);
 					}
 					
 				} catch(Exception e){
-					matrix[i][j] = 0;
+					value = 0;
 				}
+				matrix[i][j] = value;
+				this.maxValue[j]=Math.max(this.maxValue[j], value);
+				this.minValue[j]=Math.min(this.minValue[j], value);
 				j++;
 			}
 		}

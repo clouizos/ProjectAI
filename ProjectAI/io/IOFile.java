@@ -15,6 +15,15 @@ public class IOFile {
 		}
 	}
 	
+	public void createWriteFile(String fileName){
+		try {
+			this.pw = new FileWriter(fileName);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	public void write(String data){
 		try {
 			pw.append(data);
