@@ -4,10 +4,12 @@ import gov.sandia.cognition.learning.algorithm.clustering.DirichletProcessCluste
 import gov.sandia.cognition.learning.algorithm.clustering.cluster.GaussianCluster;
 import gov.sandia.cognition.math.matrix.Vector;
 import gov.sandia.cognition.math.matrix.VectorFactory;
+import gov.sandia.cognition.statistics.bayesian.DirichletProcessMixtureModel;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 import data_representation.Centroid;
 import data_representation.Cluster;
@@ -44,6 +46,7 @@ public class DPC extends Clustering{
 	public void startClustering(){
 		
 		init_external();
+		Random random = new Random(seed);
 		
 		ArrayList<Vector> data = new ArrayList<Vector>();
 		
@@ -63,9 +66,33 @@ public class DPC extends Clustering{
 		}
 		
 		DirichletProcessClustering dpc = new DirichletProcessClustering();
-		//dpc.setMaxIterations(2000);
+		DirichletProcessMixtureModel<Vector> alg = dpc.getAlgorithm();
+		
+		int numInitClusters = 10;
+		int numIterations = 10;
+		// set this to false for best results at monolingual
+		boolean recalcAlpha = false;
+		// best alpha for monolingual is 100 (too much probably, why?)
+		double initAlpha = 100;
+		int burnIn = 5;
+		
+		System.out.println("Initial Parameters:");
+		System.out.println("numInitClusters: "+numInitClusters+", numIterations: "+numIterations+", recalcAlpha: "+recalcAlpha+", initAlpha: "+initAlpha+", burnIn: "+burnIn);
+		System.out.println();
+		
+		alg.setNumInitialClusters(numInitClusters);
+		alg.setIterationsPerSample(numIterations);
+		alg.setRandom(random);
+		alg.setReestimateAlpha(recalcAlpha);
+		alg.setInitialAlpha(initAlpha);
+		alg.setBurnInIterations(burnIn);
+		
         dpc.learn(data);
         
+        //DirichletProcessMixtureModel<Vector> alg2 = dpc.getAlgorithm();
+        
+        
+        //System.out.println("NumInit: "+alg.getNumInitialClusters());
         ArrayList<GaussianCluster> res = dpc.getResult();
         
         for(int i=0; i<res.size(); i++){
