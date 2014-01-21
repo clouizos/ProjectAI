@@ -1,32 +1,28 @@
 package clustering;
 
+import gov.sandia.cognition.learning.algorithm.clustering.DirichletProcessClustering;
+import gov.sandia.cognition.learning.algorithm.clustering.cluster.GaussianCluster;
 import gov.sandia.cognition.math.matrix.Vector;
-import gov.sandia.cognition.math.matrix.VectorEntry;
 import gov.sandia.cognition.math.matrix.VectorFactory;
-import gov.sandia.cognition.statistics.distribution.MixtureOfGaussians;
-import gov.sandia.cognition.statistics.distribution.MultivariateGaussian;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
-import java.util.Random;
 
 import data_representation.Centroid;
 import data_representation.Cluster;
 import data_representation.Document;
 import data_representation.ImportExternalDataset;
 
-public class GMM extends Clustering{
-	
+public class DPC extends Clustering{
 	public ArrayList<Document> documentObjects = new ArrayList<Document>();
 	String extFilePath;
 	String language;
 	int numComponents;
 	int numTopics;
 	int seed;
-
-	public GMM(int numComponents, String filePath, String language, int numTopics, int seed, boolean bilingual, String extFilePath){
+	
+	public DPC(int numComponents, String filePath, String language, int numTopics, int seed, boolean bilingual, String extFilePath) {
 		this.numComponents = numComponents;
 		this.numTopics = numTopics;
 		this.seed = seed;
@@ -43,13 +39,11 @@ public class GMM extends Clustering{
 		//else
 		//	extFilePath = extFilePath + "bilfeatureVectors_language_"+this.language+"_"+numTopics+".data";
 		System.out.println(extFilePath);
-		
 	}
 	
 	public void startClustering(){
-		init_external();
 		
-		final Random random = new Random(seed);
+		init_external();
 		
 		ArrayList<Vector> data = new ArrayList<Vector>();
 		
@@ -68,56 +62,26 @@ public class GMM extends Clustering{
 			data.add(data_point);
 		}
 		
-		final MixtureOfGaussians.EMLearner softLearner = new MixtureOfGaussians.EMLearner( numComponents, random );
-		softLearner.setMaxIterations(300);
-		MixtureOfGaussians.PDF learnedMixture = softLearner.learn(data);
+		DirichletProcessClustering dpc = new DirichletProcessClustering();
+		//dpc.setMaxIterations(2000);
+        dpc.learn(data);
+        
+        ArrayList<GaussianCluster> res = dpc.getResult();
+        
+        for(int i=0; i<res.size(); i++){
+        	Centroid dummycent = new Centroid();
+        	Cluster cluster = new Cluster(dummycent);
+        	
+        	ArrayList<Vector> members = res.get(i).getMembers();
+        	for(Vector member : members){
+        		String filename = inv_mapping.get(member.toString());
+              	Document doc = new Document(filename, language);
+              	cluster.addMember(doc);
+        	}
+        	clusters.add(cluster);
+        	
+        }
 		
-      for(int i=0; i<numComponents; i++){
-      	Centroid cent = new Centroid();
-      	Cluster cluster = new Cluster(cent);
-      	Vector mean = learnedMixture.getDistributions().get(i).getMean();
-      	Map<String, Double> cent_dist = new HashMap<String, Double>();
-      	Iterator<VectorEntry> it = mean.iterator();
-      	int j = 0;
-      	while(it.hasNext()){
-      		cent_dist.put(Integer.toString(j), it.next().getValue());
-      		j++;
-      	}
-      	cluster.centroid.distribution = cent_dist;
-      	clusters.add(cluster);
-      }
-      
-      int assignment = 0;
-      System.out.println("Soft assignments at clusters:");
-      System.out.println();
-      for (Vector vec : data){
-      	//System.out.println(learnedMixture.computeRandomVariableProbabilities(vec).length);
-      	
-      	assignment = learnedMixture.getMostLikelyRandomVariable(vec);
-      	//System.out.println(assignment);
-      	String filename = inv_mapping.get(vec.toString());
-      	Document doc = new Document(filename,"english");
-      	
-      	double[] probs = learnedMixture.computeRandomVariableProbabilities(vec);
-      	System.out.print(filename+": ");
-      	for(int i=0; i<probs.length; i++){
-      		System.out.print(probs[i]+" ");
-      	}
-      	
-      	System.out.println();
-      	clusters.get(assignment).addMember(doc);
-      }
-//      
-//      int j = 0;
-//      for(Cluster cluster : clusters){
-//      	System.out.println("Cluster: "+j);
-//      	for (Document doc : cluster.members){
-//      		System.out.println(doc.getFilename());
-//      	}
-//      	j++;
-//      	System.out.println();
-//      }
-      
 	}
 	
 	public void init_external(){
@@ -150,7 +114,6 @@ public class GMM extends Clustering{
 		System.out.println("Number of documents to be clustered:"+documentObjects.size()+"\n");
 	}
 	
-
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
