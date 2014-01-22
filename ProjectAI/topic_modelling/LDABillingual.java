@@ -84,7 +84,7 @@ public class LDABillingual {
         //  Note that the first parameter is passed as the sum over topics, while
         //  the second is the parameter for a single dimension of the Dirichlet prior.
         //int numTopics = 30;
-        model = new PolylingualTopicModel(numTopics,1.0);
+        model = new PolylingualTopicModel(numTopics,2.0);
         
         model.addInstances(training);
         
@@ -96,6 +96,7 @@ public class LDABillingual {
         //  for real applications, use 1000 to 2000 iterations)
         //int numIterations = 2;
         model.setNumIterations(numIterations);
+
         model.estimate();
 
         // Show the words and topics in the first instance
@@ -177,6 +178,9 @@ public class LDABillingual {
 	public void doInference(PolylingualTopicModel model, int language, String datasource, String stopwords, String datasource2, String stopwords2, int numTopics, boolean write) throws Exception{
 		    
 			ArrayList<Pipe> pipeList = new ArrayList<Pipe>();
+			
+			File f = new File("./features/test.data");
+			model.printDocumentTopics(f);
 			
 			if(language == 0 || language == 1){
 	        // Pipes: lowercase, tokenize, remove stopwords, map to features
@@ -272,8 +276,8 @@ public class LDABillingual {
 		        	Instance english = it1.next();
 		        	Instance dutch = it2.next();
 		        	
-		        	double[] topicDistribution = infer_lang.getSampledDistribution(english, 1000, 10, 100);
-		        	double[] topicDistribution2 = infer_lang2.getSampledDistribution(dutch, 1000, 10, 100);
+		        	double[] topicDistribution = infer_lang.getSampledDistribution(english, 100, 10, 10);
+		        	double[] topicDistribution2 = infer_lang2.getSampledDistribution(dutch, 100, 10, 10);
 		        	
 		        	System.out.println(english.getName());
 		        	
@@ -425,8 +429,8 @@ public class LDABillingual {
 	}
 	
 	public static void main(String[] args) throws Exception{
-		int numTopics = 30;
-		int numIterations = 1000;
+		int numTopics = 80;
+		int numIterations = 1001;
 		String options = "numTopics_"+numTopics+"_numIterations_"+numIterations;
 		int language = 2; // 0 english, 1 dutch, 2 mixed
 		
@@ -439,9 +443,9 @@ public class LDABillingual {
 		LDABillingual ldabil = new LDABillingual(pathStopEn, pathStopDu, pathEnglishData, pathDutchData, numTopics, numIterations);
 		
 		// if you want to train the model
-		//ldabil.createModel();
-		//PolylingualTopicModel model = ldabil.getModel();
-		//ldabil.writeModel(model, options);
+		ldabil.createModel();
+		PolylingualTopicModel model = ldabil.getModel();
+		ldabil.writeModel(model, options);
 		
 		// parse an already trained one and estimate the feature vectors
 		ldabil.loadModel(options);

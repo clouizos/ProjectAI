@@ -192,7 +192,7 @@ public class LDA {
 	        DecimalFormat df = new DecimalFormat("#.###");
 	        for(int i=0; i< instances.size(); i++){
 	        	//double[] topicDistribution = model.getTopicProbabilities(i);
-	        	double[] topicDistribution = inf.getSampledDistribution(instances.get(i), 1000, 10, 100);
+	        	double[] topicDistribution = inf.getSampledDistribution(instances.get(i), 100, 10, 10);
 	        	System.out.println(instances.get(i).getName());
 	        	if (write)
 	        		writer.print(instances.get(i).getName());
@@ -288,7 +288,7 @@ public class LDA {
 	}
 	
 	public static void main(String[] args) throws Exception{
-		int numTopics = 10;
+		int numTopics = 50;
 		int numIterations = 1000;
 		String language = "english";
 		String options = "numTopics_"+numTopics+"_numIterations_"+numIterations;
@@ -302,9 +302,9 @@ public class LDA {
 		LDA lda = new LDA(pathStopEn, pathEnglishData, numTopics, numIterations, language);
 		
 		// if you want to train the model
-		//lda.createModel();
-	    //ParallelTopicModel model = lda.getModel();
-		//lda.writeModel(model, options);
+		lda.createModel();
+	    ParallelTopicModel model = lda.getModel();
+		lda.writeModel(model, options);
 		
 		// parse an already trained one and estimate the feature vectors
 		lda.loadModel(options,language);
