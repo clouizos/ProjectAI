@@ -44,14 +44,32 @@ public class GMM extends Clustering{
 	int numComponents;
 	int numTopics;
 	int seed;
-
-	public GMM(int numComponents, String filePath, String language, int numTopics, int seed, boolean bilingual, String extFilePath){
+	int EMiter;
+	double tolerance;
+	
+	/**
+	 *  Mixture of Gaussians clustering, trained with the Expectation-Maximization
+	 *  
+	 * @param numComponents - the number of Gaussians to fit to the data
+	 * @param filePath - the filepath used for the evaluation
+	 * @param language - the language of the documents
+	 * @param EMiter - the iterations for the Expectation-Maximization
+	 * @param tolerance - the stoping criterion
+	 * @param numTopics - the dimensionality of the training set
+	 * @param seed - the seed for the random generator
+	 * @param bilingual - define if you want bilingual document clustering
+	 * @param extFilePath - the path of the external dataset
+	 */
+	
+	public GMM(int numComponents, String filePath, String language, int EMiter, double tolerance, int numTopics, int seed, boolean bilingual, String extFilePath){
 		this.numComponents = numComponents;
 		this.numTopics = numTopics;
 		this.seed = seed;
 		this.filePath = filePath;
 		this.extFilePath = extFilePath;
-		
+		this.EMiter = EMiter;
+		this.tolerance = tolerance;
+
 		if(!bilingual)
 			this.language = language;
 		else
@@ -108,8 +126,8 @@ public class GMM extends Clustering{
 		
 		
 		MixtureOfGaussians.EMLearner softLearner = new MixtureOfGaussians.EMLearner( numComponents, random );
-		softLearner.setMaxIterations(500);
-		softLearner.setTolerance(Double.MIN_VALUE);
+		softLearner.setMaxIterations(EMiter);
+		softLearner.setTolerance(tolerance);
 		MixtureOfGaussians.PDF learnedMixture = softLearner.learn(data);
 		
       for(int i=0; i<learnedMixture.getDistributionCount(); i++){
@@ -133,8 +151,9 @@ public class GMM extends Clustering{
       for (Vector vec : data){
       	//System.out.println(learnedMixture.computeRandomVariableProbabilities(vec).length);
       	
+    	// get the most probable cluster
       	assignment = learnedMixture.getMostLikelyRandomVariable(vec);
-      	//System.out.println(assignment);
+      	
       	String filename = inv_mapping.get(vec.toString());
       	Document doc = new Document(filename,"english");
       	
@@ -158,10 +177,6 @@ public class GMM extends Clustering{
 //      	System.out.println();
 //      }
       
-	}
-	
-	public Object divfunc(Vector obj1, Vector obj2){
-		return obj1.euclideanDistance(obj2);
 	}
 	
 	public void init_external(){
