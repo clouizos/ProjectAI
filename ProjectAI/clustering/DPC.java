@@ -74,7 +74,7 @@ public class DPC extends Clustering{
 		boolean recalcAlpha = false;
 		// best alpha for monolingual is 100 (too much probably, why?)
 		double initAlpha = 100;
-		int burnIn = 5;
+		int burnIn = 2;
 		
 		System.out.println("Initial Parameters:");
 		System.out.println("numInitClusters: "+numInitClusters+", numIterations: "+numIterations+", recalcAlpha: "+recalcAlpha+", initAlpha: "+initAlpha+", burnIn: "+burnIn);

@@ -1,10 +1,29 @@
 package clustering;
 
+import gov.sandia.cognition.learning.algorithm.clustering.KMeansClusterer;
+import gov.sandia.cognition.learning.algorithm.clustering.KMeansClustererWithRemoval;
+import gov.sandia.cognition.learning.algorithm.clustering.KMeansFactory;
+import gov.sandia.cognition.learning.algorithm.clustering.cluster.CentroidCluster;
+import gov.sandia.cognition.learning.algorithm.clustering.cluster.ClusterCreator;
+import gov.sandia.cognition.learning.algorithm.clustering.cluster.GaussianCluster;
+import gov.sandia.cognition.learning.algorithm.clustering.cluster.GaussianClusterCreator;
+import gov.sandia.cognition.learning.algorithm.clustering.cluster.VectorMeanCentroidClusterCreator;
+import gov.sandia.cognition.learning.algorithm.clustering.divergence.ClusterCentroidDivergenceFunction;
+import gov.sandia.cognition.learning.algorithm.clustering.divergence.ClusterDivergenceFunction;
+import gov.sandia.cognition.learning.algorithm.clustering.divergence.GaussianClusterDivergenceFunction;
+import gov.sandia.cognition.learning.algorithm.clustering.divergence.CentroidClusterDivergenceFunction;
+import gov.sandia.cognition.learning.algorithm.clustering.initializer.GreedyClusterInitializer;
+import gov.sandia.cognition.learning.algorithm.clustering.initializer.NeighborhoodGaussianClusterInitializer;
+import gov.sandia.cognition.learning.function.distance.CosineDistanceMetric;
+import gov.sandia.cognition.math.DivergenceFunction;
+import gov.sandia.cognition.math.Semimetric;
 import gov.sandia.cognition.math.matrix.Vector;
 import gov.sandia.cognition.math.matrix.VectorEntry;
 import gov.sandia.cognition.math.matrix.VectorFactory;
+import gov.sandia.cognition.math.matrix.Vectorizable;
 import gov.sandia.cognition.statistics.distribution.MixtureOfGaussians;
 import gov.sandia.cognition.statistics.distribution.MultivariateGaussian;
+import gov.sandia.cognition.statistics.distribution.MultivariateGaussian.WeightedMaximumLikelihoodEstimator;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -49,7 +68,7 @@ public class GMM extends Clustering{
 	public void startClustering(){
 		init_external();
 		
-		final Random random = new Random(seed);
+		Random random = new Random(seed);
 		
 		ArrayList<Vector> data = new ArrayList<Vector>();
 		
@@ -68,11 +87,32 @@ public class GMM extends Clustering{
 			data.add(data_point);
 		}
 		
-		final MixtureOfGaussians.EMLearner softLearner = new MixtureOfGaussians.EMLearner( numComponents, random );
-		softLearner.setMaxIterations(300);
+		
+		
+		
+//		int maxIterations = 1000;
+//        double removalThreshold = Double.MIN_VALUE;
+//        int numClusters = numComponents + 50;
+//        
+//        
+//        KMeansClustererWithRemoval<Vector, GaussianCluster> kmeans =
+//            new KMeansClustererWithRemoval<Vector, GaussianCluster>(
+//            numClusters,
+//            maxIterations,new NeighborhoodGaussianClusterInitializer(random),
+//            new GaussianClusterDivergenceFunction(),
+//            new GaussianClusterCreator(),
+//            removalThreshold);
+//        
+//		MixtureOfGaussians.Learner hardLearner = new MixtureOfGaussians.Learner(kmeans);
+//		MixtureOfGaussians.PDF learnedMixture = hardLearner.learn(data);
+		
+		
+		MixtureOfGaussians.EMLearner softLearner = new MixtureOfGaussians.EMLearner( numComponents, random );
+		softLearner.setMaxIterations(500);
+		softLearner.setTolerance(Double.MIN_VALUE);
 		MixtureOfGaussians.PDF learnedMixture = softLearner.learn(data);
 		
-      for(int i=0; i<numComponents; i++){
+      for(int i=0; i<learnedMixture.getDistributionCount(); i++){
       	Centroid cent = new Centroid();
       	Cluster cluster = new Cluster(cent);
       	Vector mean = learnedMixture.getDistributions().get(i).getMean();
@@ -118,6 +158,10 @@ public class GMM extends Clustering{
 //      	System.out.println();
 //      }
       
+	}
+	
+	public Object divfunc(Vector obj1, Vector obj2){
+		return obj1.euclideanDistance(obj2);
 	}
 	
 	public void init_external(){
