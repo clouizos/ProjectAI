@@ -17,16 +17,23 @@ public class Test {
 	public static void main(String[] args) {
 		String extFilePath = "./features/";
 		boolean useExtPath = true;
-		int numTopics = 100;
+		int numTopics = 20;
 		int seed = 20;
 		boolean bilingual = true;
 		String language = "both";
+		
+		// DBSCAN parameter
 		boolean removeSingleton = true;
+		
+		// GMM parameters
 		int EMiter = 300;
 		double tolerance = Double.MIN_VALUE;
+		
+		// DPC parameters
+		int numInitClusters = 20;
 		int numIterPerSample = 10;
-		double initAlpha = 100.0;
-		boolean recalcAlpha = false;
+		double initAlpha = 2.0;
+		boolean recalcAlpha = true;
 		int burnIn = 2;
 		
 		
@@ -37,28 +44,30 @@ public class Test {
 		else
 			pathEval = "./Testdata/dataset/English";
 		
-//		if(bilingual)
-			extFilePath = extFilePath + "bilfeatureVectors_language_"+language+"_"+numTopics+".data";
-//		else
-			//extFilePath = extFilePath + "featureVectors_language_"+language+"_"+numTopics+".data";
+		if(bilingual)
+			//extFilePath = extFilePath + "bilfeatureVectors_language_"+language+"_"+numTopics+".data";
+			extFilePath = extFilePath + "features_lda_lsa_"+numTopics+".data";
+		else
+			extFilePath = extFilePath + "featureVectors_language_"+language+"_"+numTopics+".data";
 			
 //		extFilePath = extFilePath + "featureVectors_language_english_20.data";
 		//extFilePath = extFilePath + "features_lsa_English_30.data";
 		
-		Metric metric = new KLdivergence(true, "minimum");
+		//Metric metric = new KLdivergence(true, "minimum");
 		//Metric metric = new KLdivergence(true, "average");
-		//Metric metric  = new EuclidianDistance(true);
 		//Metric metric = new JSdivergence(true);
 		//Metric metric = new HellingerFunction(true);
 		//Metric metric = new JaccardsCoefficient(true);
+		
+		Metric metric  = new EuclidianDistance(true);
 		//Metric metric = new L1norm(true);
 		
 		//Kmeans clusterer = new  Kmeans(10, pathEval, language, metric, seed, useExtPath, extFilePath);
 		//FuzzyCmeans clusterer = new FuzzyCmeans(10, 2, 0.001, pathEval, language, metric, seed, useExtPath, extFilePath);
 		//DBScan clusterer = new DBScan(5, 0.5, pathEval, language, metric, seed, 400, removeSingleton, useExtPath, extFilePath);
 		//GMM clusterer = new GMM(10, pathEval, language, EMiter, tolerance, numTopics, seed, bilingual, extFilePath);
-		//DPC clusterer = new DPC(10, pathEval, language, numIterPerSample, initAlpha, recalcAlpha, burnIn, numTopics, seed, bilingual, extFilePath);
-		AssignHighest clusterer = new AssignHighest(pathEval, language, numTopics, bilingual, extFilePath);
+		DPC clusterer = new DPC(numInitClusters, pathEval, language, numIterPerSample, initAlpha, recalcAlpha, burnIn, numTopics, seed, bilingual, extFilePath);
+		//AssignHighest clusterer = new AssignHighest(pathEval, language, numTopics, bilingual, extFilePath);
 		
 		
 		clusterer.startClustering();
