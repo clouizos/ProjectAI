@@ -57,8 +57,8 @@ public class Test {
 		//FuzzyCmeans clusterer = new FuzzyCmeans(10, 2, 0.001, pathEval, language, metric, seed, useExtPath, extFilePath);
 		//DBScan clusterer = new DBScan(5, 0.5, pathEval, language, metric, seed, 400, removeSingleton, useExtPath, extFilePath);
 		//GMM clusterer = new GMM(10, pathEval, language, EMiter, tolerance, numTopics, seed, bilingual, extFilePath);
-		DPC clusterer = new DPC(10, pathEval, language, numIterPerSample, initAlpha, recalcAlpha, burnIn, numTopics, seed, bilingual, extFilePath);
-		//AssignHighest clusterer = new AssignHighest(10, pathEval, language, numTopics, seed, bilingual, extFilePath);
+		//DPC clusterer = new DPC(10, pathEval, language, numIterPerSample, initAlpha, recalcAlpha, burnIn, numTopics, seed, bilingual, extFilePath);
+		AssignHighest clusterer = new AssignHighest(pathEval, language, numTopics, bilingual, extFilePath);
 		
 		
 		clusterer.startClustering();
