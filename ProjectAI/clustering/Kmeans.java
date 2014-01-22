@@ -39,8 +39,8 @@ public class Kmeans extends Clustering{
         ArrayList<Document> documentObjects = new ArrayList<Document>();
         //public ArrayList<Cluster> clusters = new ArrayList<Cluster>();
         Random r = new Random();
-        boolean externalDataset;
-        String extFilePath;
+        public boolean externalDataset;
+        public String extFilePath;
 
         /**
          * Constructor
@@ -62,7 +62,7 @@ public class Kmeans extends Clustering{
                 this.seed = seed;
                 this.externalDataset = externalDataset;
                 this.extFilePath = extFilePath;        
-                this.ID = "Kmeans-"+k+"-"+metric.ID+"-"+externalDataset;
+                this.ID = "Kmeans-"+k+"-"+metric.ID+"-"+externalDataset+"-"+extFilePath;
         }
 
         /**
