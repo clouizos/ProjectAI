@@ -5,3 +5,6 @@
 /Purity.class
 /DBIndex.class
 /GapStatistic.class
+/ExtrinsicEvaluation.class
+/IntrinsicEvaluation.class
+/SilhouetteCoefficient.class
