@@ -71,7 +71,7 @@ def output(docs, docs2, X, Y, components):
     for i in range(len(docs)):
         f.write(docs[i]+','+' '.join(map(str,X[i]))+'\n')
         f.write(docs2[i]+','+' '.join(map(str,Y[i]))+'\n')
-    f.close
+    f.close()
     
 def import_lda(filename):
     lines = filename.read().splitlines()
@@ -79,7 +79,7 @@ def import_lda(filename):
     labels = range(nr_lines)
     features = range(nr_lines)
     for i in range(nr_lines):
-        labels[i], data = lines[0].split(',')
+        labels[i], data = lines[i].split(',')
         features[i] = map(float, data.split())
     X = as_float_array(features)
     return labels, X
@@ -102,8 +102,8 @@ f2.close()
 # standard english stopwords - 318 words
 #stopwords = 'english'
 # stopwords from nltk english: 127 dutch: 101
-s_words = stopwords.words('english')
-s_words2 = stopwords.words('dutch')
+#s_words = stopwords.words('english')
+#s_words2 = stopwords.words('dutch')
 #stopwords = [line.strip() for line in open('englishStopwords_mixed.txt')]
 
 # number of clusters
