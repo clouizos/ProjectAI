@@ -9,9 +9,11 @@ import java.util.Collections;
 import java.util.Formatter;
 import java.util.Locale;
 
+import plugin_metrics.L1norm;
 import plugin_metrics.Metric;
 import cc.mallet.topics.TopicInferencer;
 import clustering.Clustering;
+import clustering.Kmeans;
 import data_representation.Cluster;
 import data_representation.Document;
 import data_representation.FeatureMatrix;
@@ -19,6 +21,7 @@ import data_representation.FrequencyList;
 
 public class GapStatistic extends IntrinsicEvaluation {
 	private int B=5; //default value of the number of reference dataset
+	public double sk;
 
 	public GapStatistic(Metric metric) {
 		this.metric = metric;
@@ -28,6 +31,8 @@ public class GapStatistic extends IntrinsicEvaluation {
 	public void computeScore(Clustering C) {
 		
 		double Wk = computeWk(C);
+		System.out.println("_____________"+Wk);
+		
 
 		// use reference datasets to compute the gap and standard deviations
 
@@ -46,7 +51,15 @@ public class GapStatistic extends IntrinsicEvaluation {
 		
 		//cluster each of those reference dataset with the same clustering algorithm
 		double[] Wkb = new double[this.B];
-		//******************************need to be filled later
+		Clustering clusterer=null;
+		for (int i=0;i<this.B;i++){
+			if (C instanceof Kmeans){
+				clusterer = new Kmeans(((Kmeans) C).k, C.filePath, ((Kmeans) C).language, ((Kmeans) C).metric, ((Kmeans) C).seed, ((Kmeans) C).externalDataset, "./cluster_evaluation/Reference-"+i+".data");
+				clusterer.startClustering();
+			} // *************************add other clustering algorithms
+			
+			Wkb[i]=computeWk(clusterer);
+		}
 		
 		
 		//compute the gap
@@ -57,6 +70,7 @@ public class GapStatistic extends IntrinsicEvaluation {
 			sumWkb+=Math.log(Wkb[i]);
 		}
 		gap = gap/this.B;
+		this.score=gap;
 		
 		//compute standard deviation
 		double mean=(1/this.B)*sumWkb;
@@ -66,10 +80,21 @@ public class GapStatistic extends IntrinsicEvaluation {
 		}
 		sdk = sdk/this.B;
 		sdk = Math.pow(sdk, 0.5);
-		double sk = sdk*Math.pow(1+1/this.B, 0.5);
+		this.sk = sdk*Math.pow(1+1/this.B, 0.5);
+		
+		IOFile io = new IOFile();
+		io.openWriteFile("GapStatistic.csv");
+		io.write(C.ID);
+		io.write(",");
+		io.write(Double.toString(this.score));
+		io.write(",");
+		io.write(Double.toString(this.sk));
+		io.write("\n");
+		io.close();
 		
 		System.out.println("Gap Statistic for " + C.clusters.size()
 				+ " clusters : "+Wk );
+		
 
 	}
 	
@@ -94,8 +119,9 @@ public class GapStatistic extends IntrinsicEvaluation {
 					Document d2 = cluster.members.get(i * 2 + 1);
 					D += metric.computeDist(d1.words, d1.words.size(),
 							d2.words, d2.words.size());
+					
 				}
-				Wk += 1 / (2 * cluster.members.size()) * D;
+				Wk += (1 / (double)(2 * cluster.members.size())) * D;
 			}
 		}
 		return Wk;
@@ -131,12 +157,14 @@ public class GapStatistic extends IntrinsicEvaluation {
 		}
 	}
 	
-//	public static void main(String[] args){
-//		double min = 0.2;
-//		double max = 0.4;
-//		double randVal = min
-//				+ (Math.random() * (max - min));
-//		System.out.println(randVal);
-//	}
+	public static void main(String[] args){
+		String extFilePath = "./features/";
+		String language = "english";
+		int numTopics = 10;
+		Metric metric = new L1norm(true);
+		extFilePath = extFilePath + "featureVectors_language_"+language+"_"+numTopics+".data";
+		Clustering KM = new Kmeans(5, "../Testdata/dataset/English",  language, metric, 20, true, extFilePath);
+		System.out.println(KM.getClass().getName());
+	}
 
 }
