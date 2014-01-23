@@ -5,6 +5,8 @@ import java.io.PrintWriter;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Scanner;
 
 /**
@@ -16,15 +18,17 @@ import java.util.Scanner;
  * number of lines.
  */
 public class CreationDatafiles{
-	public static void main(String[] args){
+	public static void main(String[] args) throws IOException{
 		// set to false to create snippets with a certain number of files
 		boolean createDummyfiles = true; 
 		
 		if(createDummyfiles){
-			String language = "English";
-			//String language = "Dutch";
-			String output_dir = "../Testdata/";
-			output_dir = output_dir + language + "/";
+			//String language = "English";
+			String language = "Dutch";
+			int nr = 5;
+			String output_dir = "../Testdata/dataset/";
+			output_dir = output_dir + language + nr + "/";
+			Files.createDirectories(Paths.get(output_dir));
 			
 			// Directory that contains the files of which dummyfiles should
 			// be created.
@@ -74,30 +78,48 @@ public class CreationDatafiles{
 		else{
 			// With the following code one can create snippets from files with 
 			// a certain number of lines
-			String language = "English";
-			//String language = "Dutch";
+			//String language = "English";
+			String language = "Dutch";
+			Boolean us = true;
+			int nr = 5;
+			//int fileMax = 120;
+			int fileMax = Integer.MAX_VALUE;
 			
-			//String directory = "../data/TAUS/uk/nl"; // UK-dutch directory
-			//String directory = "../data/TAUS/us/nl"; // US-dutch directory
-			//String directory = "../data/TAUS/uk/en"; // UK-english directory
-			String directory = "../data/TAUS/us/en"; // US-english directory
+			String directory, prefix, output_dir, output_dir2, extension;
 			
-			String output_dir = "../Testdata/";
-			output_dir = output_dir + language + "/";
+			switch(language) {
+				case "Dutch":
+					extension = ".nl"; // Dutch
+					if(us) {
+						directory = "../data/TAUS/us/nl"; // US-dutch directory
+						prefix = "CS"; // CS for US-english/dutch dataset
+					} else {
+						directory = "../data/TAUS/uk/nl"; // UK-dutch directory
+						prefix = "CK"; // CK for UK-english/dutch
+					}
+					break;
+				default:
+					extension = ".en"; // English
+					if(us) {
+						directory = "../data/TAUS/us/en"; // US-dutch directory
+						prefix = "CS"; // CS for US-english/dutch dataset
+					} else {
+						directory = "../data/TAUS/uk/en"; // UK-dutch directory
+						prefix = "CK"; // CK for UK-english/dutch
+					}
+			}
 			
-			String prefix = "CS"; // CS for US-english/dutch dataset, CK for UK-english/dutch
-			
-			//String extension = ".nl"; // Dutch
-			String extension = ".en"; // English
+			output_dir = "../Testdata/dataset/";
+			output_dir = output_dir + language + nr + "/";
+			Files.createDirectories(Paths.get(output_dir));
 			
 			ArrayList<String> files = FileLoadingUtils.listFilesDirectory(directory);
 			int desiredNumberOfLines = 2000;
-			int fileMax = 40;
 	
 				for( int i = 0; i < files.size(); i++ ){
 					if( files.get(i).contains(extension) ){
 					String file = files.get(i);
-					int index = file.indexOf(".en"); // change to .en for english
+					int index = file.indexOf(extension); // change to .en for english
 					int index2 = file.lastIndexOf("/")+1;
 					int fileN = 1;
 					String file2 = prefix + file.substring(index2, index) + 
