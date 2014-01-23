@@ -1,12 +1,15 @@
 #!/bin/bash
 
-
-x="dutch_final.data"
+nr=2
+x="../DataLDA/dutch_final$nr.data"
+dir="../../Testdata/dataset/"
 
 echo -n '' > $x
-for file in "Dutch/"*.nl
+for file in $dir"Dutch$nr/"*.nl
 do
-    echo -n "$file, dutch, " >> $x
+    var=${file##*/}
+    var=${var/.nl/}
+    echo -n "$var, dutch, " >> $x
     tr '\n' ' ' < $file >> $x
     echo '\n' >> $x
 done
