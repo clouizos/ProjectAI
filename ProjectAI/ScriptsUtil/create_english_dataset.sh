@@ -1,6 +1,6 @@
 #!/bin/bash
 
-nr=2
+nr=$1
 x="../DataLDA/english_final$nr.data"
 dir="../../Testdata/dataset/"
 
