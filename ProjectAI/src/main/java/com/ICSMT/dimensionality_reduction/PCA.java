@@ -31,7 +31,7 @@ public class PCA {
 	
 	public PCA(String filePath, int nPC, int nDoc) {
 		this.nPC = nPC;
-		FeatureMatrix fm = new FeatureMatrix(filePath,nDoc,"english","freq");
+		FeatureMatrix fm = new FeatureMatrix(filePath,nDoc,"english","prob");
 		this.X = new Matrix(fm.matrix);
 		covariance = this.X.covariance();
 		EigenvalueDecomposition e = covariance.eig();
@@ -54,7 +54,7 @@ public class PCA {
 	public static void main(String[] arg) {
 		String filePath = "../Testdata/dataset/English";
 		int nPrincipleComp = 50;
-		int nDocs = 2;
+		int nDocs = 10;
 		PCA pca = new PCA(filePath, nPrincipleComp,nDocs);
 		System.out.println(pca.EigenValues.getColumnDimension());
 		System.out.println(pca.EigenValues.getRowDimension());

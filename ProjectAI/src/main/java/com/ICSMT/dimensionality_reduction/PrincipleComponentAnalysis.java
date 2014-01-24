@@ -217,8 +217,8 @@ public class PrincipleComponentAnalysis {
     public static void main(String[] arg) {
 		String filePath = "../Testdata/dataset/English";
 		int nPC = 8;
-		int nDocs = 2;
-		FeatureMatrix FM = new FeatureMatrix(filePath,nDocs,"english","freq");
+		int nDocs = 30;
+		FeatureMatrix FM = new FeatureMatrix(filePath,nDocs,"english","prob");
 		PrincipleComponentAnalysis Pca = new PrincipleComponentAnalysis();
 		Pca.setup(FM.rowLabel.size(), FM.columnLabel.size());
 		for (int i=0;i<FM.rowLabel.size();i++){
