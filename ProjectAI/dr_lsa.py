@@ -70,11 +70,24 @@ def output(filenames, X, language, components):
     for filename in filenames:
         f.write(filename+','+' '.join(map(str,X[i]))+'\n')
         i += 1
-    f.close 
+    f.close
+    
+def number_aware_tokenizer(doc):
+    """ Tokenizer that maps all numeric tokens to a placeholder.
+
+    For many applications, tokens that begin with a number are not directly
+    useful, but the fact that such a token exists can be relevant.  By applying
+    this form of dimensionality reduction, some methods may perform better.
+    """
+    token_pattern = re.compile(u'(?u)\\b\\w\\w+\\b')
+    tokens = token_pattern.findall(doc)
+    tokens = ["#NUMBER" if token[0] in "0123456789_" else token
+              for token in tokens]
+    return tokens
     
 # state documents to read in
-language = 'English'
-filenames = glob.glob('../Testdata/dataset/'+language+'/*.en')
+language = 'Dutch'
+filenames = glob.glob('../Testdata/dataset/'+language+'/*.nl')
 
 docs = [open(f).read() for f in filenames]
 

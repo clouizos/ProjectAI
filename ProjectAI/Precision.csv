@@ -18,3 +18,15 @@ null,0.32,0.42161363636363636,0.3323917248910562
 Kmeans-10-EuclidianDistance-true,0.69,0.8788787878787878,0.727832159016695
 Kmeans-10-EuclidianDistance-true,0.8199999999999998,0.8432651515151516,0.788799414778071
 Kmeans-10-EuclidianDistance-true,0.7549999999999999,0.8588787878787878,0.7931300505783707
+Kmeans-10-EuclidianDistance-true-./features/features_lsa_English2_100.data,0.3663911845730028,0.814133066199182,0.48251218681223323
+Kmeans-10-EuclidianDistance-true-./features/features_lsa_English_100.data,0.69,0.8788787878787878,0.727832159016695
+Kmeans-10-EuclidianDistance-true-./features/features_lsa_English2_100.data,0.3663911845730028,0.814133066199182,0.48251218681223323
+Kmeans-10-EuclidianDistance-true-./features/features_lsa_English2_100.data,0.42148760330578516,0.8729651890808917,0.5413906831998767
+Kmeans-10-EuclidianDistance-true-./features/features_cca_lsa_100.data2,0.19696969696969696,0.9098401369062528,0.3121200128635394
+Kmeans-10-EuclidianDistance-true-./features/features_cca_lsa_100.data,0.39749999999999996,0.8322424242424243,0.528943089128364
+Kmeans-10-KLdivergence-false-./features/features_cca_lsa_100.data,0.41500000000000004,0.879060606060606,0.5310771171318415
+Kmeans-10-KLdivergence-true-./features/featureVectors_language_english_20.data,0.7849999999999999,0.781814393939394,0.7662489763570759
+Kmeans-10-EuclidianDistance-true-./features/features_lsa_English_100.data,0.69,0.8788787878787878,0.727832159016695
+Kmeans-10-EuclidianDistance-true-./features/features_lsa_English_100.data,0.15,1.0,0.2608695652173913
+Kmeans-10-EuclidianDistance-true-./features/features_lsa_English_100.data,0.69,0.8788787878787878,0.727832159016695
+Kmeans-10-EuclidianDistance-true-./features/features_lsa_English_100.data,0.69,0.8788787878787878,0.727832159016695
