@@ -33,16 +33,16 @@ public abstract class Metric{
 	public int getBestCluster(Document doc, ArrayList<Cluster> clusters){
 		int bestCluster = 0;
 		ArrayList<Integer> closestCentroid = getClosestCentroids(doc, clusters);
-
+		
 		// Determine closest centroid from the resulting list
 		//int numberMembers = Integer.MAX_VALUE;
-		/*for( int c:closestCentroid ){
-			if( clusters.get(c).members.size() < numberMembers ){
+		int numberMembers = 0;
+		for( int c:closestCentroid ){
+			if( clusters.get(c).members.size() >= numberMembers ){
 				bestCluster = c;
 				numberMembers = clusters.get(c).members.size();
 			}
-		}*/
-		bestCluster = closestCentroid.get(0);
+		}
 		return bestCluster;
 	}
 	
