@@ -121,7 +121,7 @@ public class RTVR {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		String filePath = "./Testdata/dataset/English";
+		String filePath = "./target/Testdata/dataset/English";
 		int nDocs = 200;
 		int threshold=15;  //term that appear in less than this number will be replaced
 		FeatureMatrix FM = new FeatureMatrix(filePath,nDocs,"english","prob");

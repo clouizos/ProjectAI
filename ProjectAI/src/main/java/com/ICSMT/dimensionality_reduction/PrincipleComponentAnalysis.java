@@ -215,7 +215,7 @@ public class PrincipleComponentAnalysis {
     }
     
     public static void main(String[] arg) {
-		String filePath = "../Testdata/dataset/English";
+		String filePath = "./target/Testdata/dataset/English";
 		int nPC = 8;
 		int nDocs = 30;
 		FeatureMatrix FM = new FeatureMatrix(filePath,nDocs,"english","prob");
