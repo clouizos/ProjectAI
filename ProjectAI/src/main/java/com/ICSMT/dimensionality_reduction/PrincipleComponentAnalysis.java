@@ -70,8 +70,8 @@ public class PrincipleComponentAnalysis {
             throw new IllegalArgumentException("More components requested that the data's length.");
         if( sampleIndex != A.getNumRows() )
             throw new IllegalArgumentException("Not all the data has been added");
-        if( numComponents > sampleIndex )
-            throw new IllegalArgumentException("More data needed to compute the desired number of components");
+        //if( numComponents > sampleIndex )
+        //    throw new IllegalArgumentException("More data needed to compute the desired number of components");
 
         this.numComponents = numComponents;
 
