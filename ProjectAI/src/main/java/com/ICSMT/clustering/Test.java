@@ -15,7 +15,7 @@ public class Test {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		String extFilePath = "./features/";
+		String extFilePath = "./src/main/java/com/ICSMT/features/";
 		boolean useExtPath = true;
 		int numTopics = 20;
 		int seed = 20;
@@ -40,9 +40,9 @@ public class Test {
 		String pathEval = "";
 		
 		if(language.equals("both"))
-			pathEval = "./Testdata/dataset/Both";
+			pathEval = "./target/Testdata/dataset/Both";
 		else
-			pathEval = "../Testdata/dataset/English";
+			pathEval = "./target/Testdata/dataset/English";
 		/*
 		if(bilingual)
 			//extFilePath = extFilePath + "bilfeatureVectors_language_"+language+"_"+numTopics+".data";
