@@ -17,9 +17,9 @@ import java.io.*;
 public class StandardVocabulary{
 	private String language;
 	public Map<String, String> shortlist; 
-	private String english = "englishStopwords_mixed.txt";//"englishShortlist.txt";
-	private String german = "germanShortlist.txt";
-	private String dutch = "dutchStopwords_mixed.txt";//"dutchShortlist.txt";
+	private String english = "./src/main/java/com/ICSMT/englishStopwords_mixed.txt";//"englishShortlist.txt";
+	private String german = "./src/main/java/com/ICSMT/germanShortlist.txt";
+	private String dutch = "./src/main/java/com/ICSMT/dutchStopwords_mixed.txt";//"dutchShortlist.txt";
 	
 	/**
 	 * Constructor
