@@ -42,9 +42,10 @@ public class SilhouetteCoefficient extends IntrinsicEvaluation {
 					sumA += metric.computeDist(d.words, d.words.size(), notD.words, notD.words.size());
 //					System.out.println("SUMA "+sumA);
 				}
-				A = sumA/(double) (cluster.members.size()-1) ;
+				if (cluster.members.size()>1){
+					A = sumA/(double) (cluster.members.size()-1) ;
 //				System.out.println("A : "+A);
-				
+				}
 				//cari cluster terdekat
 				double minDist = Double.MAX_VALUE;
 				Cluster closestCluster=null;

@@ -1,6 +1,6 @@
 package dimensionality_reduction;
 
-
+import io.IOFile;
 
 import org.ejml.data.DenseMatrix64F;
 import org.ejml.factory.DecompositionFactory;
@@ -94,19 +94,19 @@ public class PrincipleComponentAnalysis {
 
         // Compute SVD and save time by not computing U
         SingularValueDecomposition<DenseMatrix64F> svd =
-                DecompositionFactory.svd(A.numRows, A.numCols, false, true, false);
+                DecompositionFactory.svd(A.numRows, A.numCols, true, true, false);
         if( !svd.decompose(A) )
             throw new RuntimeException("SVD failed");
 
-        V_t = svd.getV(null,true);
+        V_t = svd.getU(null,false);
         DenseMatrix64F W = svd.getW(null);
         
 
         // Singular values are in an arbitrary order initially
-        SingularOps.descendingOrder(null,false,W,V_t,true);
+        SingularOps.descendingOrder(V_t,false,W,null,true);
 
         // strip off unneeded components and find the basis
-        V_t.reshape(numComponents,mean.length,true);
+        V_t.reshape(V_t.numRows,numComponents,true);
     }
 
     /**
@@ -119,8 +119,8 @@ public class PrincipleComponentAnalysis {
         if( which < 0 || which >= numComponents )
             throw new IllegalArgumentException("Invalid component");
 
-        DenseMatrix64F v = new DenseMatrix64F(1,A.numCols);
-        CommonOps.extract(V_t,which,which+1,0,A.numCols,v,0,0);
+        DenseMatrix64F v = new DenseMatrix64F(A.numRows,1);
+        CommonOps.extract(V_t,0,A.numRows,which,which+1,v,0,0);
 
         return v.data;
     }
@@ -215,28 +215,38 @@ public class PrincipleComponentAnalysis {
     }
     
     public static void main(String[] arg) {
-		String filePath = "./target/Testdata/dataset/English";
-		int nPC = 8;
-		int nDocs = 30;
+		System.out.println(System.getProperty("user.dir"));
+		String filePath = "../Testdata/dataset/English";
+		int nPC = 500;
+		int nDocs = 200;
 		FeatureMatrix FM = new FeatureMatrix(filePath,nDocs,"english","prob");
+		System.out.println(FM.matrix[0].length);
+		//System.out.println(System.getProperty("user.dir"));
 		PrincipleComponentAnalysis Pca = new PrincipleComponentAnalysis();
 		Pca.setup(FM.rowLabel.size(), FM.columnLabel.size());
 		for (int i=0;i<FM.rowLabel.size();i++){
 			Pca.addSample(FM.matrix[i]);
 		}
-		Pca.computeBasis(nDocs);
+		Pca.computeBasis(nPC);
 		System.out.println(Pca.V_t.getNumRows());
 		System.out.println(Pca.V_t.getNumCols());
-		
+		IOFile IO = new IOFile();
+		String fileName = "PCAFeatureVector-"+Pca.V_t.getNumRows()+"-"+Pca.V_t.getNumCols()+".data";
+		IO.createWriteFile(fileName);
 		for (int i=0;i<Pca.V_t.getNumRows();i++){
+			IO.write(FM.rowLabel.get(i)+",");
 			for (int j=0;j<nPC;j++){
 				System.out.printf("%.5f \t",Pca.V_t.get(i, j));
+				IO.write(Double.toString(Pca.V_t.get(i,j)));
+				IO.write(" ");
 			}
 			System.out.println();
+			IO.write("\n");
 		}
+		IO.close();
 		
-		double[] tes = Pca.getBasisVector(0);
-		System.out.println(tes.length);
+//		double[] tes = Pca.getBasisVector(0);
+//		System.out.println(tes.length);
 
 //		 PrincipleComponentAnalysis Pca = new PrincipleComponentAnalysis();
 //		 Pca.setup(5, 4);
