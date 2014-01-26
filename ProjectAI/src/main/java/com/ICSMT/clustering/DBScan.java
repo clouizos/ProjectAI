@@ -58,7 +58,7 @@ public class DBScan extends Clustering{
 	int nrdocsinit;
 	String choice;
 
-	
+
 	/**
 	 * Constructor
 	 * @param minPts - number of required points in order to form a cluster
@@ -80,12 +80,12 @@ public class DBScan extends Clustering{
 		this.removeSingle = removeSingle;
 		this.useExternal = useExternal;
 		this.extFilePath = extFilePath;
-		this.ID = "DBSCAN-"+minPts+"-"+eps+"-"+metric.ID+"-"+useExternal;
+		this.ID = "DBSCAN-"+minPts+"-"+eps+"-"+metric.ID+"-"+useExternal+"-"+extFilePath;
 		this.smartInit = smartInit;
 		this.nrdocsinit = nrdocsinit;
 		this.choice = choice;
 	}
-	
+
 	/**
 	 * This method starts the clustering process by first creating the dataset
 	 * (documents). Afterwards it performs the clustering process by first starting with an
