@@ -9,6 +9,7 @@ import plugin_metrics.Metric;
 import data_representation.Centroid;
 import data_representation.Cluster;
 import data_representation.Document;
+import io.IOFile;
 
 public class DBIndex extends IntrinsicEvaluation{
 	
@@ -88,8 +89,17 @@ public class DBIndex extends IntrinsicEvaluation{
 			Ri = Double.MIN_VALUE;
 		}
 		dbindex = dbindex/C.clusters.size();
+		this.score = dbindex;
 //		return dbindex;
 		System.out.println("DB Index is : "+dbindex);
+		IOFile io = new IOFile();
+		io.openWriteFile("DBIndex.csv");
+		io.write(C.ID);
+		io.write(",");
+		io.write(Double.toString(this.score));
+		io.write("\n");
+		io.close();
+
 		
 	}
 	

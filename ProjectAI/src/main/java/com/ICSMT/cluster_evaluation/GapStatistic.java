@@ -31,7 +31,7 @@ public class GapStatistic extends IntrinsicEvaluation {
 	public void computeScore(Clustering C) {
 		
 		double Wk = computeWk(C);
-		System.out.println("_____________"+Wk);
+		//System.out.println("_____________"+Wk);
 		
 
 		// use reference datasets to compute the gap and standard deviations
@@ -54,7 +54,7 @@ public class GapStatistic extends IntrinsicEvaluation {
 		Clustering clusterer=null;
 		for (int i=0;i<this.B;i++){
 			if (C instanceof Kmeans){
-				clusterer = new Kmeans(((Kmeans) C).k, C.filePath, ((Kmeans) C).language, ((Kmeans) C).metric, ((Kmeans) C).seed, ((Kmeans) C).externalDataset, "./cluster_evaluation/Reference-"+i+".data");
+				clusterer = new Kmeans(((Kmeans) C).k, C.filePath, ((Kmeans) C).language, ((Kmeans) C).metric, ((Kmeans) C).seed, ((Kmeans) C).externalDataset, "Reference-"+i+".data");
 				clusterer.startClustering();
 			} // *************************add other clustering algorithms
 			
@@ -141,7 +141,7 @@ public class GapStatistic extends IntrinsicEvaluation {
 		}
 		for (int i = 0; i < this.B; i++) {
 			IOFile IO = new IOFile();
-			String fileName = "./cluster_evaluation/Reference-" + i + ".data";
+			String fileName = "Reference-" + i + ".data";
 			IO.createWriteFile(fileName);
 			for (int j = 0; j < docs.size(); j++) {
 				IO.write("Doc-"+j+",");
