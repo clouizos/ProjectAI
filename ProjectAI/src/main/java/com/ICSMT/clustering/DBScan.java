@@ -288,7 +288,6 @@ public class DBScan extends Clustering{
 		double avg_eps = 0.0;
 		int totDiss = 0;
 		for (int i=0; i<nravg; i++){
-
 			Document doc1 = documentObjects.get(i);
 			Document doc2 = documentObjects.get(i+1);
 			totDiss ++;
@@ -296,16 +295,17 @@ public class DBScan extends Clustering{
 		}
 
 		Collections.sort(eps_to_check);
-
+		
+		/*
 		double min = Double.MAX_VALUE;
 		for(int i=0; i<eps_to_check.size(); i++){
 			//avg_eps += eps_to_check.get(i);
 			if(eps_to_check.get(i) < min)
 				min = eps_to_check.get(i);
-		}
+		}*/
 
 		//this.eps = avg_eps/totDiss; //return average
-		this.eps = min;		// return minimum
+		this.eps = eps_to_check.get(0);		// return minimum
 		//this.eps = eps_to_check.get(eps_to_check.size()/2); //return median
 	}
 	
