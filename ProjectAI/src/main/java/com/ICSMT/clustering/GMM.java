@@ -80,6 +80,8 @@ public class GMM extends Clustering{
 		//else
 		//	extFilePath = extFilePath + "bilfeatureVectors_language_"+this.language+"_"+numTopics+".data";
 		System.out.println(extFilePath);
+		this.ID = "GMM-"+numComponents+"-"+numTopics+"-"+EMiter;
+
 		
 	}
 	
