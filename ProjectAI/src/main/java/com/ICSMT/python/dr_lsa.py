@@ -19,6 +19,9 @@ from sklearn.feature_extraction.text import TfidfTransformer
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import Normalizer
 from sklearn import metrics
+import cPickle as pickle
+import re
+from nltk.corpus import stopwords
 
 from sklearn.cluster import KMeans, MiniBatchKMeans
 
@@ -64,8 +67,8 @@ if len(args) > 0:
     op.error("this script takes no arguments.")
     sys.exit(1)
 
-def output(filenames, X, language, components):
-    f = open('features/features_lsa_'+language+'_'+str(components)+'.data', 'w')
+def output(filenames, X, output_file, components):
+    f = open(output_file+'_'+components, 'w')
     i = 0
     for filename in filenames:
         f.write(filename+','+' '.join(map(str,X[i]))+'\n')
@@ -84,16 +87,26 @@ def number_aware_tokenizer(doc):
     tokens = ["#NUMBER" if token[0] in "0123456789_" else token
               for token in tokens]
     return tokens
-    
+
+###############################################################################    
 # state documents to read in
-language = 'Dutch'
-filenames = glob.glob('../Testdata/dataset/'+language+'/*.nl')
+dataset = ''
+language = 'English'
+#language = 'Dutch'
+if language == 'English':
+    extension = 'en'
+    s_words = list(stopwords.words('english'))
+else:
+    extension = 'nl'
+    s_words = list(stopwords.words('dutch'))
+   
+filenames = glob.glob('../../../../../../Testdata/dataset/'+language+dataset+'/*.'+extension)
 
 docs = [open(f).read() for f in filenames]
 
 # standard english stopwords - 318 words
-stopwords = 'english'
-#stopwords = [line.strip() for line in open('englishStopwords_mixed.txt')]
+#s_words = 'english'
+#s_words = [line.strip() for line in open('englishStopwords_mixed.txt')]
 
 # Uncomment the following to do the analysis on all the DESCR
 DESCR = None
@@ -104,29 +117,38 @@ print()
 # number of clusters
 n_c = 30
 
-print("Extracting features from the training dataset using a sparse vectorizer")
-t0 = time()
-if opts.use_hashing:
-    if opts.use_idf:
-        # Perform an IDF normalization on the output of HashingVectorizer
-        hasher = HashingVectorizer(n_features=opts.n_features,
-                                   stop_words=stopwords, non_negative=True,
-                                   norm=None, binary=False)
-        vectorizer = Pipeline((
-            ('hasher', hasher),
-            ('tf_idf', TfidfTransformer())
-        ))
+# Vectorizer output
+##############################################################################    
+output_file = '../features/'+language+dataset+'.data'
+
+try:
+    with open(output_file+'_vect', 'rb') as handle:
+        X = pickle.load(handle)
+except IOError:
+    print("Extracting features from the training dataset using a sparse vectorizer")
+    t0 = time()
+    if opts.use_hashing:
+        if opts.use_idf:
+            # Perform an IDF normalization on the output of HashingVectorizer
+            hasher = HashingVectorizer(n_features=opts.n_features,
+                                       stop_words=s_words, non_negative=True,
+                                       norm=None, binary=False)
+            vectorizer = Pipeline((
+                ('hasher', hasher),
+                ('tf_idf', TfidfTransformer())
+            ))
+        else:
+            vectorizer = HashingVectorizer(n_features=opts.n_features,
+                                           stop_words=s_words,
+                                           non_negative=False, norm='l2',
+                                           binary=False)
     else:
-        vectorizer = HashingVectorizer(n_features=opts.n_features,
-                                       stop_words=stopwords,
-                                       non_negative=False, norm='l2',
-                                       binary=False)
-else:
-    vectorizer = TfidfVectorizer(max_df=0.5, max_features=opts.n_features,
-                                 stop_words=stopwords, use_idf=opts.use_idf)
-    #vectorizer = CountVectorizer(stop_words=stopwords)
-    
-X = vectorizer.fit_transform(docs)
+        vectorizer = TfidfVectorizer(max_df=0.5, max_features=opts.n_features,
+                                     stop_words=s_words, use_idf=opts.use_idf)
+        #vectorizer = CountVectorizer(stop_words=stopwords)
+    with open(output_file+'_vect', 'wb') as handle:
+        X = vectorizer.fit_transform(docs)
+        pickle.dump(X, handle)
 
 print("done in %fs" % (time() - t0))
 print("n_samples: %d, n_features: %d" % X.shape)
@@ -149,18 +171,18 @@ if opts.n_components:
 ###############################################################################
 # Do the actual clustering
 
-if opts.minibatch:
-    km = MiniBatchKMeans(n_clusters=n_c, init='k-means++', n_init=1,
-                         init_size=1000, batch_size=1000, verbose=opts.verbose)
-else:
-    km = KMeans(n_clusters=n_c, init='k-means++', max_iter=100, n_init=1,
-                verbose=opts.verbose)
-
-print("Clustering sparse data with %s" % km)
-t0 = time()
-km.fit(X)
-print("done in %0.3fs" % (time() - t0))
-print()
+#if opts.minibatch:
+#    km = MiniBatchKMeans(n_clusters=n_c, init='k-means++', n_init=1,
+#                         init_size=1000, batch_size=1000, verbose=opts.verbose)
+#else:
+#    km = KMeans(n_clusters=n_c, init='k-means++', max_iter=100, n_init=1,
+#                verbose=opts.verbose)
+#
+#print("Clustering sparse data with %s" % km)
+#t0 = time()
+#km.fit(X)
+#print("done in %0.3fs" % (time() - t0))
+#print()
 
 #print("Homogeneity: %0.3f" % metrics.homogeneity_score(labels, km.labels_))
 #print("Completeness: %0.3f" % metrics.completeness_score(labels, km.labels_))
@@ -172,4 +194,4 @@ print()
 
 print()
 
-output(filenames, X, language, opts.n_components)
+#output(filenames, X, output_file, opts.n_components)
