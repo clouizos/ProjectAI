@@ -68,6 +68,8 @@ public class DPC extends Clustering{
 		//else
 		//	extFilePath = extFilePath + "bilfeatureVectors_language_"+this.language+"_"+numTopics+".data";
 		System.out.println(extFilePath);
+		this.ID = "DPC-"+numInitClusters+"-"+numTopics+"-"+numIterPerSample+"-"+burnIn+"-"+initAlpha+"-"+recalcAlpha;
+
 	}
 	
 	public void startClustering(){

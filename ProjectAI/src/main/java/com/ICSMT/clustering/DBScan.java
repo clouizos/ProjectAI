@@ -115,6 +115,8 @@ public class DBScan extends Clustering{
 		if(smartInit){
 			smartIniteps(documentObjects, nrdocsinit, this.choice);
 			System.out.println("Automatically initialized eps at: " + this.eps);
+			this.ID = "DBScan-"+this.minPts+"-"+this.eps+"-"+this.metric.ID+"-"+this.useExternal;
+
 		}
 		Centroid dummycent = new Centroid();
 		
