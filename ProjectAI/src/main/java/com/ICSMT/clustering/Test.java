@@ -16,7 +16,7 @@ public class Test {
 	 */
 	public static void main(String[] args) {
 		String extFilePath = "./src/main/java/com/ICSMT/features/";
-		boolean useExtPath = true;
+		boolean useExtPath = false;
 		int numTopics = 50;
 		int seed = 20;
 		boolean bilingual = false;
@@ -73,9 +73,9 @@ public class Test {
 		Metric metric  = new EuclidianDistance(true);
 		//Metric metric = new L1norm(true);
 		
-		//Kmeans clusterer = new  Kmeans(10, pathEval, language, metric, seed, useExtPath, extFilePath);
+		Kmeans clusterer = new  Kmeans(10, pathEval, language, metric, seed, useExtPath, extFilePath);
 		//FuzzyCmeans clusterer = new FuzzyCmeans(10, fuzziness, thres, pathEval, language, metric, seed, useExtPath, extFilePath);
-		DBScan clusterer = new DBScan(minPts, distThres, pathEval, language, metric, seed, 400, removeSingleton, useExtPath, extFilePath, smartInit, nrdocsinit, choice);
+		//DBScan clusterer = new DBScan(minPts, distThres, pathEval, language, metric, seed, 400, removeSingleton, useExtPath, extFilePath, smartInit, nrdocsinit, choice);
 		//GMM clusterer = new GMM(numComponents, pathEval, language, EMiter, tolerance, numTopics, seed, bilingual, extFilePath);
 		//DPC clusterer = new DPC(numInitClusters, pathEval, language, numIterPerSample, initAlpha, recalcAlpha, burnIn, numTopics, seed, bilingual, extFilePath);
 		//AssignHighest clusterer = new AssignHighest(pathEval, language, numTopics, bilingual, extFilePath);
