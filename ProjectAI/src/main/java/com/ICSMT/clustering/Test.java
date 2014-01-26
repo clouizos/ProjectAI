@@ -17,13 +17,19 @@ public class Test {
 	public static void main(String[] args) {
 		String extFilePath = "./src/main/java/com/ICSMT/features/";
 		boolean useExtPath = true;
-		int numTopics = 20;
+		int numTopics = 10;
 		int seed = 20;
 		boolean bilingual = false;
-		String language = "English";
+		String language = "english";
 		
+		// FCM parameter
+		double fuzziness = 2;
+		double thres = Math.pow(10, -5);
+
 		// DBSCAN parameter
 		boolean removeSingleton = true;
+		int minPts = 5;
+		double distThres = 0.1;
 		
 		// GMM parameters
 		int EMiter = 300;
@@ -32,9 +38,9 @@ public class Test {
 		// DPC parameters
 		int numInitClusters = 20;
 		int numIterPerSample = 10;
-		double initAlpha = 2.0;
+		double initAlpha = 100.0;
 		boolean recalcAlpha = true;
-		int burnIn = 2;
+		int burnIn = 5;
 		
 		
 		String pathEval = "";
@@ -43,29 +49,29 @@ public class Test {
 			pathEval = "./target/Testdata/dataset/Both";
 		else
 			pathEval = "./target/Testdata/dataset/English";
-		/*
-		if(bilingual)
+		
+		//if(bilingual)
 			//extFilePath = extFilePath + "bilfeatureVectors_language_"+language+"_"+numTopics+".data";
-			extFilePath = extFilePath + "features_lda_lsa_"+numTopics+".data";
-		else
-			extFilePath = extFilePath + "featureVectors_language_"+language+"_"+numTopics+".data";*/
+		//	extFilePath = extFilePath + "features_lda_lsa_"+numTopics+".data";
+		//else
+			extFilePath = extFilePath + "featureVectors_language_"+language+"_"+numTopics+".data";
 			
 //		extFilePath = extFilePath + "featureVectors_language_english_20.data";
-		extFilePath = extFilePath + "features_lsa_English_100.data";
+		//extFilePath = extFilePath + "features_lsa_English_100.data";
 		//extFilePath = extFilePath + "features_cca_lsa_100.data";
 		
 		//Metric metric = new KLdivergence(true, "minimum");
 		//Metric metric = new KLdivergence(true, "average");
-		//Metric metric = new JSdivergence(true);
+		Metric metric = new JSdivergence(true);
 		//Metric metric = new HellingerFunction(true);
 		//Metric metric = new JaccardsCoefficient(true);
 		
-		Metric metric  = new EuclidianDistance(true);
+		//Metric metric  = new EuclidianDistance(true);
 		//Metric metric = new L1norm(true);
 		
-		Kmeans clusterer = new  Kmeans(10, pathEval, language, metric, seed, useExtPath, extFilePath);
-		//FuzzyCmeans clusterer = new FuzzyCmeans(10, 2, 0.001, pathEval, language, metric, seed, useExtPath, extFilePath);
-		//DBScan clusterer = new DBScan(5, 0.5, pathEval, language, metric, seed, 400, removeSingleton, useExtPath, extFilePath);
+		//Kmeans clusterer = new  Kmeans(10, pathEval, language, metric, seed, useExtPath, extFilePath);
+		//FuzzyCmeans clusterer = new FuzzyCmeans(10, fuzziness, thres, pathEval, language, metric, seed, useExtPath, extFilePath);
+		DBScan clusterer = new DBScan(minPts, distThres, pathEval, language, metric, seed, 400, removeSingleton, useExtPath, extFilePath);
 		//GMM clusterer = new GMM(10, pathEval, language, EMiter, tolerance, numTopics, seed, bilingual, extFilePath);
 		//DPC clusterer = new DPC(numInitClusters, pathEval, language, numIterPerSample, initAlpha, recalcAlpha, burnIn, numTopics, seed, bilingual, extFilePath);
 		//AssignHighest clusterer = new AssignHighest(pathEval, language, numTopics, bilingual, extFilePath);
