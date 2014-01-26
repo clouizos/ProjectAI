@@ -56,6 +56,7 @@ public class DBScan extends Clustering{
 	int numTopics;
 	boolean smartInit; 
 	int nrdocsinit;
+	String choice;
 
 	
 	/**
@@ -68,7 +69,7 @@ public class DBScan extends Clustering{
 	 * getClosestCluster() for more information on the numbers 
 	 * for the different metrics.
 	 */
-	public DBScan(int minPts, double eps, String filePath, String language, Metric metric, int seed, int nrdocs, boolean removeSingle, boolean useExternal, String extFilePath, boolean smartInit, int nrdocsinit) {
+	public DBScan(int minPts, double eps, String filePath, String language, Metric metric, int seed, int nrdocs, boolean removeSingle, boolean useExternal, String extFilePath, boolean smartInit, int nrdocsinit, String choice) {
 		this.filePath = filePath;
 		this.language = language;
 		this.metric = metric;
@@ -82,6 +83,7 @@ public class DBScan extends Clustering{
 		this.ID = "DBScan-"+minPts+"-"+eps+"-"+metric.ID+"-"+useExternal;
 		this.smartInit = smartInit;
 		this.nrdocsinit = nrdocsinit;
+		this.choice = choice;
 	}
 	
 	/**
@@ -111,7 +113,7 @@ public class DBScan extends Clustering{
 			init_external();
 
 		if(smartInit){
-			smartIniteps(documentObjects, nrdocsinit);
+			smartIniteps(documentObjects, nrdocsinit, this.choice);
 			System.out.println("Automatically initialized eps at: " + this.eps);
 		}
 		Centroid dummycent = new Centroid();
@@ -283,7 +285,7 @@ public class DBScan extends Clustering{
 		System.out.println("Number of documents to be clustered:"+documentObjects.size()+"\n");
 	}
 
-	public void smartIniteps(ArrayList<Document> documentObjects, int nravg){
+	public void smartIniteps(ArrayList<Document> documentObjects, int nravg, String choice){
 		ArrayList<Double> eps_to_check = new ArrayList<Double>();
 		double avg_eps = 0.0;
 		int totDiss = 0;
@@ -296,17 +298,18 @@ public class DBScan extends Clustering{
 
 		Collections.sort(eps_to_check);
 		
-		/*
-		double min = Double.MAX_VALUE;
+		
 		for(int i=0; i<eps_to_check.size(); i++){
-			//avg_eps += eps_to_check.get(i);
-			if(eps_to_check.get(i) < min)
-				min = eps_to_check.get(i);
-		}*/
-
-		//this.eps = avg_eps/totDiss; //return average
-		this.eps = eps_to_check.get(0);		// return minimum
-		//this.eps = eps_to_check.get(eps_to_check.size()/2); //return median
+			avg_eps += eps_to_check.get(i);
+		}
+		
+		if(choice.equals("average"))
+			this.eps = avg_eps/totDiss; //return average
+		else if (choice.equals("minimum"))
+			this.eps = eps_to_check.get(0);		// return minimum
+		//this.eps = eps_to_check.get(0)*this.minPts;	// return minimum*required minPts
+		else if (choice.equals("median"))
+			this.eps = eps_to_check.get(eps_to_check.size()/2); //return median
 	}
 	
 	public static void main(String[] args){
@@ -326,7 +329,7 @@ public class DBScan extends Clustering{
 		String fileName = "featureVectors_language_english_20.data";
         String extFilePath = directory+fileName;
 		
-		DBScan dbscan = new DBScan(minPts, eps, filePath, language, metrics.get(0), seed, nrdocs, removeSingle, useExtPath, extFilePath, true, 10);
+		DBScan dbscan = new DBScan(minPts, eps, filePath, language, metrics.get(0), seed, nrdocs, removeSingle, useExtPath, extFilePath, true, 10, "minimum");
 		dbscan.startClustering();
 		System.out.println("Finished clustering!\n");
 		

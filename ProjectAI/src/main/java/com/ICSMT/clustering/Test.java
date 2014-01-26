@@ -17,7 +17,7 @@ public class Test {
 	public static void main(String[] args) {
 		String extFilePath = "./src/main/java/com/ICSMT/features/";
 		boolean useExtPath = true;
-		int numTopics = 10;
+		int numTopics = 50;
 		int seed = 20;
 		boolean bilingual = false;
 		String language = "english";
@@ -31,7 +31,8 @@ public class Test {
 		int minPts = 5;
 		double distThres = 0.3;
 		boolean smartInit = true;
-		int nrdocsinit = 5;
+		int nrdocsinit = 10;
+		String choice = "minimum";
 
 		// GMM parameters
 		int EMiter = 300;
@@ -65,16 +66,16 @@ public class Test {
 		
 		//Metric metric = new KLdivergence(true, "minimum");
 		//Metric metric = new KLdivergence(true, "average");
-		Metric metric = new JSdivergence(true);
+		//Metric metric = new JSdivergence(true);
 		//Metric metric = new HellingerFunction(true);
 		//Metric metric = new JaccardsCoefficient(true);
 		
-		//Metric metric  = new EuclidianDistance(true);
+		Metric metric  = new EuclidianDistance(true);
 		//Metric metric = new L1norm(true);
 		
 		//Kmeans clusterer = new  Kmeans(10, pathEval, language, metric, seed, useExtPath, extFilePath);
 		//FuzzyCmeans clusterer = new FuzzyCmeans(10, fuzziness, thres, pathEval, language, metric, seed, useExtPath, extFilePath);
-		DBScan clusterer = new DBScan(minPts, distThres, pathEval, language, metric, seed, 400, removeSingleton, useExtPath, extFilePath, smartInit, nrdocsinit);
+		DBScan clusterer = new DBScan(minPts, distThres, pathEval, language, metric, seed, 400, removeSingleton, useExtPath, extFilePath, smartInit, nrdocsinit, choice);
 		//GMM clusterer = new GMM(numComponents, pathEval, language, EMiter, tolerance, numTopics, seed, bilingual, extFilePath);
 		//DPC clusterer = new DPC(numInitClusters, pathEval, language, numIterPerSample, initAlpha, recalcAlpha, burnIn, numTopics, seed, bilingual, extFilePath);
 		//AssignHighest clusterer = new AssignHighest(pathEval, language, numTopics, bilingual, extFilePath);
