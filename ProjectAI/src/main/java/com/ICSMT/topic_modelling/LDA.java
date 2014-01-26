@@ -58,7 +58,8 @@ public class LDA {
 		        // Pipes: lowercase, tokenize, remove stopwords, map to features
 		        pipeList.add( new CharSequenceLowercase() );
 		        pipeList.add( new CharSequence2TokenSequence(Pattern.compile("\\p{L}[\\p{L}\\p{P}]+\\p{L}")) );
-		        pipeList.add( new TokenSequenceRemoveStopwords(new File(stopwords), "UTF-8", false, false, false) );
+		        //pipeList.add( new CharSequence2TokenSequence(Pattern.compile("\\s")) );
+			pipeList.add( new TokenSequenceRemoveStopwords(new File(stopwords), "UTF-8", false, false, false) );
 		        pipeList.add( new TokenSequence2FeatureSequence() );
 
 		        InstanceList instances = new InstanceList (new SerialPipes(pipeList));
@@ -82,7 +83,7 @@ public class LDA {
 		        
 		        // Use two parallel samplers, which each look at one half the corpus and combine
 		        //  statistics after every iteration.
-		        model.setNumThreads(4);
+		        model.setNumThreads(8);
 
 		        // Run the model for 50 iterations and stop (this is for testing only, 
 		        //  for real applications, use 1000 to 2000 iterations)
@@ -174,6 +175,7 @@ public class LDA {
 	        // Pipes: lowercase, tokenize, remove stopwords, map to features
 	        pipeList.add( new CharSequenceLowercase() );
 	        pipeList.add( new CharSequence2TokenSequence(Pattern.compile("\\p{L}[\\p{L}\\p{P}]+\\p{L}")) );
+		//pipeList.add( new CharSequence2TokenSequence(Pattern.compile("\\s")) );
 	        pipeList.add( new TokenSequenceRemoveStopwords(new File(stopwords), "UTF-8", false, false, false) );
 	        pipeList.add( new TokenSequence2FeatureSequence() );
 
@@ -187,7 +189,9 @@ public class LDA {
 	        
 	        Formatter out = new Formatter(new StringBuilder(), Locale.US);
 	        PrintWriter writer = new PrintWriter("./features/featureVectors_language_"+language+"_"+numTopics+".data", "UTF-8");
-	        TopicInferencer inf = model.getInferencer();
+	        //PrintWriter writer = new PrintWriter("./features/featureVectors_language_"+language+"_"+numTopics+"_align"+".data", "UTF-8");
+
+		TopicInferencer inf = model.getInferencer();
 	        
 	        DecimalFormat df = new DecimalFormat("#.###");
 	        for(int i=0; i< instances.size(); i++){
@@ -291,19 +295,22 @@ public class LDA {
 		int numTopics = 50;
 		int numIterations = 1000;
 		String language = "english";
+		//String options = "numTopics_"+numTopics+"_numIterations_"+numIterations+"_align";
 		String options = "numTopics_"+numTopics+"_numIterations_"+numIterations;
+
+		String pathEnglishData = "src/main/java/com/ICSMT/DataLDA/english_final.data";
+		String pathDutchData = "src/main/java/com/ICSMT/DataLDA/dutch_final.data";
 		
-		String pathEnglishData = "DataLDA/english_final.data";
-		String pathDutchData = "DataLDA/dutch_final.data";
+		String pathStopEn = "src/main/java/com/ICSMT/englishStopwords_mixed.txt";
+		String pathStopDu = "src/main/java/com/ICSMT/dutchStopwords_mixed.txt";
 		
-		String pathStopEn = "englishStopwords_mixed.txt";
-		String pathStopDu = "dutchStopwords_mixed.txt";
-		
+		//String dataAlign = "src/main/java/com/ICSMT/DataLDA/data_align_lda.data";
+
 		LDA lda = new LDA(pathStopEn, pathEnglishData, numTopics, numIterations, language);
-		
+		//LDA lda = new LDA(pathStopEn, dataAlign, numTopics, numIterations, language);
 		// if you want to train the model
 		lda.createModel();
-	    ParallelTopicModel model = lda.getModel();
+	    	ParallelTopicModel model = lda.getModel();
 		lda.writeModel(model, options);
 		
 		// parse an already trained one and estimate the feature vectors

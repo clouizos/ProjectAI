@@ -434,11 +434,11 @@ public class LDABillingual {
 		String options = "numTopics_"+numTopics+"_numIterations_"+numIterations;
 		int language = 2; // 0 english, 1 dutch, 2 mixed
 		
-		String pathEnglishData = "DataLDA/english_final.data";
-		String pathDutchData = "DataLDA/dutch_final.data";
+		String pathEnglishData = "src/main/java/com/ICSMT/DataLDA/english_final.data";
+		String pathDutchData = "src/main/java/com/ICSMT/DataLDA/dutch_final.data";
 		
-		String pathStopEn = "englishStopwords_mixed.txt";
-		String pathStopDu = "dutchStopwords_mixed.txt";
+		String pathStopEn = "src/main/java/com/ICSMT/englishStopwords_mixed.txt";
+		String pathStopDu = "src/main/java/com/ICSMT/dutchStopwords_mixed.txt";
 		
 		LDABillingual ldabil = new LDABillingual(pathStopEn, pathStopDu, pathEnglishData, pathDutchData, numTopics, numIterations);
 		
