@@ -30,7 +30,9 @@ public class Test {
 		boolean removeSingleton = true;
 		int minPts = 5;
 		double distThres = 0.3;
-		
+		boolean smartInit = true;
+		int nrdocsinit = 5;
+
 		// GMM parameters
 		int EMiter = 300;
 		double tolerance = Double.MIN_VALUE;
@@ -63,17 +65,17 @@ public class Test {
 		
 		//Metric metric = new KLdivergence(true, "minimum");
 		//Metric metric = new KLdivergence(true, "average");
-		//Metric metric = new JSdivergence(true);
+		Metric metric = new JSdivergence(true);
 		//Metric metric = new HellingerFunction(true);
 		//Metric metric = new JaccardsCoefficient(true);
 		
 		//Metric metric  = new EuclidianDistance(true);
-		Metric metric = new L1norm(true);
+		//Metric metric = new L1norm(true);
 		
 		//Kmeans clusterer = new  Kmeans(10, pathEval, language, metric, seed, useExtPath, extFilePath);
 		//FuzzyCmeans clusterer = new FuzzyCmeans(10, fuzziness, thres, pathEval, language, metric, seed, useExtPath, extFilePath);
-		//DBScan clusterer = new DBScan(minPts, distThres, pathEval, language, metric, seed, 400, removeSingleton, useExtPath, extFilePath);
-		GMM clusterer = new GMM(numComponents, pathEval, language, EMiter, tolerance, numTopics, seed, bilingual, extFilePath);
+		DBScan clusterer = new DBScan(minPts, distThres, pathEval, language, metric, seed, 400, removeSingleton, useExtPath, extFilePath, smartInit, nrdocsinit);
+		//GMM clusterer = new GMM(numComponents, pathEval, language, EMiter, tolerance, numTopics, seed, bilingual, extFilePath);
 		//DPC clusterer = new DPC(numInitClusters, pathEval, language, numIterPerSample, initAlpha, recalcAlpha, burnIn, numTopics, seed, bilingual, extFilePath);
 		//AssignHighest clusterer = new AssignHighest(pathEval, language, numTopics, bilingual, extFilePath);
 		
