@@ -80,7 +80,7 @@ public class DBScan extends Clustering{
 		this.removeSingle = removeSingle;
 		this.useExternal = useExternal;
 		this.extFilePath = extFilePath;
-		this.ID = "DBScan-"+minPts+"-"+eps+"-"+metric.ID+"-"+useExternal;
+		this.ID = "DBSCAN-"+minPts+"-"+eps+"-"+metric.ID+"-"+useExternal;
 		this.smartInit = smartInit;
 		this.nrdocsinit = nrdocsinit;
 		this.choice = choice;
