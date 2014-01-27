@@ -18,6 +18,7 @@ from sklearn import metrics
 import cPickle as pickle
 import re
 from nltk.corpus import stopwords
+from sklearn.utils import as_float_array
 
 from sklearn.cluster import KMeans, MiniBatchKMeans
 
@@ -26,7 +27,7 @@ import logging
 #from optparse import OptionParser
 import argparse
 from time import time
-
+import sys
 import numpy as np
 
 
@@ -37,15 +38,18 @@ logging.basicConfig(level=logging.INFO,
 # parse commandline arguments
 #op = OptionParser()
 op = argparse.ArgumentParser(description='Dimensionality reduction.')
-op.add_argument('language', choices=['English', 'Dutch', 'Both'], nargs='?',
+op.add_argument('-l', choices=['English', 'Dutch', 'Both'], nargs='?',
               help="State which language to perform dim. reduction on.")
 op.add_argument('-d', choices='2345', default='',
                 help='dataset help')
-op.add_argument('method', choices=['lsa', 'cca'], nargs='?',
+op.add_argument('method', choices=['lsa', 'cca', 'lda2lsa'], nargs='?',
                 help="State what method to run.")
 op.add_argument('-c', type=int, nargs='?', help='components help', default=100)
-op.add_argument('direction', choices=['e2f', 'f2e'], nargs='?',
-                help="Which direction to perform cca on.")                             
+op.add_argument('-direction', choices=['e2f', 'f2e'], nargs='?',
+                help="Which direction to perform cca on.")
+op.add_argument('-i', nargs='+', type=argparse.FileType('r'),
+                    default=sys.stdin, help='input files for ' + \
+                    'lda and bilangual representation methods.')                             
 op.add_argument("--no-idf",
               action="store_false", dest="use_idf", default=True,
               help="Disable Inverse Document Frequency feature weighting.")
@@ -73,6 +77,13 @@ def output(filenames, X, output_file):
         f.write(filename+','+' '.join(map(str,X[i]))+'\n')
         i += 1
     f.close
+
+def output2(docs, docs2, X, Y, output_file):
+    f = open(output_file, 'w')
+    for i in range(len(docs)):
+        f.write(docs[i]+','+' '.join(map(str,X[i]))+'\n')
+        f.write(docs2[i]+','+' '.join(map(str,Y[i]))+'\n')
+    f.close()
     
 def number_aware_tokenizer(doc):
     """ Tokenizer that maps all numeric tokens to a placeholder.
@@ -86,6 +97,18 @@ def number_aware_tokenizer(doc):
     tokens = ["#NUMBER" if token[0] in "0123456789_" else token
               for token in tokens]
     return tokens
+    
+def import_lda(f):
+    lines = f.read().splitlines()
+    f.close
+    nr_lines = len(lines)
+    labels = range(nr_lines)
+    features = range(nr_lines)
+    for i in range(nr_lines):
+        labels[i], data = lines[i].split(',')
+        features[i] = map(float, data.split())
+    X = as_float_array(features)
+    return labels, X
 
 ###############################################################################    
 # return path and dependant variables 
@@ -98,7 +121,7 @@ def return_Path(language, dataset):
         s_words = stopwords.words('dutch')
     else:
         extensions = ['en', 'nl']
-        stopwords.words('english') + stopwords.words('dutch')
+        s_words = stopwords.words('english') + stopwords.words('dutch')
     
     filenames = []
     for extension in extensions:   
@@ -158,13 +181,14 @@ def vectorize(path, docs, features, s_words, idf, hashing):
     return X
 
 dataset = args.d
-language = args.language
+language = args.l
 method=args.method
 components=args.c
 direction=args.direction
-print(language)
-print(dataset)
-print(components)
+infiles=args.i
+print("Language: %s" % language)
+print("Dataset: %s" % dataset)
+print("Components: %d" % components)
 
 #language = 'English'
 #language = 'Dutch'
@@ -176,14 +200,12 @@ if method != None:
         X = vectorize(path, docs, args.n_features, 
                       s_words, args.use_idf, args.use_hashing)
         print("Performing dimensionality reduction using LSA")
-        redux = TruncatedSVD(components)
-    if method != 'cca':    
+        redux = TruncatedSVD(components)  
         X = redux.fit_transform(X)
         # Vectorizer results are normalized, which makes KMeans behave as
         # spherical k-means for better results. Since LSA/SVD results are
         # not normalized, we have to redo the normalization.
-        X = Normalizer(copy=False).fit_transform(X)
-    
+        X = Normalizer(copy=False).fit_transform(X)    
         print("done in %fs" % (time() - t0))
         print()
         output_file = '../features/'+method+'_'+str(components)+'_'+ \
@@ -197,7 +219,7 @@ if method != None:
         X = vectorize(path, docs, args.n_features, 
                       s_words, args.use_idf, args.use_hashing)
         # Dutch set
-        docs, path, s_words = return_Path('Dutch', dataset)
+        docs, path, s_words, filenames2 = return_Path('Dutch', dataset)
         Y = vectorize(path, docs, args.n_features, 
                       s_words, args.use_idf, args.use_hashing)              
         print("Performing dimensionality reduction using CCA")
@@ -221,10 +243,78 @@ if method != None:
         print("done in %fs" % (time() - t0))
         print()
         output_file = '../features/'+method+'_'+str(components)+'_'+ \
-                    direction+dataset+'.data'
+                    direction++'_d'+dataset+'.data'
         output(filenames, X, output_file)
-
-
+        
+    if method == '2monolsa':
+        # English set
+        docs, path, s_words, filenames = return_Path('English', dataset)
+        X = vectorize(path, docs, args.n_features, 
+                      s_words, args.use_idf, args.use_hashing)
+        # Dutch set
+        docs, path, s_words, filenames2 = return_Path('Dutch', dataset)
+        Y = vectorize(path, docs, args.n_features, 
+                      s_words, args.use_idf, args.use_hashing)              
+        print("Performing dimensionality reduction using concatenated monolingual lsa")
+        lsa = TruncatedSVD(components)
+        lsa2 = TruncatedSVD(components)
+        X = lsa.fit_transform(X)
+        X = Normalizer(copy=False).fit_transform(X)
+        Y = lsa2.fit_transform(Y)
+        Y = Normalizer(copy=False).fit_transform(Y)
+        print("done in %fs" % (time() - t0))
+        print()
+        output_file = '../features/'+method+'_'++str(components)+'_d'+dataset+'.data'
+        output2(filenames, filenames2, X, Y, output_file)
+        
+    if method == 'lda2lsa':
+        if len(infiles) != 2:
+            print("lda2lsa expects 2 corresponding files!")            
+            raise SystemExit
+        print("Performing dimensionality reduction using LSA on LDA")
+        labels1, X = import_lda(infiles[0])
+        labels2, Y = import_lda(infiles[1])
+        lsa = TruncatedSVD(components)
+        lsa2 = TruncatedSVD(components)
+        X = lsa.fit_transform(X)
+        X = Normalizer(copy=False).fit_transform(X)
+        Y = lsa2.fit_transform(Y)
+        Y = Normalizer(copy=False).fit_transform(Y)
+        print("done in %fs" % (time() - t0))
+        print()
+        output_file = '../features/'+method+'_'+str(components)+'.data'
+        output2(labels1, labels2, X, Y, output_file)
+        
+    if method == 'lda2cca':
+        if len(infiles) != 2:
+            print("lda2cca expects 2 corresponding files!")            
+            raise SystemExit
+        print("Performing dimensionality reduction using CCA on LDA")
+        labels1, X = import_lda(infiles[0])
+        labels2, Y = import_lda(infiles[1])    
+        X = X.toarray()
+        Y = Y.toarray()
+        if direction == 'f2e':
+            X_ = Y
+            Y_ = X
+        else:
+            X_ = X
+            Y_ = Y
+        cca.fit(X_, Y_)
+        CCA(copy=True, max_iter=1000, n_components=components,
+            scale=True, tol=1e-06)
+        X, Y = cca.transform(X_, Y_)
+        # Vectorizer results are normalized, which makes KMeans behave as
+        # spherical k-means for better results. Since LSA/SVD results are
+        # not normalized, we have to redo the normalization.
+        #X_ = Normalizer(copy=False).fit_transform(X)
+        #Y_ = Normalizer(copy=False).fit_transform(Y)    
+        print("done in %fs" % (time() - t0))
+        print()
+        output_file = '../features/'+method+'_'+str(components)+'_'+ \
+                    direction+'.data'
+        output(labels1, X, output_file)
+        
 ###############################################################################
 # Do the actual clustering
 
@@ -248,7 +338,4 @@ if method != None:
 #      % metrics.adjusted_rand_score(labels, km.labels_))
 #print("Silhouette Coefficient: %0.3f"
 #      % metrics.silhouette_score(X, labels, sample_size=1000))
-
-print()
-
-#output(filenames, X, output_file, opts.n_components)
+#print()
