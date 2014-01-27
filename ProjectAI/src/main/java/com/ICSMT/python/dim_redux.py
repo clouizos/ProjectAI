@@ -7,7 +7,7 @@ Created on Sat Jan 18 22:07:30 2014
 from __future__ import print_function
 
 from sklearn.decomposition import TruncatedSVD
-from sklearn.pls import PLSCanonical, PLSRegression, CCA
+from sklearn.cross_decomposition import CCA
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.feature_extraction.text import HashingVectorizer
@@ -89,15 +89,20 @@ def number_aware_tokenizer(doc):
 
 ###############################################################################    
 # return path and dependant variables 
-def return_Path(language, dataset):
+def return_Path(language, dataset):    
     if language == 'English':
-        extension = 'en'
+        extensions = ['en']
         s_words = stopwords.words('english')
-    else:
-        extension = 'nl'
+    elif language == 'Dutch':
+        extensions = ['nl']
         s_words = stopwords.words('dutch')
-       
-    filenames = glob.glob('../../../../../../Testdata/dataset/'+ \
+    else:
+        extensions = ['en', 'nl']
+        stopwords.words('english') + stopwords.words('dutch')
+    
+    filenames = []
+    for extension in extensions:   
+        filenames = filenames + glob.glob('../../../../../../Testdata/dataset/'+ \
                 language+dataset+'/*.'+extension)
     
     docs = [open(f).read() for f in filenames]
@@ -118,12 +123,12 @@ def return_Path(language, dataset):
 # Otherwise vectorize and dumps into a file
 ##############################################################################    
 def vectorize(path, docs, features, s_words, idf, hashing):    
+    t0 = time()    
     try:
         with open(path+'_vect', 'rb') as handle:
             X = pickle.load(handle)
     except IOError:
         print("Extracting features from the training dataset using a sparse vectorizer")
-        t0 = time()
         if hashing:
             if args.use_idf:
                 # Perform an IDF normalization on the output of HashingVectorizer
@@ -181,7 +186,7 @@ if method != None:
     
         print("done in %fs" % (time() - t0))
         print()
-        output_file = '../features/'+method+'_'+components+' '+ \
+        output_file = '../features/'+method+'_'+str(components)+'_'+ \
                     language+dataset+'.data'
         output(filenames, X, output_file)
     
@@ -215,7 +220,7 @@ if method != None:
         #Y_ = Normalizer(copy=False).fit_transform(Y)    
         print("done in %fs" % (time() - t0))
         print()
-        output_file = '../features/'+method+'_'+components+' '+ \
+        output_file = '../features/'+method+'_'+str(components)+'_'+ \
                     direction+dataset+'.data'
         output(filenames, X, output_file)
 
