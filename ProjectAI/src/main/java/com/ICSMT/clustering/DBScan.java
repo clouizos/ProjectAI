@@ -144,7 +144,7 @@ public class DBScan extends Clustering{
 		for(int i=0;i<clusters.size();i++)
 			total_clustered += clusters.get(i).members.size();
 
-		this.ID = "DBScan-"+this.minPts+"-"+this.eps+"-"+this.metric.ID+"-"+this.useExternal+"-"+this.extFilePath+"-"(nrdocs-total_clustered);
+		this.ID = "DBScan-"+this.minPts+"-"+this.eps+"-"+this.metric.ID+"-"+this.useExternal+"-"+this.extFilePath+"-"+(nrdocs-total_clustered);
 
 	}
 	
