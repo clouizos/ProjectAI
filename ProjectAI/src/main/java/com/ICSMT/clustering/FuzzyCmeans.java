@@ -49,7 +49,7 @@ public class FuzzyCmeans extends Clustering{
 		this.seed = seed;
 		this.externalDataset = externalDataset;
 		this.extFilePath = extFilePath;
-		this.ID = "FuzzyCmeans-"+c+"-"+m+"-"+metric.ID+"-"+useExternal+"-"+extFilePath;
+		this.ID = "FuzzyCmeans-"+c+"-"+m+"-"+metric.ID+"-"+externalDataset+"-"+extFilePath;
 	}
 	
 	public void initWeights(){
