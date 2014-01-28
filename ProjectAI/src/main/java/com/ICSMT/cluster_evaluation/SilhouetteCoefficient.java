@@ -50,8 +50,9 @@ public class SilhouetteCoefficient extends IntrinsicEvaluation {
 				double minDist = Double.MAX_VALUE;
 				Cluster closestCluster=null;
 				for (Cluster c : C.clusters){
+					if (c==cluster) {continue;}
 					if (c.members.size()==0){continue;}
-					double dist = metric.computeDist(cluster.centroid.distribution, 0, c.centroid.distribution, 0);
+					double dist = metric.computeDist(cluster.centroid.distribution, cluster.centroid.distributionSize, c.centroid.distribution, c.centroid.distributionSize);
 					if (dist<minDist){
 						minDist=dist;
 						closestCluster = c;
@@ -62,10 +63,11 @@ public class SilhouetteCoefficient extends IntrinsicEvaluation {
 				double sumB = 0;
 				for (Document D : closestCluster.members){
 					if (d==D){continue;}
-					sumB += metric.computeDist(d.words, 0, D.words, 0);
+					sumB += metric.computeDist(d.words, d.words.size(), D.words, D.words.size());
 				}
 				B = sumB/(double) (closestCluster.members.size()) ;
-//				System.out.println("B : "+B);
+				//System.out.println("B : "+B);
+				//System.out.println("A : "+A);
 				
 				double Si = (B-A)/Math.max(B, A);
 				if (Math.max(B, A)==0){
