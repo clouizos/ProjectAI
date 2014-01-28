@@ -30,10 +30,10 @@ public class FuzzyCmeans extends Clustering{
 	ArrayList<Document> documentObjects = new ArrayList<Document>();
 	//public ArrayList<Cluster> clusters = new ArrayList<Cluster>();
 	Random r = new Random();
-	boolean externalDataset;
+	public boolean externalDataset;
 	String extFilePath;
 	public boolean converged = false;
-	double thres;
+	public double thres;
 	int numTopics;
 
 	public static Map<String, ArrayList<Double>> weights = new HashMap<String, ArrayList<Double>>();
