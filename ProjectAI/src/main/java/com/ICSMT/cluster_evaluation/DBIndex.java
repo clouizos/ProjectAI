@@ -52,8 +52,8 @@ public class DBIndex extends IntrinsicEvaluation{
 					String key = Double.toString(j)+" "+Double.toString(k);
 					Centroid centroid_new = C.clusters.get(k).centroid;
 					double size_cl = C.clusters.get(k).members.size();
-					for(int i=0; i<ti; i++){
-						Document doc = C.clusters.get(j).members.get(i);
+					for(int i=0; i<size_cl; i++){
+						Document doc = C.clusters.get(k).members.get(i);
 						dist += metric.computeDist(doc.words, doc.corpusSize, centroid_new.distribution, centroid_new.distributionSize);
 					}
 					dist = (1/size_cl)*dist;
