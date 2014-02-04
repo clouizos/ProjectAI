@@ -11,24 +11,27 @@ import data_representation.Cluster;
 import data_representation.Document;
 import io.IOFile;
 
+
+/**
+ * @author christos
+ * Class DBIndex (Davies-Bouldin Index) provides methods for evaluating clustering result. 
+ * This method requires cluster centroid to compute the score.
+ */
 public class DBIndex extends IntrinsicEvaluation{
 	
 	public DBIndex(Metric metric){
 		this.metric = metric;
 	}
-
+	
+	/**
+	 * This method will compute the DBIndex and write the result into a file
+	 * DBIndex.csv in working directory(default)
+	 * @param C - clustering object. This method need to access the 'clusters' attribute
+	 * of clustering to evaluate the clusters. Clusterer object should save the final 
+	 * clusters of clustering in 'clusters' attribute.
+	 */
 	@Override
 	public void computeScore(Clustering C) {
-//		double DB=0;
-//		for (Cluster cluster : C.clusters){
-//			double maxVal = Double.MIN_VALUE;
-//			for (Cluster cluster2 : C.clusters){
-//				if (cluster != cluster2){
-//					
-//				}
-//			}
-//		}
-		
 		double dbindex = 0;
 		ArrayList<Double> dis = new ArrayList<Double>();
 		Map<String, Double> D = new HashMap<String, Double>(); 
@@ -43,7 +46,6 @@ public class DBIndex extends IntrinsicEvaluation{
 				dist += metric.computeDist(doc.words, doc.corpusSize, centroid.distribution, centroid.distributionSize);
 			}
 			dist = (1/ti)*dist;
-			//double si = Math.pow(dist, 1/q);
 			dis.add(dist);
 			
 			for (int k=0;k<C.clusters.size();k++){

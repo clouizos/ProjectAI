@@ -94,7 +94,7 @@ public class PrincipleComponentAnalysis {
 
         // Compute SVD and save time by not computing U
         SingularValueDecomposition<DenseMatrix64F> svd =
-                DecompositionFactory.svd(A.numRows, A.numCols, true, true, false);
+                DecompositionFactory.svd(A.numRows, A.numCols, true, true, true);
         if( !svd.decompose(A) )
             throw new RuntimeException("SVD failed");
 
@@ -217,11 +217,11 @@ public class PrincipleComponentAnalysis {
     public static void main(String[] arg) {
 		System.out.println(System.getProperty("user.dir"));
 		String filePath = "./Testdata/dataset/English";
-		int nPC = 500;
-		int nDocs = 200;
+		int nPC = 10;
+		int nDocs = -1;
 		FeatureMatrix FM = new FeatureMatrix(filePath,nDocs,"english","prob");
 		System.out.println(FM.matrix[0].length);
-		//System.out.println(System.getProperty("user.dir"));
+		
 		PrincipleComponentAnalysis Pca = new PrincipleComponentAnalysis();
 		Pca.setup(FM.rowLabel.size(), FM.columnLabel.size());
 		for (int i=0;i<FM.rowLabel.size();i++){
@@ -236,35 +236,14 @@ public class PrincipleComponentAnalysis {
 		for (int i=0;i<Pca.V_t.getNumRows();i++){
 			IO.write(FM.rowLabel.get(i)+",");
 			for (int j=0;j<nPC;j++){
-				System.out.printf("%.5f \t",Pca.V_t.get(i, j));
+			//	System.out.printf("%.5f \t",Pca.V_t.get(i, j));
 				IO.write(Double.toString(Pca.V_t.get(i,j)));
 				IO.write(" ");
 			}
-			System.out.println();
 			IO.write("\n");
 		}
 		IO.close();
 		
-//		double[] tes = Pca.getBasisVector(0);
-//		System.out.println(tes.length);
-
-//		 PrincipleComponentAnalysis Pca = new PrincipleComponentAnalysis();
-//		 Pca.setup(5, 4);
-//		 for (int i=0;i<5;i++){
-//			 double[] aa = new double[4];
-//			 for (int j=0;j<4;j++){
-//				aa[j]=D.get(i, j);
-//			 }
-//			 Pca.addSample(aa);
-//		}
-//		 Pca.computeBasis(4);
-//		 System.out.println(Pca.getBasisVector(0).toString());
-//		 for (int j=0;j<4;j++){
-//			 for (int i=0;i<Pca.getBasisVector(j).length;i++){
-//				 System.out.print(Pca.getBasisVector(j)[i]+" ");
-//			 }
-//			 System.out.println();
-//		 }
 		 
 	}
 }

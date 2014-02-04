@@ -17,8 +17,6 @@ public class SSE extends IntrinsicEvaluation{
 	
 	@Override
 	public void computeScore(Clustering C) {
-		//clusters = C.clusters;
-		// only works for external datasets for now
 		
 		int K = C.clusters.size();
 		
