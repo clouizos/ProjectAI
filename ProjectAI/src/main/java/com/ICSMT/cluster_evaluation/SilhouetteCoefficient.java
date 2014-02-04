@@ -23,7 +23,6 @@ public class SilhouetteCoefficient extends IntrinsicEvaluation {
 			
 	@Override
 	public void computeScore(Clustering C) {
-//		ArrayList<Double> A = new ArrayList<Double>();
 		System.out.println("Computing silhoutte coefficient...");
 		ArrayList<Double> S = new ArrayList<Double>();
 		double clusteringMean = 0;
@@ -40,13 +39,11 @@ public class SilhouetteCoefficient extends IntrinsicEvaluation {
 				for (Document notD : cluster.members){
 					if (d==notD){continue;}
 					sumA += metric.computeDist(d.words, d.words.size(), notD.words, notD.words.size());
-//					System.out.println("SUMA "+sumA);
 				}
 				if (cluster.members.size()>1){
 					A = sumA/(double) (cluster.members.size()-1) ;
-//				System.out.println("A : "+A);
 				}
-				//cari cluster terdekat
+				
 				double minDist = Double.MAX_VALUE;
 				Cluster closestCluster=null;
 				for (Cluster c : C.clusters){
@@ -59,22 +56,18 @@ public class SilhouetteCoefficient extends IntrinsicEvaluation {
 					}
 				}
 				
-				//hitung sum distance dengann semua point di cluster tsb
 				double sumB = 0;
 				for (Document D : closestCluster.members){
 					if (d==D){continue;}
 					sumB += metric.computeDist(d.words, d.words.size(), D.words, D.words.size());
 				}
 				B = sumB/(double) (closestCluster.members.size()) ;
-				//System.out.println("B : "+B);
-				//System.out.println("A : "+A);
 				
 				double Si = (B-A)/Math.max(B, A);
 				if (Math.max(B, A)==0){
 					Si = 0;
 				}
 				clusterMean+=Si;
-//				System.out.println(clusterMean);
 			}
 			
 			if (cluster.members.size()>0){
@@ -89,6 +82,7 @@ public class SilhouetteCoefficient extends IntrinsicEvaluation {
 		}
 		clusteringMean = clusteringMean/C.clusters.size();
 		this.score = clusteringMean;
+		
 		IOFile io = new IOFile();
 		io.openWriteFile("Silhouette.csv");
 		io.write(C.ID);

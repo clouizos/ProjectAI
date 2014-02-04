@@ -6,10 +6,15 @@ import java.util.HashMap;
 import clustering.Clustering;
 
 /**
- * 
- * @author 
- * Assume we have the true cluster of documents, then this class will compute 
- * the precision of clusters resulted by clustering process.
+ * @author said.al.faraby
+ * Class Precision will provide the evaluation score based on matching the objects
+ * of clusters and classes through their filenames. Check ExtrinsicEvaluation class 
+ * to look at the regex if the matching does not work.
+ * Documents with label on their filenames should be placed under 'filepath' attribute
+ * of Clustering object.
+ * The precision, recall, and F1-score will be written on file 'precision.csv'.
+ * precision, recall, and f1-score is computed from true class that maximize f1-score
+ * over all true classes.
  */
 public class Precision extends ExtrinsicEvaluation{
 	private double precision;
@@ -92,12 +97,5 @@ public class Precision extends ExtrinsicEvaluation{
 		
 	}
 
-	
-	
-//	public static void main(String[] args) {
-//		String classDir = "../TESTEVAL/TrueClass";
-//		String clusterDir = "../TESTEVAL/Cluster";
-//		
-//	}
 
 }

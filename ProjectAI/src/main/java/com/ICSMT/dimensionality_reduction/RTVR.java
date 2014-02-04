@@ -8,18 +8,21 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import io.IOFile;
 
 import org.jmat.data.*;
 
 import data_representation.FeatureMatrix;
 
 /**
+ * @author said.al.faraby
  * This class will construct a new representation of document vectors, by replacing
  * rare-term features with linear combination of common-term features;
+ * The process takes a very long time, need to find a more efficient way to interact 
+ * with matrix operations.
  */
 public class RTVR {
 	private double treshold;
-//	private Matrix originalMatrix;
 	public AbstractMatrix reducedMatrix;
 	
 	
@@ -121,16 +124,13 @@ public class RTVR {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		String filePath = "./target/Testdata/dataset/English";
+		String filePath = "../Testdata/dataset/English";
 		int nDocs = 200;
-		int threshold=15;  //term that appear in less than this number will be replaced
+		int threshold=5;  //term that appear in less than this number will be replaced
 		FeatureMatrix FM = new FeatureMatrix(filePath,nDocs,"english","prob");
 		RTVR rtvr = new RTVR(FM, threshold);
 		System.out.println("ROW "+rtvr.reducedMatrix.getRowDimension());
 		System.out.println("COLUMN "+rtvr.reducedMatrix.getColumnDimension());
-		
-		
-		
 		try{
 			 
 			FileOutputStream fout = new FileOutputStream("reducedMatrix.ser");
@@ -144,16 +144,6 @@ public class RTVR {
 		   }
 		
 		
-//		AbstractMatrix N=null;
-//		try{
-//			FileInputStream fin = new FileInputStream("reducedMatrix.ser");
-//			ObjectInputStream ois = new ObjectInputStream(fin);
-//			 N = (AbstractMatrix) ois.readObject();
-//		} catch(Exception e){
-//			e.printStackTrace();
-//		}
-		
-//		System.out.println(N);
 
 	}
 

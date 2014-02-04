@@ -7,7 +7,7 @@ import java.util.Set;
 import java.util.TreeSet;
 
 /**
- * @author saidalfaraby
+ * @author said.al.faraby
  * Class FeatureMatrix create a 2d matrix representation from documents, where each row
  * is document and column is feature.
  */
@@ -43,7 +43,12 @@ public class FeatureMatrix {
 				Document doc = new Document( documentNames.get(i), language );
 				this.rowLabel.add(documentNames.get(i));
 				documentObjects.add(doc);
-			} // still need to add "freq" option
+			} else if(this.type.equals("freq")){
+				FrequencyList freq = new FrequencyList( documentNames.get(i), language, -1 );
+				this.rowLabel.add(documentNames.get(i));
+				documentObjects.add(freq);
+			} else
+				throw new IllegalArgumentException("type is not correct");
 			
 		}
 		
@@ -76,11 +81,9 @@ public class FeatureMatrix {
 		this.columnLabel = new ArrayList<String>();
 		Set<String> vocabs = new TreeSet<String>();
 		for (FrequencyList d : documentObjects){
-//			if (this.type.equals("prob")){
 			if (d instanceof Document){
 				Document D = (Document)d;
 				vocabs.addAll(D.words.keySet());
-//			} else if (this.type.equals("freq")){
 			} else if (d instanceof FrequencyList){
 				vocabs.addAll(d.list.keySet());
 			}

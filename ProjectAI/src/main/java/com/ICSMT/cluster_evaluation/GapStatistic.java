@@ -21,6 +21,16 @@ import data_representation.Document;
 import data_representation.FeatureMatrix;
 import data_representation.FrequencyList;
 
+
+/**
+ * @author said.al.faraby
+ * Class GapStatistic provides methods for evaluating clustering result. 
+ * This method will create B reference datasets. The value of each feature in reference dataset
+ * is drawn randomly between the lowest and the highest value of that feature in the real dataset.
+ * Metric object is required when initialize this object.
+ * Since this method usually to find the optimum number of clusters, so now it just
+ * works with K-means and FuzzyCmeans.
+ */
 public class GapStatistic extends IntrinsicEvaluation {
 	private int B=20; //default value of the number of reference dataset
 	public double sk;
@@ -28,27 +38,33 @@ public class GapStatistic extends IntrinsicEvaluation {
 	public GapStatistic(Metric metric) {
 		this.metric = metric;
 	}
-
+	
+	
+	/**
+	 * This method will compute the gap statistic and write the result into a file
+	 * GapStatistic.csv in working directory(default)
+	 * @param C - clustering object. This method need to access the 'clusters' attribute
+	 * of clustering to evaluate the clusters. Clusterer object should save the final 
+	 * clusters of clustering in 'clusters' attribute.
+	 */
 	@Override
 	public void computeScore(Clustering C) {
 		
 		double Wk = computeWk(C);
-		System.out.println("_____________"+Wk);
 		
-
-		// use reference datasets to compute the gap and standard deviations
-
-		// if there's no reference datasets in file yet, create them
-		// comment below code if the data already exist.
-		//---------------------------------------------------------------------
+		
 		ArrayList<FrequencyList> allDocs = new ArrayList<FrequencyList>();
 		for (Cluster cluster : C.clusters) {
 			for (Document d : cluster.members) {
 				allDocs.add(d);
 			}
 		}
+		
+		// use reference datasets to compute the gap and standard deviations
+		// if there's no reference datasets in file yet, create them
+		// comment the code below if you reference datasets are already exist and
+		// you don't want to create(overwrite) them anymore.
 		createReferenceDataset(allDocs);
-		//---------------------------------------------------------------------
 		
 		
 		//cluster each of those reference dataset with the same clustering algorithm
@@ -65,7 +81,6 @@ public class GapStatistic extends IntrinsicEvaluation {
 			// *************************add other clustering algorithms
 			
 			Wkb[i]=computeWk(clusterer);
-			//System.out.println("cccc"+Wkb[i]);
 		}
 		for (int x=0;x<this.B;x++)
 			System.out.println(Wkb[x]);
@@ -74,26 +89,22 @@ public class GapStatistic extends IntrinsicEvaluation {
 		double gap=0;
 		double sumWkb=0;
 		for (int i=0;i<this.B;i++){
-			//gap += Math.log(Wkb[i])-Math.log(Wk);
 			sumWkb+=Math.log(Wkb[i]);
-			gap = sumWkb/(double)B - Math.log(Wk);
 		}
-		//gap = gap/this.B;
+		gap = sumWkb/(double)B - Math.log(Wk);
 		this.score=gap;
 		
 		//compute standard deviation
 		double mean=(1/(double)B)*sumWkb;
 		double sdk=0;
-		//System.out.println("sumWkb "+sumWkb);
-		//System.out.println("mean "+mean);
 		for (int i=0;i<this.B;i++){
 			sdk+=Math.pow(Math.log(Wkb[i])-mean, 2);
 		}
 		sdk = sdk/this.B;
 		sdk = Math.pow(sdk, 0.5);
-		System.out.println("SDK "+sdk);
 		this.sk = sdk*Math.pow(1+1/(double)B, 0.5);
-		System.out.println("SK "+this.sk);
+		
+		//write the results to file
 		IOFile io = new IOFile();
 		io.openWriteFile("GapStatistic.csv");
 		io.write(C.ID);
@@ -145,13 +156,12 @@ public class GapStatistic extends IntrinsicEvaluation {
 	 * This method will create some reference datasets that are needed for
 	 * computing Gap Statistics, and save each dataset to a file.
 	 * 
-	 * @param N
-	 *            - number of reference dataset to be created.
+	 * @param docs  - arraylist of Document or FrequencyList object.
 	 */
 	public void createReferenceDataset(ArrayList<FrequencyList> docs) {
 		FeatureMatrix FM = new FeatureMatrix(docs);
 		if (this.B < 1) {
-			throw new IllegalArgumentException("N should be greater than 0");
+			throw new IllegalArgumentException("B should be greater than 0");
 		}
 		for (int i = 0; i < this.B; i++) {
 			IOFile IO = new IOFile();
@@ -171,14 +181,14 @@ public class GapStatistic extends IntrinsicEvaluation {
 		}
 	}
 	
-	public static void main(String[] args){
-		String extFilePath = "./features/";
-		String language = "english";
-		int numTopics = 10;
-		Metric metric = new L1norm(true);
-		extFilePath = extFilePath + "featureVectors_language_"+language+"_"+numTopics+".data";
-		Clustering KM = new Kmeans(5, "../Testdata/dataset/English",  language, metric, 20, true, extFilePath);
-		System.out.println(KM.getClass().getName());
-	}
+//	public static void main(String[] args){
+//		String extFilePath = "./features/";
+//		String language = "english";
+//		int numTopics = 10;
+//		Metric metric = new L1norm(true);
+//		extFilePath = extFilePath + "featureVectors_language_"+language+"_"+numTopics+".data";
+//		Clustering KM = new Kmeans(5, "../Testdata/dataset/English",  language, metric, 20, true, extFilePath);
+//		System.out.println(KM.getClass().getName());
+//	}
 
 }
