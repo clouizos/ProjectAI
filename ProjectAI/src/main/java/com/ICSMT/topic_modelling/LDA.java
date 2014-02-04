@@ -51,7 +51,7 @@ public class LDA {
 	}
 
 	public void createModel() throws Exception {
-
+		
 		        // Begin by importing documents from text to feature sequences
 		        ArrayList<Pipe> pipeList = new ArrayList<Pipe>();
 
@@ -188,7 +188,8 @@ public class LDA {
 	        
 	        
 	        Formatter out = new Formatter(new StringBuilder(), Locale.US);
-	        PrintWriter writer = new PrintWriter("./features/featureVectors_language_"+language+"_"+numTopics+".data", "UTF-8");
+	        String extFilePath = "./src/main/java/com/ICSMT/features/";
+	        PrintWriter writer = new PrintWriter(extFilePath+"featureVectors_language_"+language+"_"+numTopics+".data", "UTF-8");
 	        //PrintWriter writer = new PrintWriter("./features/featureVectors_language_"+language+"_"+numTopics+"_align"+".data", "UTF-8");
 
 		TopicInferencer inf = model.getInferencer();
@@ -228,8 +229,9 @@ public class LDA {
 	 */
 	
 	public void writeModel(ParallelTopicModel model, String options){
+		String extFilePath = "./src/main/java/com/ICSMT/modelsLDA/";
 		try{
-			FileOutputStream fout = new FileOutputStream("./modelsLDA/model_"+language+"_"+options+".model");
+			FileOutputStream fout = new FileOutputStream(extFilePath+"model_"+language+"_"+options+".model");
 			ObjectOutputStream oos = new ObjectOutputStream(fout);
 			oos.writeObject(model);
 			oos.close();
@@ -248,8 +250,9 @@ public class LDA {
 	 */
 	
 	public void loadModel(String options,String language){
+		String extFilePath = "./src/main/java/com/ICSMT/modelsLDA/";
 		try{
-			FileInputStream fin = new FileInputStream("./modelsLDA/model_"+language+"_"+options+".model");
+			FileInputStream fin = new FileInputStream(extFilePath+"model_"+language+"_"+options+".model");
 			ObjectInputStream ois = new ObjectInputStream(fin);
 			this.model = (ParallelTopicModel) ois.readObject();
 			ois.close();
@@ -297,12 +300,13 @@ public class LDA {
 		String language = "english";
 		//String options = "numTopics_"+numTopics+"_numIterations_"+numIterations+"_align";
 		String options = "numTopics_"+numTopics+"_numIterations_"+numIterations;
+		String extFilePath = "./src/main/java/com/ICSMT/";
 
-		String pathEnglishData = "src/main/java/com/ICSMT/DataLDA/english_final.data";
-		String pathDutchData = "src/main/java/com/ICSMT/DataLDA/dutch_final.data";
+		String pathEnglishData = extFilePath+"DataLDA/english_final.data";
+		String pathDutchData = extFilePath+"DataLDA/dutch_final.data";
 		
-		String pathStopEn = "src/main/java/com/ICSMT/englishStopwords_mixed.txt";
-		String pathStopDu = "src/main/java/com/ICSMT/dutchStopwords_mixed.txt";
+		String pathStopEn = extFilePath+"englishStopwords_mixed.txt";
+		String pathStopDu = extFilePath+"dutchStopwords_mixed.txt";
 		
 		//String dataAlign = "src/main/java/com/ICSMT/DataLDA/data_align_lda.data";
 

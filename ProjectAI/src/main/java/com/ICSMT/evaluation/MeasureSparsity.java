@@ -19,7 +19,7 @@ public class MeasureSparsity{
 					//entire distribution (not just top 500 words/wordpairs)
 		boolean bilingual = true; // set this to false for monolingual evaluation
 		if(bilingual){
-			String directory = "../models";
+			String directory = "./models";
             String fileName = "/model/lex.e2f";
             String[] files = FileLoadingUtils.listDirectoriesDirectory(directory);
             ArrayList<BilingualDocument> documentObjects = new ArrayList<BilingualDocument>();
@@ -63,8 +63,8 @@ public class MeasureSparsity{
 
 		// Monolingual representation
 		else{
-			String filePath = "../Testdata/dataset/Dutch"; // directory of dutch documents
-			//String filePath = "../Testdata/dataset/English"; for english representation
+			String filePath = "./Testdata/dataset/Dutch"; // directory of dutch documents
+			//String filePath = "./Testdata/dataset/English"; for english representation
 			ArrayList<String> documentNames = FileLoadingUtils.listFilesDirectory(filePath);
 			Centroid wordContainer = new Centroid();
 			Map<String, Double> allWords = new HashMap<String,Double>();

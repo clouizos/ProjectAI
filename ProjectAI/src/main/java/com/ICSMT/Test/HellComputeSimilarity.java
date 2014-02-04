@@ -15,8 +15,8 @@ import io.*;
  */
 public class HellComputeSimilarity{
 	public static void main(String[] args){
-		String directory = "../Testdata/dataset/English";
-		String directoryDutch = "../Testdata/dataset/Dutch/";
+		String directory = "./Testdata/dataset/English";
+		String directoryDutch = "./Testdata/dataset/Dutch/";
 		ArrayList<String> files = FileLoadingUtils.listFilesDirectory(directory);
 		String language = null; // no shortlist used
 

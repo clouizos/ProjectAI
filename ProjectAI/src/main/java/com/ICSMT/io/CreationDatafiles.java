@@ -26,13 +26,13 @@ public class CreationDatafiles{
 			//String language = "English";
 			String language = "Dutch";
 			int nr = 5;
-			String output_dir = "../Testdata/dataset/";
+			String output_dir = "./Testdata/dataset/";
 			output_dir = output_dir + language + nr + "/";
 			Files.createDirectories(Paths.get(output_dir));
 			
 			// Directory that contains the files of which dummyfiles should
 			// be created.
-			String directory = "../Testdata/dummy/"+language+"/"; 
+			String directory = "./Testdata/dummy/"+language+"/"; 
 			String prefix = "D_"; // Desired prefix of the resulting dummy files
 			ArrayList<String> files = FileLoadingUtils.listFilesDirectory(directory);
 			String dummy = "dop"; // dummyword to which a number will be concatenated
@@ -91,25 +91,25 @@ public class CreationDatafiles{
 				case "Dutch":
 					extension = ".nl"; // Dutch
 					if(us) {
-						directory = "../data/TAUS/us/nl"; // US-dutch directory
+						directory = "./data/TAUS/us/nl"; // US-dutch directory
 						prefix = "CS"; // CS for US-english/dutch dataset
 					} else {
-						directory = "../data/TAUS/uk/nl"; // UK-dutch directory
+						directory = "./data/TAUS/uk/nl"; // UK-dutch directory
 						prefix = "CK"; // CK for UK-english/dutch
 					}
 					break;
 				default:
 					extension = ".en"; // English
 					if(us) {
-						directory = "../data/TAUS/us/en"; // US-dutch directory
+						directory = "./data/TAUS/us/en"; // US-dutch directory
 						prefix = "CS"; // CS for US-english/dutch dataset
 					} else {
-						directory = "../data/TAUS/uk/en"; // UK-dutch directory
+						directory = "./data/TAUS/uk/en"; // UK-dutch directory
 						prefix = "CK"; // CK for UK-english/dutch
 					}
 			}
 			
-			output_dir = "../Testdata/dataset/";
+			output_dir = "./Testdata/dataset/";
 			output_dir = output_dir + language + nr + "/";
 			Files.createDirectories(Paths.get(output_dir));
 			

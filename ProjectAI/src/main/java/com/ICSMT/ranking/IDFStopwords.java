@@ -150,7 +150,7 @@ public class IDFStopwords {
 	public static void main(String[] args) {
 		String filePath = "./Testdata/dataset/English";
 		String language = "english";
-		String path = "./";
+		String path = "./src/main/java/com/ICSMT/";
 		String filename = language+"Stopwords_mixed.txt";
 		
 		IDFStopwords IDF = new IDFStopwords(filePath, language);

@@ -216,7 +216,7 @@ public class PrincipleComponentAnalysis {
     
     public static void main(String[] arg) {
 		System.out.println(System.getProperty("user.dir"));
-		String filePath = "../Testdata/dataset/English";
+		String filePath = "./Testdata/dataset/English";
 		int nPC = 500;
 		int nDocs = 200;
 		FeatureMatrix FM = new FeatureMatrix(filePath,nDocs,"english","prob");

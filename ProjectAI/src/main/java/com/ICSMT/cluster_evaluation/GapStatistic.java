@@ -172,12 +172,12 @@ public class GapStatistic extends IntrinsicEvaluation {
 	}
 	
 	public static void main(String[] args){
-		String extFilePath = "./features/";
+		String extFilePath = "./src/main/java/com/ICSMT/features/";
 		String language = "english";
 		int numTopics = 10;
 		Metric metric = new L1norm(true);
 		extFilePath = extFilePath + "featureVectors_language_"+language+"_"+numTopics+".data";
-		Clustering KM = new Kmeans(5, "../Testdata/dataset/English",  language, metric, 20, true, extFilePath);
+		Clustering KM = new Kmeans(5, "./Testdata/dataset/English",  language, metric, 20, true, extFilePath);
 		System.out.println(KM.getClass().getName());
 	}
 

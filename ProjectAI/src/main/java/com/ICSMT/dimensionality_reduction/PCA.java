@@ -52,7 +52,7 @@ public class PCA {
 	
 
 	public static void main(String[] arg) {
-		String filePath = "./target/Testdata/dataset/English";
+		String filePath = "./Testdata/dataset/English";
 		int nPrincipleComp = 50;
 		int nDocs = 10;
 		PCA pca = new PCA(filePath, nPrincipleComp,nDocs);
