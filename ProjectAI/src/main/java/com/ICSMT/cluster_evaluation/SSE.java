@@ -6,6 +6,12 @@ import data_representation.Centroid;
 import data_representation.Cluster;
 import data_representation.Document;
 
+
+/**
+ * @author christos
+ * Class SSE (Sum of Square Error) provides methods for evaluating clustering result. 
+ * This method requires cluster centroid to compute the score.
+ */
 public class SSE extends IntrinsicEvaluation{
 	
 	Metric metric;
@@ -14,6 +20,12 @@ public class SSE extends IntrinsicEvaluation{
 		this.metric = metric;
 	}
 
+	/**
+	 * This method will compute the SSE and show the result into System.out
+	 * @param C - clustering object. This method need to access the 'clusters' attribute
+	 * of clustering to evaluate the clusters. Clusterer object should save the final 
+	 * clusters of clustering in 'clusters' attribute.
+	 */
 	
 	@Override
 	public void computeScore(Clustering C) {

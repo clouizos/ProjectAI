@@ -15,6 +15,15 @@ import data_representation.Cluster;
 import data_representation.Document;
 import data_representation.ImportExternalDataset;
 
+
+/**
+ * 
+ * @author christos
+ * Class that implements the fuzzy c-means clustering. It's a simple extension of the kmeans 
+ * with a membership function and a fuzziness parameter. The latter controls the uncertainty
+ * of the clustering assignments.
+ *
+ */
 public class FuzzyCmeans extends Clustering{
 	
 	public int c;
@@ -37,6 +46,19 @@ public class FuzzyCmeans extends Clustering{
 	int numTopics;
 
 	public static Map<String, ArrayList<Double>> weights = new HashMap<String, ArrayList<Double>>();
+	
+	/**
+	 * Constructor
+	 * @param c - the number of clusters c
+	 * @param m - the fuzziness parameter m (m!=1)
+	 * @param thres - the threshold for termination (no change at the membership function)
+	 * @param filePath - pathname where the documents are
+	 * @param language - language of the documents
+	 * @param metric - metric used in order to compute the distances
+	 * @param seed -  seed for the initialization of the clusters
+	 * @param externalDataset - define if you will use external feature vectors
+	 * @param extFilePath - the path of the external feature vectors
+	 */
 
 	public FuzzyCmeans(int c, double m, double thres, String filePath, String language, Metric metric, int seed, boolean externalDataset, String extFilePath) {
 		
@@ -83,9 +105,6 @@ public class FuzzyCmeans extends Clustering{
 				if( iterations == 0 || (!converged && clusters.get(i).hasChanged()) ){
 					changes = true;
 				}
-				//System.out.println("cluster " + i );
-				//System.out.println(clusters.get(i).historyMembers.get(iterations));
-				//System.out.println("");
 			}
 			iterations++;
 		}
@@ -124,7 +143,7 @@ public class FuzzyCmeans extends Clustering{
 		}
 		if( docs < c ){
 			c = docs;
-			System.out.println("K was too large for the amount of documents, K revised to "+c + " ...");
+			System.out.println("C was too large for the amount of documents, C revised to "+c + " ...");
 		}
 
 		for( int i = 0; i < c; i++ ){
@@ -169,7 +188,6 @@ public class FuzzyCmeans extends Clustering{
 
 	public void init_external(){
 		System.out.println("Initializing datapoints and clusters from external source...");
-		String options = "featureVectors_language_"+language+"_"+numTopics+".data";
 		Map<String, ArrayList<Double>> dataset = new HashMap<String, ArrayList<Double>>();
 		ImportExternalDataset imp = new ImportExternalDataset(extFilePath);
 		dataset = imp.importData();
@@ -273,14 +291,8 @@ public class FuzzyCmeans extends Clustering{
 				else{
 					double newWeight = 0;
 					
-					//for (int k=0; k< j;  k++)
-					//	newWeight += Math.pow(dist/bestClusterfuzzy.get(k), m);//(double)2/(m-1));
-					//for (int k = doc_memberships.size() - 1; k > j; k--)
-					//	newWeight += Math.pow(dist/bestClusterfuzzy.get(k), m);//(double)2/(m-1));
-					
-					
 					 for(int k=0; k<doc_memberships.size(); k++)
-					 	newWeight += Math.pow(dist/bestClusterfuzzy.get(k),/* m);*/ (double)2/(m-1));
+					 	newWeight += Math.pow(dist/bestClusterfuzzy.get(k),(double)2/(m-1));
 					 
 					
 					newWeight =  1/newWeight;
@@ -300,7 +312,7 @@ public class FuzzyCmeans extends Clustering{
 	}
 	
 	/**
-	 * This method reestimates the clustercentroids by computing the average
+	 * This method reestimates the cluster centroids by computing the average
 	 * of its members (the mean).
 	 */
 	private void reestimateCentroids(){

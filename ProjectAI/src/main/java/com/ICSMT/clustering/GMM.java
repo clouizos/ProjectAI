@@ -36,6 +36,12 @@ import data_representation.Cluster;
 import data_representation.Document;
 import data_representation.ImportExternalDataset;
 
+/**
+ * 
+ * @author christos
+ * Class that wraps the mixture of Gaussians clustering, through the cognitive foundry toolkit
+ *
+ */
 public class GMM extends Clustering{
 	
 	public ArrayList<Document> documentObjects = new ArrayList<Document>();
@@ -109,24 +115,6 @@ public class GMM extends Clustering{
 		
 		
 		
-		
-//		int maxIterations = 1000;
-//        double removalThreshold = Double.MIN_VALUE;
-//        int numClusters = numComponents + 50;
-//        
-//        
-//        KMeansClustererWithRemoval<Vector, GaussianCluster> kmeans =
-//            new KMeansClustererWithRemoval<Vector, GaussianCluster>(
-//            numClusters,
-//            maxIterations,new NeighborhoodGaussianClusterInitializer(random),
-//            new GaussianClusterDivergenceFunction(),
-//            new GaussianClusterCreator(),
-//            removalThreshold);
-//        
-//		MixtureOfGaussians.Learner hardLearner = new MixtureOfGaussians.Learner(kmeans);
-//		MixtureOfGaussians.PDF learnedMixture = hardLearner.learn(data);
-		
-		
 		MixtureOfGaussians.EMLearner softLearner = new MixtureOfGaussians.EMLearner( numComponents, random );
 		softLearner.setMaxIterations(EMiter);
 		softLearner.setTolerance(tolerance);
@@ -135,6 +123,7 @@ public class GMM extends Clustering{
       for(int i=0; i<learnedMixture.getDistributionCount(); i++){
       	Centroid cent = new Centroid();
       	Cluster cluster = new Cluster(cent);
+      	// set the mean of the gaussian as the centroid
       	Vector mean = learnedMixture.getDistributions().get(i).getMean();
       	Map<String, Double> cent_dist = new HashMap<String, Double>();
       	Iterator<VectorEntry> it = mean.iterator();
@@ -183,7 +172,6 @@ public class GMM extends Clustering{
 	
 	public void init_external(){
 		System.out.println("Creating external dataset...");
-		//String options = "featureVectors_language_"+language+"_"+numTopics+".data";
 		Map<String, ArrayList<Double>> dataset = new HashMap<String, ArrayList<Double>>();
 		ImportExternalDataset imp = new ImportExternalDataset(extFilePath);
 		dataset = imp.importData();
@@ -204,8 +192,6 @@ public class GMM extends Clustering{
 			// get the normalized distribution
 			documentObjects.get(i).createListExternal( dummyCentroid, "forgy", dataset.get(documentObjects.get(i).getFilename()) );
 			//System.out.println("Document parsed...");
-			//System.out.println(words_test.toString());
-			//allWords = documentObjects.get(i).initCentroid;	
 		}
 		System.out.println("Finished parsing the documents...");
 		System.out.println("Number of documents to be clustered:"+documentObjects.size()+"\n");

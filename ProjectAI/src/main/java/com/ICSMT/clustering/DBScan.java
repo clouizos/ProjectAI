@@ -20,7 +20,7 @@ import data_representation.Document;
 import data_representation.ImportExternalDataset;
 
 /**
- * @author pathos
+ * @author christos
  * Class DBScan provides methods for clustering documents with the DBScan 
  * algorithm. It was based on the pseudocode available at Wikipedia.
  * One provides this class with two parameters, minPts which defines the minimum number
@@ -65,7 +65,16 @@ public class DBScan extends Clustering{
 	 * @param eps - threshold for density-reachable points
 	 * @param filePath - pathname where documents are
 	 * @param language - language of the documents (or null)
-	 * @param metric - the (distance) metric used. See method 
+	 * @param metric - the (distance) metric used. See method
+	 * @param seed - not used, put a dummy one
+	 * @param nrdocs - nr of docs to be clustered
+	 * @param removeSingle - define if you want to remove singleton clustering results
+	 * @param useExternal - define if you will use external feature vectors
+	 * @param extFilePath - File path of the external dataset
+	 * @param smartinit - define if you want to initialize the eps relatively to the
+	 * pairwise distances of the first documents
+	 * @param nrdocsinit - number of documents used for the initialization
+	 * @param choice - choice for the initialization (average, median, minimum)
 	 * getClosestCluster() for more information on the numbers 
 	 * for the different metrics.
 	 */
@@ -207,11 +216,7 @@ public class DBScan extends Clustering{
 		ArrayList<Document> neighbors = new ArrayList<Document>();
 		neighbors.add(document);
 		double distance = 0;
-		//KLdivergence kldiv = new KLdivergence(true, option);
-		//metric = new KLdivergence(true, "average");
-		//metric = new JSdivergence(true);
-		//metric = new Cosine(true);
-		//metric = new EuclidianDistance(true);
+
 		for(int i=0; i<documentObjects.size(); i++){
 			distance = metric.computeDist(document.words, document.corpusSize, documentObjects.get(i).words, documentObjects.get(i).corpusSize);
 			if(distance <= eps){
@@ -225,7 +230,7 @@ public class DBScan extends Clustering{
 	private void removeSingletonClusters(){
 	// remove empty clusters (it can happen, dbscan can 'steal' points of a cluster and put it in another, if they are near each other)
 		for(int i=clusters.size()-1; i>=0; i--){
-			//System.out.println(clusters.get(i).members.size());
+			
 			if (clusters.get(i).members.size() == 0) 
 				clusters.remove(i);
 			if(true)		// if you wanna remove clusters with only one point(document)
@@ -241,8 +246,8 @@ public class DBScan extends Clustering{
 		System.out.println("Creating dataset...");
 		ArrayList<String> documentNames = FileLoadingUtils.listFilesDirectory(filePath);
 		for( int i = 0; i < documentNames.size(); i++ ){
-			if(i == nrdocs) // in order to test, pick only a small number of documents 
-				break; 
+			//if(i == nrdocs) // in order to test, pick only a small number of documents 
+			//	break; 
 			Document doc = new Document( documentNames.get(i), language );
 			documentObjects.add(doc);
 			visited.put(doc, false);
@@ -254,8 +259,7 @@ public class DBScan extends Clustering{
 			// get the normalized distribution
 			documentObjects.get(i).createList( dummyCentroid, "forgy" );
 			//System.out.println("Document parsed...");
-			//System.out.println(words_test.toString());
-			//allWords = documentObjects.get(i).initCentroid;	
+				
 		}
 		System.out.println("Finished parsing the documents...");
 		System.out.println("Number of documents to be clustered:"+documentObjects.size()+"\n");
@@ -263,7 +267,7 @@ public class DBScan extends Clustering{
 	
 	public void init_external(){
 		System.out.println("Creating external dataset...");
-		//String options = "featureVectors_language_"+language+"_"+numTopics+".data";
+		
 		Map<String, ArrayList<Double>> dataset = new HashMap<String, ArrayList<Double>>();
 		ImportExternalDataset imp = new ImportExternalDataset(extFilePath);
 		dataset = imp.importData();
@@ -285,8 +289,7 @@ public class DBScan extends Clustering{
 			// get the normalized distribution
 			documentObjects.get(i).createListExternal( dummyCentroid, "forgy", dataset.get(documentObjects.get(i).getFilename()) );
 			//System.out.println("Document parsed...");
-			//System.out.println(words_test.toString());
-			//allWords = documentObjects.get(i).initCentroid;	
+
 		}
 		System.out.println("Finished parsing the documents...");
 		System.out.println("Number of documents to be clustered:"+documentObjects.size()+"\n");

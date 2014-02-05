@@ -18,6 +18,12 @@ import data_representation.Cluster;
 import data_representation.Document;
 import data_representation.ImportExternalDataset;
 
+/**
+ * 
+ * @author christos
+ * Class that implements the Dirichlet Process Clustering, through the cognitive foundry toolkit
+ *
+ */
 public class DPC extends Clustering{
 	public ArrayList<Document> documentObjects = new ArrayList<Document>();
 	String extFilePath;
@@ -97,8 +103,6 @@ public class DPC extends Clustering{
 		DirichletProcessClustering dpc = new DirichletProcessClustering();
 		DirichletProcessMixtureModel<Vector> alg = dpc.getAlgorithm();
 		
-		// recalcAlpha false for best results at monolingual
-		// best alpha for monolingual is 100 (too much probably, why?)
 		
 		System.out.println("Initial Parameters:");
 		System.out.println("numInitClusters: "+numInitClusters+", numIterations: "+numIterPerSample+", recalcAlpha: "+recalcAlpha+", initAlpha: "+initAlpha+", burnIn: "+burnIn);
@@ -113,10 +117,7 @@ public class DPC extends Clustering{
 		
         dpc.learn(data);
         
-        //DirichletProcessMixtureModel<Vector> alg2 = dpc.getAlgorithm();
-        
-        
-        //System.out.println("NumInit: "+alg.getNumInitialClusters());
+
         ArrayList<GaussianCluster> res = dpc.getResult();
         
         for(int i=0; i<res.size(); i++){
@@ -171,8 +172,7 @@ public class DPC extends Clustering{
 			// get the normalized distribution
 			documentObjects.get(i).createListExternal( dummyCentroid, "forgy", dataset.get(documentObjects.get(i).getFilename()) );
 			//System.out.println("Document parsed...");
-			//System.out.println(words_test.toString());
-			//allWords = documentObjects.get(i).initCentroid;	
+
 		}
 		System.out.println("Finished parsing the documents...");
 		System.out.println("Number of documents to be clustered:"+documentObjects.size()+"\n");
