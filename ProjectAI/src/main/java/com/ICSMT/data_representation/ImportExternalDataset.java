@@ -7,11 +7,20 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-
+/**
+ * 
+ * @author christos
+ * Class that imports the external datasets created from LDA and LSA
+ *
+ */
 public class ImportExternalDataset {
 
 	private String filePath;
 	
+	/**
+	 * Constructor
+	 * @param filePath - the path of the file
+	 */
 	public ImportExternalDataset(String filePath) {
 		this.filePath = filePath;
 	}
