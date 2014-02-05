@@ -85,7 +85,7 @@ public abstract class Metric{
 		return closestCentroidsDist;
 	}
 	
-	
+	// function for easier computing of the distances
 	public double computeDist(Map<String, Double> q, int corpusSizeQ, Map<String, Double> r, int corpusSizeR){
 		return computeDistance(q,corpusSizeQ,r,corpusSizeR);
 	}

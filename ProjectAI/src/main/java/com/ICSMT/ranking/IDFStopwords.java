@@ -11,6 +11,12 @@ import java.util.Set;
 import data_representation.Centroid;
 import data_representation.Document;
 
+/**
+ * 
+ * @author christos
+ * Class that automatically creates stoplists according to the document frequency of the words
+ *
+ */
 public class IDFStopwords {
 
 	private Map<String, Double> idf = new HashMap<String, Double>();
@@ -19,6 +25,11 @@ public class IDFStopwords {
 	private String language;
 	private double nrDocs;
 	
+	/**
+	 * Constructor
+	 * @param filePath - the path of the files
+	 * @param language - the language of the documents
+	 */
 	public IDFStopwords(String filePath, String language) {
 		this.filePath = filePath;
 		this.language = language;
@@ -52,6 +63,14 @@ public class IDFStopwords {
 		}
 	}
 	
+	/**
+	 * Create rare list
+	 * @param percentageRare - percentage of appearance to be considered rare
+	 * @param writeList - define if you want to write the list
+	 * @param path - the path of the stopwords list
+	 * @param filename - the name of the stopwords list
+	 * @return an ArrayList of strings containing the words
+	 */
 	public ArrayList<String> createRareList(double percentageRare, boolean writeList, String path, String filename){
 		Set<String> keys = idf.keySet();
 		double value = 0;
@@ -69,6 +88,15 @@ public class IDFStopwords {
 		return words;
 		
 	}
+	
+	/**
+	 * Create common list
+	 * @param percentageCommon - percentage of appearance to be considered common
+	 * @param writeList - define if you want to write the list
+	 * @param path - the path of the stopwords list
+	 * @param filename - the name of the stopwords list
+	 * @return an ArrayList of strings containing the words
+	 */
 	
 	public ArrayList<String> createCommonList(double percentageCommon, boolean writeList, String path, String filename){
 		Set<String> keys = idf.keySet();
@@ -88,6 +116,15 @@ public class IDFStopwords {
 		
 	}
 	
+	/**
+	 * Create mixed rare and common list
+	 * @param percentageCommon - percentage of appearance to be considered common
+	 * @param percentageRare - percentage of appearance to be considered rare
+	 * @param writeList - define if you want to write the list
+	 * @param path - the path of the stopwords list
+	 * @param filename - the name of the stopwords list
+	 * @return an ArrayList of strings containing the words
+	 */
 	public ArrayList<String> createMixedList(double percentageCommon, double percentageRare, boolean writeList, String path, String filename){
 		Set<String> keys = idf.keySet();
 		double value = 0;
