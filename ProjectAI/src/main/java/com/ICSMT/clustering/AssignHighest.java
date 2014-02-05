@@ -10,12 +10,28 @@ import data_representation.Cluster;
 import data_representation.Document;
 import data_representation.ImportExternalDataset;
 
+/**
+ * 
+ * @author christos
+ * Dummy clustering class that assigns documents to the clusters according to the most probable
+ * topics from the LDA.
+ *
+ */
 public class AssignHighest extends Clustering{
 	
 	public ArrayList<Document> documentObjects = new ArrayList<Document>();
 	String extFilePath;
 	String language;
 	int numTopics;
+	
+	/**
+	 * Constructor
+	 * @param filePath - the filepath of the documents
+	 * @param language - the language of the documents
+	 * @param numTopics - the number of topics(the dimensionality of the feature vectors)
+	 * @param bilingual - define if you will use bilingual data or not
+	 * @param extFilePath - the file path of the external feature vectors
+	 */
 
 	public AssignHighest(String filePath, String language, int numTopics, boolean bilingual, String extFilePath) {
 		this.numTopics = numTopics;
@@ -48,14 +64,6 @@ public class AssignHighest extends Clustering{
 		for(Document doc : documentObjects){
 			Map<String, Double> words = doc.words;
 			
-//			Entry<String,Double> maxEntry = null;
-//
-//			for(Entry<String,Double> entry : words.entrySet()) {
-//			    if (maxEntry == null || entry.getValue() > maxEntry.getValue()) {
-//			        maxEntry = entry;
-//			    }
-//			}
-//			System.out.println(maxEntry);
 			
 			for(String key : words.keySet()){
 				double temp = words.get(key);
@@ -103,8 +111,7 @@ public class AssignHighest extends Clustering{
 			// get the normalized distribution
 			documentObjects.get(i).createListExternal( dummyCentroid, "forgy", dataset.get(documentObjects.get(i).getFilename()) );
 			//System.out.println("Document parsed...");
-			//System.out.println(words_test.toString());
-			//allWords = documentObjects.get(i).initCentroid;	
+
 		}
 		System.out.println("Finished parsing the documents...");
 		System.out.println("Number of documents to be clustered:"+documentObjects.size()+"\n");
