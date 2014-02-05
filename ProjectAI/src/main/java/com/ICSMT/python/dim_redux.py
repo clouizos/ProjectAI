@@ -8,27 +8,21 @@ from __future__ import print_function
 
 from sklearn.decomposition import TruncatedSVD
 from sklearn.cross_decomposition import CCA
-from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.feature_extraction.text import HashingVectorizer
 from sklearn.feature_extraction.text import TfidfTransformer
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import Normalizer
-from sklearn import metrics
 import cPickle as pickle
 import re
 from nltk.corpus import stopwords
 from sklearn.utils import as_float_array
 
-from sklearn.cluster import KMeans, MiniBatchKMeans
-
 import glob
 import logging
-#from optparse import OptionParser
 import argparse
 from time import time
 import sys
-import numpy as np
 
 
 # Display progress logs on stdout
@@ -50,26 +44,27 @@ op.add_argument('-c', type=int, nargs='?', help='Numbers of components of \
 op.add_argument('-direction', choices=['e2f', 'f2e'], nargs='?',
                 help="Which direction to perform cca on.")
 op.add_argument('-i', nargs='+', type=argparse.FileType('r'),
-                default=sys.stdin, help='Input files for ' + \
-                'lda and bilangual representation methods.')
+                default=sys.stdin, help='Input files for \
+                lda and bilangual representation methods.')
 op.add_argument("-nn",
                 action="store_true", default=False,
-                help="Enable non-negative feature output.")                             
-op.add_argument("--no-idf",
+                help="Enable non-negative feature output.")
+op.add_argument("-rv",
+                action="store_true", default=False,
+                help="Revectorize the dataset.")
+op.add_argument("-df", type=float, default=0.5,
+                help="Give value in range [0.7, 1) to automatically detect \
+                and filter stop words based on intra corpus \
+                document frequency of terms.")                              
+op.add_argument("-no_idf",
                 action="store_false", dest="use_idf", default=True,
                 help="Disable Inverse Document Frequency feature weighting.")
-op.add_argument("--use-hashing",
+op.add_argument("-use-hashing",
                 action="store_true", default=False,
                 help="Use a hashing feature vectorizer")
-op.add_argument("--n-features", type=int, default=None,
-                help="Maximum number of features (dimensions)"
-                   "to extract from text.")
-#op.add_argument("--no-minibatch",
-#               action="store_false", dest="minibatch", default=True,
-#               help="Use ordinary k-means algorithm (in batch mode).")
-#op.add_argument("--verbose",
-#               action="store_true", dest="verbose", default=False,
-#               help="Print progress reports inside k-means algorithm.")
+op.add_argument("-n_features", type=int, default=None,
+                help="Maximum number of features (dimensions) "
+                    "to extract from each document.")
 
 op.print_help()
 
@@ -117,16 +112,21 @@ def import_lda(f):
 
 ###############################################################################    
 # return path and dependant variables 
-def return_Path(language, dataset):    
+def return_Path(language, dataset):
+    dummywords = ['dummy1dummy', 'dummy2dummy', 'dummy3dummy', 'dummy4dummy', 
+    'dummy5dummy', 'dummy6dummy', 'dummy7dummy', 'dummy8dummy', 'dummy9dummy',
+    'dummy10dummy', 'dummy11dummy', 'dummy12dummy', 'dummy13dummy', 
+    'dummy14dummy', 'dummy15dummy']    
     if language == 'English':
         extensions = ['en']
-        s_words = stopwords.words('english')
+        s_words = stopwords.words('english') + dummywords
     elif language == 'Dutch':
         extensions = ['nl']
-        s_words = stopwords.words('dutch')
+        s_words = stopwords.words('dutch') + dummywords
     else:
         extensions = ['en', 'nl']
-        s_words = stopwords.words('english') + stopwords.words('dutch')
+        s_words = stopwords.words('english') + stopwords.words('dutch') +\
+        dummywords
     
     filenames = []
     for extension in extensions:   
@@ -150,12 +150,17 @@ def return_Path(language, dataset):
 # Check if dataset has already been vectorized and attemps to read in
 # Otherwise vectorize and dumps into a file
 ##############################################################################    
-def vectorize(path, docs, features, s_words, idf, hashing):    
+def vectorize(path, docs, features, s_words, idf, hashing, revectorize, df):    
+    if df != 0.5:
+        s_words=None
     t0 = time()    
-    try:
-        with open(path+'_vect', 'rb') as handle:
-            X = pickle.load(handle)
-    except IOError:
+    if not revectorize:
+        try:
+            with open(path+'_vect', 'rb') as handle:
+                X = pickle.load(handle)
+        except IOError:
+            print("\nFile does not exist! Run with -rv to vectorize the data.")
+    else:
         print("Extracting features from the training dataset using a sparse vectorizer")
         if hashing:
             if args.use_idf:
@@ -173,16 +178,16 @@ def vectorize(path, docs, features, s_words, idf, hashing):
                                                non_negative=False, norm='l2',
                                                binary=False)
         else:
-            vectorizer = TfidfVectorizer(max_df=0.5, max_features=features,
+            vectorizer = TfidfVectorizer(max_df=df, max_features=features,
                                          stop_words=s_words, use_idf=idf)
             #vectorizer = CountVectorizer(stop_words=stopwords)
         with open(path+'_vect', 'wb') as handle:
             X = vectorizer.fit_transform(docs)
             pickle.dump(X, handle)
-    
-    print("done in %fs" % (time() - t0))
-    print("n_samples: %d, n_features: %d" % X.shape)
-    print()
+        
+        print("done in %fs" % (time() - t0))
+        print("n_samples: %d, n_features: %d" % X.shape)
+        print()
     return X
 
 dataset = args.d
@@ -192,6 +197,8 @@ components=args.c
 direction=args.direction
 infiles=args.i
 non_negative=args.nn
+revectorize=args.rv
+df=args.df
 if(non_negative):
     nn = '_nn'
 else:
@@ -209,8 +216,8 @@ if method != None:
     t0 = time()
     if method == 'lsa':
         docs, path, s_words, filenames = return_Path(language, dataset)
-        X = vectorize(path, docs, args.n_features, 
-                      s_words, args.use_idf, args.use_hashing)
+        X = vectorize(path, docs, args.n_features, s_words,
+                      args.use_idf, args.use_hashing, revectorize, df)
         print("Performing dimensionality reduction using LSA")
         redux = TruncatedSVD(components)  
         X = redux.fit_transform(X)
@@ -229,16 +236,16 @@ if method != None:
     
     if method == 'cca':
         if direction == None:
-            print("State direction to perform CCA on!")            
+            print("\nState direction to perform CCA on!")            
             raise SystemExit        
         # English set
         docs, path, s_words, filenames = return_Path('English', dataset)
-        X = vectorize(path, docs, args.n_features, 
-                      s_words, args.use_idf, args.use_hashing)
+        X = vectorize(path, docs, args.n_features, s_words,
+                      args.use_idf, args.use_hashing, revectorize, df)
         # Dutch set
         docs, path, s_words, filenames2 = return_Path('Dutch', dataset)
-        Y = vectorize(path, docs, args.n_features, 
-                      s_words, args.use_idf, args.use_hashing)              
+        Y = vectorize(path, docs, args.n_features, s_words,
+                      args.use_idf, args.use_hashing, revectorize, df)              
         print("Performing dimensionality reduction using CCA")
         X = X.toarray()
         Y = Y.toarray()
@@ -269,14 +276,14 @@ if method != None:
     if method == '2monolsa':
         # English set
         docs, path, s_words, filenames = return_Path('English', dataset)
-        X = vectorize(path, docs, args.n_features, 
-                      s_words, args.use_idf, args.use_hashing)
+        X = vectorize(path, docs, args.n_features, s_words,
+                      args.use_idf, args.use_hashing, revectorize, df)
         # Dutch set
         docs, path, s_words, filenames2 = return_Path('Dutch', dataset)
-        Y = vectorize(path, docs, args.n_features, 
-                      s_words, args.use_idf, args.use_hashing)              
-        print("Performing dimensionality reduction using parallel \
-        monolingual LSA")
+        Y = vectorize(path, docs, args.n_features, s_words,
+                      args.use_idf, args.use_hashing, revectorize, df)              
+        print("Performing dimensionality reduction using parallel "
+        "monolingual LSA")
         lsa = TruncatedSVD(components)
         lsa2 = TruncatedSVD(components)
         X = lsa.fit_transform(X)
@@ -295,18 +302,18 @@ if method != None:
         
     if method == 'lsa2cca':
         if direction == None:
-            print("State direction to perform CCA on!")            
+            print("\nState direction to perform CCA on!")            
             raise SystemExit        
         # English set
         docs, path, s_words, filenames = return_Path('English', dataset)
-        X = vectorize(path, docs, args.n_features, 
-                      s_words, args.use_idf, args.use_hashing)
+        X = vectorize(path, docs, args.n_features, s_words,
+                      args.use_idf, args.use_hashing, revectorize, df)
         # Dutch set
         docs, path, s_words, filenames2 = return_Path('Dutch', dataset)
-        Y = vectorize(path, docs, args.n_features, 
-                      s_words, args.use_idf, args.use_hashing)              
-        print("Performing dimensionality reduction using CCA after \
-        parallel monolingual LSA")
+        Y = vectorize(path, docs, args.n_features, s_words,
+                      args.use_idf, args.use_hashing, revectorize, df)              
+        print("Performing dimensionality reduction using CCA after "
+        "parallel monolingual LSA")
         lsa = TruncatedSVD(components)
         lsa2 = TruncatedSVD(components)
         X = lsa.fit_transform(X)
@@ -338,7 +345,7 @@ if method != None:
         
     if method == 'lda2lsa':
         if len(infiles) != 2:
-            print("lda2lsa expects 2 corresponding files!")            
+            print("\nlda2lsa expects 2 corresponding files!")            
             raise SystemExit
         print("Performing dimensionality reduction using LSA on LDA.")
         labels1, X = import_lda(infiles[0])
@@ -360,7 +367,7 @@ if method != None:
         
     if method == 'lda2cca':
         if len(infiles) != 2:
-            print("lda2cca expects 2 corresponding files!")            
+            print("\nlda2cca expects 2 corresponding files!")            
             raise SystemExit
         elif direction == None:
             print("State direction to perform CCA on!")            
@@ -394,10 +401,10 @@ if method != None:
         
     if method == 'bilingual2lsa':
         if len(infiles) != 1:
-            print("Bilingual representation to LSA expects 1 input file!")            
+            print("\nBilingual representation to LSA expects 1 input file!")            
             raise SystemExit
-        print("Performing dimensionality reduction using LSA on \
-        Bilingual representation.")
+        print("Performing dimensionality reduction using LSA on "
+        "Bilingual representation.")
         labels1, X = import_lda(infiles[0])
         lsa = TruncatedSVD(components)
         X = lsa.fit_transform(X)
@@ -411,37 +418,12 @@ if method != None:
         
 else:     
     if language == None:
-        print("Please input a dataset!")            
+        print("\nPlease input a dataset!")            
         raise SystemExit    
     t0 = time()    
     print("Vectorizing the dataset.")    
     docs, path, s_words, filenames = return_Path(language, dataset)
     X = vectorize(path, docs, args.n_features, 
-                  s_words, args.use_idf, args.use_hashing)
+                  s_words, args.use_idf, args.use_hashing, revectorize, df)
     print("done in %fs" % (time() - t0))
     print()
-        
-###############################################################################
-# Do the actual clustering
-
-#if opts.minibatch:
-#    km = MiniBatchKMeans(n_clusters=n_c, init='k-means++', n_init=1,
-#                         init_size=1000, batch_size=1000, verbose=opts.verbose)
-#else:
-#    km = KMeans(n_clusters=n_c, init='k-means++', max_iter=100, n_init=1,
-#                verbose=opts.verbose)
-#
-#print("Clustering sparse data with %s" % km)
-#t0 = time()
-#km.fit(X)
-#print("done in %0.3fs" % (time() - t0))
-#print()
-
-#print("Homogeneity: %0.3f" % metrics.homogeneity_score(labels, km.labels_))
-#print("Completeness: %0.3f" % metrics.completeness_score(labels, km.labels_))
-#print("V-measure: %0.3f" % metrics.v_measure_score(labels, km.labels_))
-#print("Adjusted Rand-Index: %.3f"
-#      % metrics.adjusted_rand_score(labels, km.labels_))
-#print("Silhouette Coefficient: %0.3f"
-#      % metrics.silhouette_score(X, labels, sample_size=1000))
-#print()
