@@ -29,6 +29,13 @@ import cc.mallet.types.Instance;
 import cc.mallet.types.InstanceList;
 import cc.mallet.types.LabelSequence;
 
+/**
+ * 
+ * @author christos
+ * 
+ * Class that performs the Polylingual Topic Models - wrapped around the mallet toolkit
+ *
+ */
 public class LDABillingual {
 	
 	private PolylingualTopicModel model;
@@ -38,6 +45,16 @@ public class LDABillingual {
 	String data_source_nl;
 	private int numTopics;
 	private int numIterations;
+	
+	/**
+	 * Constructor
+	 * @param stopwords_en - path for the english stopwords
+	 * @param stopwords_nl - path for the dutch stopwords
+	 * @param data_source_en - path for the english dataset
+	 * @param data_source_nl - path for the dutch dataset
+	 * @param numTopics - desired number of topics
+	 * @param numIterations - iterations to be performed by the Gibbs sampler
+	 */
 
 	public LDABillingual(String stopwords_en, String stopwords_nl, String data_source_en, String data_source_nl, int numTopics, int numIterations) {
 		this.stopwords_en = stopwords_en;
@@ -59,7 +76,6 @@ public class LDABillingual {
         // Pipes: lowercase, tokenize, remove stopwords, map to features
         pipeList.add( new CharSequenceLowercase() );
         pipeList.add( new CharSequence2TokenSequence(Pattern.compile("\\p{L}[\\p{L}\\p{P}]+\\p{L}")) );
-        //pipeList.add( new TokenSequenceRemoveStopwords(new File("stoplists/en.txt"), "UTF-8", false, false, false) );
         pipeList.add( new TokenSequenceRemoveStopwords(new File(stopwords_en), "UTF-8", false, false, false) );
         pipeList.add( new TokenSequenceRemoveStopwords(new File(stopwords_nl), "UTF-8", false, false, false) );
         pipeList.add( new TokenSequence2FeatureSequence() );
@@ -80,17 +96,10 @@ public class LDABillingual {
         // for the billingual setting
         InstanceList[] training = new InstanceList[] {instances_en,instances_nl};
         
-        // Create a model with 100 topics, alpha_t = 0.01, beta_w = 0.01
-        //  Note that the first parameter is passed as the sum over topics, while
-        //  the second is the parameter for a single dimension of the Dirichlet prior.
         //int numTopics = 30;
         model = new PolylingualTopicModel(numTopics,2.0);
         
         model.addInstances(training);
-        
-        // Use two parallel samplers, which each look at one half the corpus and combine
-        //  statistics after every iteration.
-        //model.setNumThreads(4);
 
         // Run the model for 50 iterations and stop (this is for testing only, 
         //  for real applications, use 1000 to 2000 iterations)
@@ -102,14 +111,14 @@ public class LDABillingual {
         // Show the words and topics in the first instance
 
         // The data alphabet maps word IDs to strings
-        Alphabet dataAlphabet_en = instances_en.getDataAlphabet();
-        Alphabet dataAlphabet_nl = instances_nl.getDataAlphabet();
+        //Alphabet dataAlphabet_en = instances_en.getDataAlphabet();
+        //Alphabet dataAlphabet_nl = instances_nl.getDataAlphabet();
         
-        FeatureSequence tokens_en = (FeatureSequence) model.getData().get(0).instances[0].getData();
-        FeatureSequence tokens_nl = (FeatureSequence) model.getData().get(0).instances[1].getData();
+        //FeatureSequence tokens_en = (FeatureSequence) model.getData().get(0).instances[0].getData();
+        //FeatureSequence tokens_nl = (FeatureSequence) model.getData().get(0).instances[1].getData();
         
-        LabelSequence topics_en = model.getData().get(0).topicSequences[0];
-        LabelSequence topics_nl = model.getData().get(0).topicSequences[1];
+        //LabelSequence topics_en = model.getData().get(0).topicSequences[0];
+        //LabelSequence topics_nl = model.getData().get(0).topicSequences[1];
         
         Formatter out = new Formatter(new StringBuilder(), Locale.US);
         //for (int position = 0; position < tokens_en.getLength(); position++) {
@@ -147,7 +156,7 @@ public class LDABillingual {
             out = new Formatter(new StringBuilder(), Locale.US);
             out.format("%d\t%.3f\t", topic, topicDistribution_en[topic]);
             out.format("%d\t%.3f\t", topic, topicDistribution_nl[topic]);
-            int rank = 0;
+            //int rank = 0;
             //while (iterator.hasNext() && rank < 8) {
             //    IDSorter idCountPair = iterator.next();
             //    out.format("%s (%.0f) ", dataAlphabet_en.lookupObject(idCountPair.getID()), idCountPair.getWeight());
@@ -182,6 +191,7 @@ public class LDABillingual {
 			File f = new File("./features/test.data");
 			model.printDocumentTopics(f);
 			
+			// if language for inference is either english or dutch
 			if(language == 0 || language == 1){
 	        // Pipes: lowercase, tokenize, remove stopwords, map to features
 	        pipeList.add( new CharSequenceLowercase() );
@@ -232,6 +242,7 @@ public class LDABillingual {
 	        if(write)
 	        	System.out.println("Finished Writing the feature vectors.");
 		 }
+		// if we are performing inference for both languages
 		 else if (language == 2){
 			 
 			 // for english

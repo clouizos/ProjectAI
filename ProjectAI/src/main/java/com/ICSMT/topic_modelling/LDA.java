@@ -32,6 +32,13 @@ import cc.mallet.types.InstanceList;
 import cc.mallet.types.LabelSequence;
 
 
+/**
+ * 
+ * @author christos
+ * 
+ * Class that performs the monolingual Latent Dirichlet Allocation (LDA) - wrapped around the mallet toolkit
+ *
+ */
 public class LDA {
 	
 	private ParallelTopicModel model;
@@ -42,6 +49,14 @@ public class LDA {
 	private String language;
 
 	
+	/**
+	 * Constructor
+	 * @param stopwords - the path of the stopwords
+	 * @param data_source - the path of the dataset for the LDA
+	 * @param numTopics - the desired number of topics
+	 * @param numIterations - the iterations to be performed by the Gibbs sampler
+	 * @param language - the language of the documents
+	 */
 	public LDA(String stopwords, String data_source, int numTopics, int numIterations,String language) {
 		this.stopwords = stopwords;
 		this.data_source = data_source;
@@ -58,8 +73,7 @@ public class LDA {
 		        // Pipes: lowercase, tokenize, remove stopwords, map to features
 		        pipeList.add( new CharSequenceLowercase() );
 		        pipeList.add( new CharSequence2TokenSequence(Pattern.compile("\\p{L}[\\p{L}\\p{P}]+\\p{L}")) );
-		        //pipeList.add( new CharSequence2TokenSequence(Pattern.compile("\\s")) );
-			pipeList.add( new TokenSequenceRemoveStopwords(new File(stopwords), "UTF-8", false, false, false) );
+		        pipeList.add( new TokenSequenceRemoveStopwords(new File(stopwords), "UTF-8", false, false, false) );
 		        pipeList.add( new TokenSequence2FeatureSequence() );
 
 		        InstanceList instances = new InstanceList (new SerialPipes(pipeList));

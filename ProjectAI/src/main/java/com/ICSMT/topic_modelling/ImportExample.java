@@ -8,6 +8,11 @@ import cc.mallet.pipe.*;
 import cc.mallet.pipe.iterator.*;
 import cc.mallet.types.*;
 
+/**
+ * Class that illustrates a simple import example for mallet toolkit
+ * @author pathos
+ *
+ */
 public class ImportExample {
 	
 	Pipe pipe;
